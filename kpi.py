@@ -184,9 +184,9 @@ async def get_sprints_by_month(store):
                 SprintId = sprint['id']
                 s1 = slice(0,8)
                 date_time_obj = dt.datetime.strptime(enddate[s1], '%d%m%Y')
-                today = dt.datetime.now()
                 if date_time_obj.month == int(store.month) and date_time_obj.year == int(store.year):
-                        id_list.append(SprintId)
+                        if SprintId not in store.sprint_black_list:
+                                id_list.append(SprintId)
         
         for id in id_list:
                 response = await get_sprint_velocity_report(id, store.rapid_view)
@@ -438,6 +438,7 @@ async def main():
         store.rapid_view = '588'
         #store.project = 'FC'
         #store.rapid_view = '464'
+        store.sprint_black_list = [2605]
         store.sprints = []
         store = await get_sprints_by_month(store)
         await process_additional_kpis(store)

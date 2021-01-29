@@ -17,6 +17,18 @@
 
       ![image](https://user-images.githubusercontent.com/63073403/105727818-75229380-5ef9-11eb-8c84-8225af0fb933.png)
 
+## To Execute
+
+  1. Right now you can simply run the kpi.py file.
+  
+    python kpi.py
+
+  2. Option 2 - in vscode you can hit Ctrl-Shift-P with kpi.py open in the editor.
+
+![image](https://user-images.githubusercontent.com/63073403/105728267-f548f900-5ef9-11eb-90cd-117346fc4259.png)
+
+  the code produces and output in csv format in the output.  Currently, I copy and paste it over one of the csv files in the project.
+
 ## Setup 
 
 1. Install IDE

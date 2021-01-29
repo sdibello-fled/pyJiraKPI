@@ -10,6 +10,8 @@ class kpi_store:
     rapid_view = ""
     project = ""
     sprints = []
+    sprint_white_list = []
+    sprint_black_list = []
     escape_velocity_count = 0
     escape_velocity_percent = 0.0
 
