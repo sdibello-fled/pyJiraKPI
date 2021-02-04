@@ -116,7 +116,7 @@ class kpi_store:
         self.ability_to_estimate = 100 - (self.stories_more_then_thirteen / self.stories_less_then_thirteen)
 
     def calcuate_gherkin_kpi(self):
-        self.gherkin_kpi = (self.gherkin_format_count / self.sum_completed_issue_count)
+        self.gherkin_kpi = (self.gherkin_format_count / self.type_story_count)
 
     def calculate_sprint_churn(self):
         self.sprint_churn = 0

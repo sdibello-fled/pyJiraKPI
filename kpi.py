@@ -42,15 +42,18 @@ async def get_backlog_issues(project):
 
 async def get_all_backlog_by_pri(project, priority):
         ## get a list of all sprints
+        count = 0
         auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
         jql = f'project = {project} and statusCategory = "To Do" and type not in (test, epic) and priority = {priority}'
         url = f'https://frontlinetechnologies.atlassian.net/rest/api/2/search?jql={jql}'
         print(url)
+        aiohttp.ClientTimeout(total=10)
         async with aiohttp.ClientSession(auth=auth) as session:
                 raw = await session.get(url)
                 response = await raw.text()
                 response = json.loads(response)
-        return response["total"]
+                count = response["total"]
+        return count
 
 async def created_support_defects(store, priority):
         ## get a list of all sprints
@@ -119,6 +122,7 @@ async def get_gherkin_format(project, sprint_id_array):
         jql = f'project = "{project}" AND Sprint in  ({listi}) AND text ~ "Given*When*Then" and type = "Story"'
         url = f'https://frontlinetechnologies.atlassian.net/rest/api/2/search?jql={jql}'
         print('jql=> ' + jql)
+        aiohttp.ClientTimeout(total=10)
         async with aiohttp.ClientSession(auth=auth) as session:
                 raw = await session.get(url)
                 response = await raw.text()
@@ -144,7 +148,8 @@ async def calculate_technical_debt(data):
         total = 0
         for i in issues:
                 if 'customfield_10021' in i['fields']:
-                        total += i['fields']['customfield_10021']                
+                        if i['fields']['customfield_10021'] != None:
+                                total += i['fields']['customfield_10021']                
         return total
 
 async def get_planning(project):
@@ -407,6 +412,7 @@ async def process_additional_kpis(store):
         ## get the count of all "story" type tickets in the sprints.
         story_response = await get_all_stories(store.project, ids)
         store.type_story_count = await count_issues(story_response)
+        store.calcuate_gherkin_kpi()
 
         store.calculate_sprint_churn()
 
@@ -432,13 +438,13 @@ async def process_additional_kpis(store):
 async def main():
         load_dotenv()
         store = kpi_store.kpi_store()
-        store.year = 2020
-        store.month = 12
-        store.project = 'HCMAT'
-        store.rapid_view = '588'
-        #store.project = 'FC'
-        #store.rapid_view = '464'
-        store.sprint_black_list = [2605]
+        store.year = 2021
+        store.month = 1
+        #store.project = 'HCMAT'
+        #store.rapid_view = '588'
+        store.project = 'FC'
+        store.rapid_view = '464'
+        store.sprint_black_list = [2555, 2556]
         store.sprints = []
         store = await get_sprints_by_month(store)
         await process_additional_kpis(store)
