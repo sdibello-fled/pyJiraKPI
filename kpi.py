@@ -298,6 +298,22 @@ async def monthly_bug_count(store):
 
         return response                  
 
+async def bug_count(store):
+        ## get a list of all sprints
+        ##https://frontlinetechnologies.atlassian.net/rest/api/2/search?jql=project=HCMAT and statusCategory != Done and type = "Bug"'
+        ##https://frontlinetechnologies.atlassian.net/rest/api/2/search?jql=project=HCMAT%22%20and%20createdDate%20%3E=%20%222021-2-01%22%20and%20createdDate%20%3C%20%222021-2-28%22%20and%20type%20=%20%22Bug%22
+        auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
+        jql = f'project="{store.project}" and statusCategory != Done and type = "Bug"'
+        url = f'https://frontlinetechnologies.atlassian.net/rest/api/2/search?jql={jql}'
+        print(url)
+        async with aiohttp.ClientSession(auth=auth) as session:
+                raw = await session.get(url) 
+                response = await raw.text()
+                response = json.loads(response)
+
+        return response                  
+
+
 async def print_csv(store):
         print(' '.join(('sprintId,',
                 'sprintName,',
@@ -439,12 +455,12 @@ async def main():
         load_dotenv()
         store = kpi_store.kpi_store()
         store.year = 2021
-        store.month = 1
+        store.month = 3
         #store.project = 'HCMAT'
         #store.rapid_view = '588'
         store.project = 'FC'
         store.rapid_view = '464'
-        store.sprint_black_list = [2555, 2556]
+        store.sprint_black_list = [2838]
         store.sprints = []
         store = await get_sprints_by_month(store)
         await process_additional_kpis(store)
