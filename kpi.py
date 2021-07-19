@@ -299,9 +299,7 @@ async def monthly_bug_count(store):
         return response                  
 
 async def bug_count(store):
-        ## get a list of all sprints
-        ##https://frontlinetechnologies.atlassian.net/rest/api/2/search?jql=project=HCMAT and statusCategory != Done and type = "Bug"'
-        ##https://frontlinetechnologies.atlassian.net/rest/api/2/search?jql=project=HCMAT%22%20and%20createdDate%20%3E=%20%222021-2-01%22%20and%20createdDate%20%3C%20%222021-2-28%22%20and%20type%20=%20%22Bug%22
+        ## get a list of all bugs for a project that are no closed.
         auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
         jql = f'project="{store.project}" and statusCategory != Done and type = "Bug"'
         url = f'https://frontlinetechnologies.atlassian.net/rest/api/2/search?jql={jql}'
@@ -376,7 +374,7 @@ async def print_csv(store):
                         str(sprint.issues_added_count),',',
                         str(store.escape_velocity_count),',',
                         str(store.escape_velocity_percent),',',
-                        str(store.monthly_bug_count),',',
+                        str(store.bug_count),',',
                         str(store.velocity),',',
                         str(store.first_time_right),',',
                         str(store.tech_debt_sum),',', 
@@ -406,8 +404,8 @@ async def process_additional_kpis(store):
         ev_result = await get_escape_velocity(store) 
         store.escape_velocity_count = len(ev_result['issues'])
         store.calculate_escape_velocity()
-        bug_result = await monthly_bug_count(store)
-        store.monthly_bug_count = len(bug_result['issues'])
+        bug_result = await bug_count(store)
+        store.bug_count = len(bug_result['issues'])
         store.calculate_velocity()
         store.calculate_first_time_right()
 
@@ -455,12 +453,12 @@ async def main():
         load_dotenv()
         store = kpi_store.kpi_store()
         store.year = 2021
-        store.month = 3
+        store.month = 6
         #store.project = 'HCMAT'
         #store.rapid_view = '588'
         store.project = 'FC'
         store.rapid_view = '464'
-        store.sprint_black_list = [2838]
+        store.sprint_black_list = [3152]
         store.sprints = []
         store = await get_sprints_by_month(store)
         await process_additional_kpis(store)

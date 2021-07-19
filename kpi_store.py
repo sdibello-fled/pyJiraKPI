@@ -29,7 +29,7 @@ class kpi_store:
     sum_issues_completed_in_another_sprint_estimate_sum = 0
     sum_all_issue_estimate_sum = 0
     sum_issues_added_count = 0
-    monthly_bug_count = 0
+    bug_count = 0
     velocity = 0
     number_of_sprints = 0
     first_time_right = 0
