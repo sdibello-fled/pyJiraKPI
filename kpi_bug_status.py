@@ -76,6 +76,20 @@ async def get_all_tickets_in_sprints(project, sprint_id_array):
         jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Defect", "Support Request", "bug")'
         return await run_generic_jql(project, jql)
  
+async def get_defects_tickets_in_sprints(project, sprint_id_array):
+        ## get a list of all sprints
+        stringlist = map(str, sprint_id_array)
+        listi = ",".join(stringlist)
+        jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Defect")'
+        return await run_generic_jql(project, jql)
+
+async def get_requests_tickets_in_sprints(project, sprint_id_array):
+        ## get a list of all sprints
+        stringlist = map(str, sprint_id_array)
+        listi = ",".join(stringlist)
+        jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Request")'
+        return await run_generic_jql(project, jql)
+
 async def get_priority_tickets_in_sprints(project, sprint_id_array, priority):
         ## get a list of all sprints
         stringlist = map(str, sprint_id_array)
@@ -85,7 +99,7 @@ async def get_priority_tickets_in_sprints(project, sprint_id_array, priority):
 
 async def get_priority_tickets_not_done(project, priority):
         ## get a list of all sprints
-        jql = f'project = "{project}" and type in ("Support Defect", "Support Request", "bug") and "Zendesk Ticket Count[Number]" > 0 and statusCategory != Done and StatusCategory = "In Progress" And priority = {priority}'
+        jql = f'project = "{project}" and type in ("Support Defect", "Support Request", "bug") and "Zendesk Ticket Count[Number]" > 0 and StatusCategory = "In Progress" And priority = {priority}'
         return await run_generic_jql(project, jql)
 
 async def process(data):
@@ -95,14 +109,32 @@ async def process(data):
 
         sprint_number = data.teams * 4
         last_four = data.sprints[-sprint_number:]
+        last_four_requests = 0
+        last_four_defects = 0
+        last_one_requests = 0
+        last_one_defects = 0
+
         last_complete = data.sprints[-data.teams:]
 
         print(data.sprints)
         print(data.active_sprints)
 
-        last_four =  await get_all_tickets_in_sprints(data.project, last_four)
-        last_four_count = int(last_four['total'])
-        data.total_bugs_resolved_last4 = last_four_count
+        if data.project == 'HCMAT':
+                requests_data =  await get_requests_tickets_in_sprints(data.project, last_four)
+                last_four_requests = int(requests_data['total'])
+                defects_data =  await get_defects_tickets_in_sprints(data.project, last_four)
+                last_four_defects = int(defects_data['total'])
+                data.total_bugs_resolved_last4 = last_four_requests + last_four_defects
+
+        elif data.project == 'FC':
+                last_four =  await get_all_tickets_in_sprints(data.project, last_four)
+                last_four_count = int(last_four['total'])
+                data.total_bugs_resolved_last4 = last_four_count
+
+        requests_data =  await get_requests_tickets_in_sprints(data.project, last_complete)
+        last_one_requests = int(requests_data['total'])
+        defects_data =  await get_defects_tickets_in_sprints(data.project, last_complete)
+        last_one_defects = int(defects_data['total'])
 
         last_two =  await get_all_tickets_in_sprints(data.project, last_complete)
         last_two_count = int(last_two['total'])
@@ -112,8 +144,8 @@ async def process(data):
         total_bug_count = int(total_bug['total'])
         data.total_bugs_unresolved = total_bug_count
 
-        print(f'resolved {data.project} tickets on the last four sprints {data.total_bugs_resolved_last4}')
-        print(f'resolved {data.project} tickets on the last sprint {data.total_bugs_resolved_last1}' )
+        print(f'resolved {data.project} tickets on the last four sprints {data.total_bugs_resolved_last4} ({last_four_defects}/{last_four_requests})')
+        print(f'resolved {data.project} tickets on the last sprint {data.total_bugs_resolved_last1} ({last_one_defects}/{last_one_requests})' )
         print(f'unresolved {data.project} tickets  {data.total_bugs_unresolved}')
 
         issues = last_two['issues']
