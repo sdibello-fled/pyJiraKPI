@@ -121,7 +121,8 @@ class kpi_store:
     def calculate_sprint_churn(self):
         self.sprint_churn = 0
         if self.sum_completed_issue_estimate_sum + self.sum_punted_issue_estimate_sum + self.sum_not_completed_estimate_sum > 0:
-            self.sprint_churn = self.sum_punted_issue_estimate_sum / (self.sum_completed_issue_estimate_sum + self.sum_punted_issue_estimate_sum + self.sum_not_completed_estimate_sum)
+            #self.sprint_churn = self.sum_punted_issue_estimate_sum / (self.sum_completed_issue_estimate_sum + self.sum_punted_issue_estimate_sum + self.sum_not_completed_estimate_sum)\
+            self.sprint_churn = ((self.sum_completed_issue_estimate_sum + self.sum_not_completed_estimate_sum) / self.sum_all_issue_estimate_sum) * 100
 
     def calculate_sprint_readiness(self):
         if self.velocity > 0:
