@@ -1,0 +1,2909 @@
+{
+    "contents": {
+        "completedIssues": [
+            {
+                "id": 378190,
+                "key": "FC-7941",
+                "hidden": false,
+                "typeName": "Bug",
+                "typeId": "10004",
+                "summary": "Fix duplicated list items created from CanonicalPositionType events - Fix existing data",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10303&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "jparks",
+                "assigneeKey": "jparks",
+                "assigneeAccountId": "557058:0d3d3dff-eb13-43f6-8b23-de0b867a06c4",
+                "assigneeName": "John Parks",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:0d3d3dff-eb13-43f6-8b23-de0b867a06c4/3b6101cc-569e-470c-a87e-3c8dffafd2c1/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 5.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 5.0
+                    }
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 395870,
+                "key": "FC-8664",
+                "hidden": false,
+                "typeName": "Technical Debt",
+                "typeId": "10700",
+                "summary": "API Automation Home page - DashboardConfig",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10304&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "snijalapur",
+                "assigneeKey": "snijalapur",
+                "assigneeAccountId": "557058:cc472aba-a7d8-46b9-b220-eac5b6217098",
+                "assigneeName": "Srilaxmi Nijalapur",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:cc472aba-a7d8-46b9-b220-eac5b6217098/a9d5a84a-839a-4c44-bf5b-bda57ac8028a/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "epic": "FC-5957",
+                "epicField": {
+                    "id": "customfield_10017",
+                    "label": "Feature",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "issueId": 322548,
+                    "epicKey": "FC-5957",
+                    "epicColor": "ghx-label-14",
+                    "text": "FC - Build Centralized Landing Page (Frontdoor)",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 2.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 2.0
+                    }
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 399023,
+                "key": "FC-8905",
+                "hidden": false,
+                "typeName": "Story",
+                "typeId": "10001",
+                "summary": "Create table of job information",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/images/icons/issuetypes/story.svg",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "51e672eb-6ca3-40ea-80b9-45f744f5d832",
+                "assigneeKey": "51e672eb-6ca3-40ea-80b9-45f744f5d832",
+                "assigneeAccountId": "5db09bc20343b80c307a63d5",
+                "assigneeName": "Craig Spencer",
+                "avatarUrl": "https://secure.gravatar.com/avatar/9449bb98125a6e4837834de2e8ce54ca?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "epic": "FC-8147",
+                "epicField": {
+                    "id": "customfield_10017",
+                    "label": "Feature",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "issueId": 382603,
+                    "epicKey": "FC-8147",
+                    "epicColor": "ghx-label-14",
+                    "text": "Form Export Downloads Page",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 3.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 3.0
+                    }
+                },
+                "statusId": "12114",
+                "statusName": "Live in Production",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                "status": {
+                    "id": "12114",
+                    "name": "Live in Production",
+                    "description": "Available on Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 401170,
+                "key": "FC-8960",
+                "hidden": false,
+                "typeName": "Story",
+                "typeId": "10001",
+                "summary": "Show data on System Jobs page",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/images/icons/issuetypes/story.svg",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "51e672eb-6ca3-40ea-80b9-45f744f5d832",
+                "assigneeKey": "51e672eb-6ca3-40ea-80b9-45f744f5d832",
+                "assigneeAccountId": "5db09bc20343b80c307a63d5",
+                "assigneeName": "Craig Spencer",
+                "avatarUrl": "https://secure.gravatar.com/avatar/9449bb98125a6e4837834de2e8ce54ca?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "epic": "FC-8147",
+                "epicField": {
+                    "id": "customfield_10017",
+                    "label": "Feature",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "issueId": 382603,
+                    "epicKey": "FC-8147",
+                    "epicColor": "ghx-label-14",
+                    "text": "Form Export Downloads Page",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 3.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 3.0
+                    }
+                },
+                "statusId": "12114",
+                "statusName": "Live in Production",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                "status": {
+                    "id": "12114",
+                    "name": "Live in Production",
+                    "description": "Available on Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 401732,
+                "key": "FC-8971",
+                "hidden": false,
+                "typeName": "Story",
+                "typeId": "10001",
+                "summary": "Select multiple races on employee record (Edit mode)",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/images/icons/issuetypes/story.svg",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "jgeer",
+                "assigneeKey": "jgeer",
+                "assigneeAccountId": "557058:319a2b5d-0cd0-48aa-bd12-14501d0cb896",
+                "assigneeName": "Jared Geer",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:319a2b5d-0cd0-48aa-bd12-14501d0cb896/b6a6f98a-c04e-4054-9c29-39d0d8cc0deb/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "epic": "FC-8408",
+                "epicField": {
+                    "id": "customfield_10017",
+                    "label": "Feature",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "issueId": 389385,
+                    "epicKey": "FC-8408",
+                    "epicColor": "ghx-label-2",
+                    "text": "HRMS Enhancement - Capture Multiple Races in Central",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 5.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 5.0
+                    }
+                },
+                "statusId": "12114",
+                "statusName": "Live in Production",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                "status": {
+                    "id": "12114",
+                    "name": "Live in Production",
+                    "description": "Available on Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 426917,
+                "key": "FC-9786",
+                "hidden": false,
+                "typeName": "Story",
+                "typeId": "10001",
+                "summary": "New URL for Assignments tab on employee profile",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/images/icons/issuetypes/story.svg",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "808ba80a-ef72-460d-b652-4aabb0ae4e00",
+                "assigneeKey": "808ba80a-ef72-460d-b652-4aabb0ae4e00",
+                "assigneeAccountId": "5db0a1904da45e0da91170f2",
+                "assigneeName": "Will Morrison",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5db0a1904da45e0da91170f2/26185d25-7bfc-4e73-a95c-cf985cea1c09/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "epic": "FC-9775",
+                "epicField": {
+                    "id": "customfield_10017",
+                    "label": "Feature",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "issueId": 426320,
+                    "epicKey": "FC-9775",
+                    "epicColor": "ghx-label-3",
+                    "text": "New Profile Tab for Staff Member Assignments",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 3.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 3.0
+                    }
+                },
+                "statusId": "12114",
+                "statusName": "Live in Production",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                "status": {
+                    "id": "12114",
+                    "name": "Live in Production",
+                    "description": "Available on Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 429344,
+                "key": "FC-9864",
+                "hidden": false,
+                "typeName": "Task",
+                "typeId": "10002",
+                "summary": "Brazosport - Duplicate User",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10318&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "SElmendorf",
+                "assigneeKey": "selmendorf",
+                "assigneeAccountId": "557058:c1e2242a-4e62-4054-a2cb-91f416b60317",
+                "assigneeName": "Stephen Elmendorf",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:c1e2242a-4e62-4054-a2cb-91f416b60317/2d9b3267-06f4-4b3e-94aa-3417f5c473eb/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 432537,
+                "key": "FC-10142",
+                "hidden": false,
+                "typeName": "Story",
+                "typeId": "10001",
+                "summary": "Multiple Race Control Persist Data",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/images/icons/issuetypes/story.svg",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "jparks",
+                "assigneeKey": "jparks",
+                "assigneeAccountId": "557058:0d3d3dff-eb13-43f6-8b23-de0b867a06c4",
+                "assigneeName": "John Parks",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:0d3d3dff-eb13-43f6-8b23-de0b867a06c4/3b6101cc-569e-470c-a87e-3c8dffafd2c1/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "epic": "FC-8408",
+                "epicField": {
+                    "id": "customfield_10017",
+                    "label": "Feature",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "issueId": 389385,
+                    "epicKey": "FC-8408",
+                    "epicColor": "ghx-label-2",
+                    "text": "HRMS Enhancement - Capture Multiple Races in Central",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 3.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 3.0
+                    }
+                },
+                "statusId": "12114",
+                "statusName": "Live in Production",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                "status": {
+                    "id": "12114",
+                    "name": "Live in Production",
+                    "description": "Available on Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 432826,
+                "key": "FC-10182",
+                "hidden": false,
+                "typeName": "Support Request",
+                "typeId": "10600",
+                "summary": "Set up FC exports task for user 49953",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10308&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "nparidon",
+                "assigneeKey": "nparidon",
+                "assigneeAccountId": "5c17bb609f443a65fecae3f1",
+                "assigneeName": "Nicholas Paridon",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c17bb609f443a65fecae3f1/89ba9797-a5d7-4c58-88c0-0a40548165e2/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 0.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 0.0
+                    }
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 433519,
+                "key": "FC-10207",
+                "hidden": false,
+                "typeName": "Support Request",
+                "typeId": "10600",
+                "summary": "Set up FC exports task for user 47594",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10308&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "nparidon",
+                "assigneeKey": "nparidon",
+                "assigneeAccountId": "5c17bb609f443a65fecae3f1",
+                "assigneeName": "Nicholas Paridon",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c17bb609f443a65fecae3f1/89ba9797-a5d7-4c58-88c0-0a40548165e2/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 0.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 0.0
+                    }
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 434056,
+                "key": "FC-10223",
+                "hidden": false,
+                "typeName": "Support Request",
+                "typeId": "10600",
+                "summary": "Set up FC exports task for user 56669",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10308&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "nparidon",
+                "assigneeKey": "nparidon",
+                "assigneeAccountId": "5c17bb609f443a65fecae3f1",
+                "assigneeName": "Nicholas Paridon",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c17bb609f443a65fecae3f1/89ba9797-a5d7-4c58-88c0-0a40548165e2/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 0.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 0.0
+                    }
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 434086,
+                "key": "FC-10224",
+                "hidden": false,
+                "typeName": "Story",
+                "typeId": "10001",
+                "summary": "Display Assignments on new Assignments tab - Assignments container",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/images/icons/issuetypes/story.svg",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "808ba80a-ef72-460d-b652-4aabb0ae4e00",
+                "assigneeKey": "808ba80a-ef72-460d-b652-4aabb0ae4e00",
+                "assigneeAccountId": "5db0a1904da45e0da91170f2",
+                "assigneeName": "Will Morrison",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5db0a1904da45e0da91170f2/26185d25-7bfc-4e73-a95c-cf985cea1c09/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "epic": "FC-9775",
+                "epicField": {
+                    "id": "customfield_10017",
+                    "label": "Feature",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "issueId": 426320,
+                    "epicKey": "FC-9775",
+                    "epicColor": "ghx-label-3",
+                    "text": "New Profile Tab for Staff Member Assignments",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 2.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 2.0
+                    }
+                },
+                "statusId": "12114",
+                "statusName": "Live in Production",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                "status": {
+                    "id": "12114",
+                    "name": "Live in Production",
+                    "description": "Available on Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 434096,
+                "key": "FC-10225",
+                "hidden": false,
+                "typeName": "Story",
+                "typeId": "10001",
+                "summary": "Display Supplementals on new Assignments tab - Supplementals container",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/images/icons/issuetypes/story.svg",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "808ba80a-ef72-460d-b652-4aabb0ae4e00",
+                "assigneeKey": "808ba80a-ef72-460d-b652-4aabb0ae4e00",
+                "assigneeAccountId": "5db0a1904da45e0da91170f2",
+                "assigneeName": "Will Morrison",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5db0a1904da45e0da91170f2/26185d25-7bfc-4e73-a95c-cf985cea1c09/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "epic": "FC-9775",
+                "epicField": {
+                    "id": "customfield_10017",
+                    "label": "Feature",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "issueId": 426320,
+                    "epicKey": "FC-9775",
+                    "epicColor": "ghx-label-3",
+                    "text": "New Profile Tab for Staff Member Assignments",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 2.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 2.0
+                    }
+                },
+                "statusId": "12114",
+                "statusName": "Live in Production",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                "status": {
+                    "id": "12114",
+                    "name": "Live in Production",
+                    "description": "Available on Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 434112,
+                "key": "FC-10228",
+                "hidden": false,
+                "typeName": "Technical Debt",
+                "typeId": "10700",
+                "summary": "Shared Employee Transition : Use Background QueueType - Create/Update Employee",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10304&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "SElmendorf",
+                "assigneeKey": "selmendorf",
+                "assigneeAccountId": "557058:c1e2242a-4e62-4054-a2cb-91f416b60317",
+                "assigneeName": "Stephen Elmendorf",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:c1e2242a-4e62-4054-a2cb-91f416b60317/2d9b3267-06f4-4b3e-94aa-3417f5c473eb/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 3.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 3.0
+                    }
+                },
+                "statusId": "12114",
+                "statusName": "Live in Production",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                "status": {
+                    "id": "12114",
+                    "name": "Live in Production",
+                    "description": "Available on Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 434113,
+                "key": "FC-10229",
+                "hidden": false,
+                "typeName": "Technical Debt",
+                "typeId": "10700",
+                "summary": "Shared Employee Transition : Use Background QueueType - CanonicalEmployee Events",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10304&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "SElmendorf",
+                "assigneeKey": "selmendorf",
+                "assigneeAccountId": "557058:c1e2242a-4e62-4054-a2cb-91f416b60317",
+                "assigneeName": "Stephen Elmendorf",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:c1e2242a-4e62-4054-a2cb-91f416b60317/2d9b3267-06f4-4b3e-94aa-3417f5c473eb/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 2.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 2.0
+                    }
+                },
+                "statusId": "12114",
+                "statusName": "Live in Production",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                "status": {
+                    "id": "12114",
+                    "name": "Live in Production",
+                    "description": "Available on Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 434556,
+                "key": "FC-10243",
+                "hidden": false,
+                "typeName": "Support Request",
+                "typeId": "10600",
+                "summary": "Set up FC exports task for user 46788",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10308&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "nparidon",
+                "assigneeKey": "nparidon",
+                "assigneeAccountId": "5c17bb609f443a65fecae3f1",
+                "assigneeName": "Nicholas Paridon",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c17bb609f443a65fecae3f1/89ba9797-a5d7-4c58-88c0-0a40548165e2/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 0.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 0.0
+                    }
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 434584,
+                "key": "FC-10245",
+                "hidden": false,
+                "typeName": "Support Request",
+                "typeId": "10600",
+                "summary": "Set up FC exports task for user 58378",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10308&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "nparidon",
+                "assigneeKey": "nparidon",
+                "assigneeAccountId": "5c17bb609f443a65fecae3f1",
+                "assigneeName": "Nicholas Paridon",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c17bb609f443a65fecae3f1/89ba9797-a5d7-4c58-88c0-0a40548165e2/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 0.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 0.0
+                    }
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 441954,
+                "key": "FC-10313",
+                "hidden": false,
+                "typeName": "Story",
+                "typeId": "10001",
+                "summary": "Analyze the Api's for performance testing and start preparing script for sand-Permission and mSvc-Permissions servers",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/images/icons/issuetypes/story.svg",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "jparks",
+                "assigneeKey": "jparks",
+                "assigneeAccountId": "557058:0d3d3dff-eb13-43f6-8b23-de0b867a06c4",
+                "assigneeName": "John Parks",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:0d3d3dff-eb13-43f6-8b23-de0b867a06c4/3b6101cc-569e-470c-a87e-3c8dffafd2c1/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "epic": "FC-10312",
+                "epicField": {
+                    "id": "customfield_10017",
+                    "label": "Feature",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "issueId": 441952,
+                    "epicKey": "FC-10312",
+                    "epicColor": "ghx-label-6",
+                    "text": "Performance testing around sand-Permission and mSvc-Permissions",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 5.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 5.0
+                    }
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 442249,
+                "key": "FC-10318",
+                "hidden": false,
+                "typeName": "Bug",
+                "typeId": "10004",
+                "summary": "Console Errors When Cancelling Edit - Employee Personal Tab",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10303&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "nparidon",
+                "assigneeKey": "nparidon",
+                "assigneeAccountId": "5c17bb609f443a65fecae3f1",
+                "assigneeName": "Nicholas Paridon",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c17bb609f443a65fecae3f1/89ba9797-a5d7-4c58-88c0-0a40548165e2/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "statusId": "12114",
+                "statusName": "Live in Production",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                "status": {
+                    "id": "12114",
+                    "name": "Live in Production",
+                    "description": "Available on Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 442313,
+                "key": "FC-10319",
+                "hidden": false,
+                "typeName": "Story",
+                "typeId": "10001",
+                "summary": "Adjust \"What's New\" announcement regarding FC-8974",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/images/icons/issuetypes/story.svg",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "nparidon",
+                "assigneeKey": "nparidon",
+                "assigneeAccountId": "5c17bb609f443a65fecae3f1",
+                "assigneeName": "Nicholas Paridon",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c17bb609f443a65fecae3f1/89ba9797-a5d7-4c58-88c0-0a40548165e2/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "epic": "FC-8408",
+                "epicField": {
+                    "id": "customfield_10017",
+                    "label": "Feature",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "issueId": 389385,
+                    "epicKey": "FC-8408",
+                    "epicColor": "ghx-label-2",
+                    "text": "HRMS Enhancement - Capture Multiple Races in Central",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 0.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 0.0
+                    }
+                },
+                "statusId": "12114",
+                "statusName": "Live in Production",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                "status": {
+                    "id": "12114",
+                    "name": "Live in Production",
+                    "description": "Available on Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 442365,
+                "key": "FC-10323",
+                "hidden": false,
+                "typeName": "Task",
+                "typeId": "10002",
+                "summary": "Rankin County - Whitelist Orgperson Service",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10318&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/critical.svg",
+                "priorityName": "High",
+                "done": true,
+                "assignee": "nparidon",
+                "assigneeKey": "nparidon",
+                "assigneeAccountId": "5c17bb609f443a65fecae3f1",
+                "assigneeName": "Nicholas Paridon",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c17bb609f443a65fecae3f1/89ba9797-a5d7-4c58-88c0-0a40548165e2/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 444230,
+                "key": "FC-10445",
+                "hidden": false,
+                "typeName": "Task",
+                "typeId": "10002",
+                "summary": "Export task tickets - Sprint 94",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10318&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "nparidon",
+                "assigneeKey": "nparidon",
+                "assigneeAccountId": "5c17bb609f443a65fecae3f1",
+                "assigneeName": "Nicholas Paridon",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c17bb609f443a65fecae3f1/89ba9797-a5d7-4c58-88c0-0a40548165e2/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 444255,
+                "key": "FC-10446",
+                "hidden": false,
+                "typeName": "Bug",
+                "typeId": "10004",
+                "summary": "PROD: Annual Salary or Hourly Rate is No Longer Auto-Populating Based on Selected Lane and Step",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10303&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "nparidon",
+                "assigneeKey": "nparidon",
+                "assigneeAccountId": "5c17bb609f443a65fecae3f1",
+                "assigneeName": "Nicholas Paridon",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c17bb609f443a65fecae3f1/89ba9797-a5d7-4c58-88c0-0a40548165e2/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "statusId": "12114",
+                "statusName": "Live in Production",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                "status": {
+                    "id": "12114",
+                    "name": "Live in Production",
+                    "description": "Available on Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 444570,
+                "key": "FC-10499",
+                "hidden": false,
+                "typeName": "Technical Debt",
+                "typeId": "10700",
+                "summary": "Stage env- Few FC services/APIs is throwing 417 error ",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10304&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 445267,
+                "key": "FC-10520",
+                "hidden": false,
+                "typeName": "Task",
+                "typeId": "10002",
+                "summary": "Alamogordo - Delete Duplicate User",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10318&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "nparidon",
+                "assigneeKey": "nparidon",
+                "assigneeAccountId": "5c17bb609f443a65fecae3f1",
+                "assigneeName": "Nicholas Paridon",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c17bb609f443a65fecae3f1/89ba9797-a5d7-4c58-88c0-0a40548165e2/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 445572,
+                "key": "FC-10525",
+                "hidden": false,
+                "typeName": "Bug",
+                "typeId": "10004",
+                "summary": "Error enqueuing jobs for creation of form instances",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10303&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "SElmendorf",
+                "assigneeKey": "selmendorf",
+                "assigneeAccountId": "557058:c1e2242a-4e62-4054-a2cb-91f416b60317",
+                "assigneeName": "Stephen Elmendorf",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:c1e2242a-4e62-4054-a2cb-91f416b60317/2d9b3267-06f4-4b3e-94aa-3417f5c473eb/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 445747,
+                "key": "FC-10539",
+                "hidden": false,
+                "typeName": "Task",
+                "typeId": "10002",
+                "summary": "Activate HRMS Flag in Frontline Central and Whitelist Org Person Service for Whitehall-Coplay, PA",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10318&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/critical.svg",
+                "priorityName": "High",
+                "done": true,
+                "assignee": "nparidon",
+                "assigneeKey": "nparidon",
+                "assigneeAccountId": "5c17bb609f443a65fecae3f1",
+                "assigneeName": "Nicholas Paridon",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c17bb609f443a65fecae3f1/89ba9797-a5d7-4c58-88c0-0a40548165e2/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 446638,
+                "key": "FC-10548",
+                "hidden": false,
+                "typeName": "Technical Debt",
+                "typeId": "10700",
+                "summary": "API/UI Automation tests Fix/Debug",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10304&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "snijalapur",
+                "assigneeKey": "snijalapur",
+                "assigneeAccountId": "557058:cc472aba-a7d8-46b9-b220-eac5b6217098",
+                "assigneeName": "Srilaxmi Nijalapur",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:cc472aba-a7d8-46b9-b220-eac5b6217098/a9d5a84a-839a-4c44-bf5b-bda57ac8028a/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 446705,
+                "key": "FC-10553",
+                "hidden": false,
+                "typeName": "Technical Debt",
+                "typeId": "10700",
+                "summary": "All .net core services (ex: Export Templates) - service throwing 500 error in qa and stage both env",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10304&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "jparks",
+                "assigneeKey": "jparks",
+                "assigneeAccountId": "557058:0d3d3dff-eb13-43f6-8b23-de0b867a06c4",
+                "assigneeName": "John Parks",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:0d3d3dff-eb13-43f6-8b23-de0b867a06c4/3b6101cc-569e-470c-a87e-3c8dffafd2c1/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 446785,
+                "key": "FC-10559",
+                "hidden": false,
+                "typeName": "Bug",
+                "typeId": "10004",
+                "summary": "Form API timing out in QA also related tests are failing in QA and Stage env",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10303&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "jparks",
+                "assigneeKey": "jparks",
+                "assigneeAccountId": "557058:0d3d3dff-eb13-43f6-8b23-de0b867a06c4",
+                "assigneeName": "John Parks",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:0d3d3dff-eb13-43f6-8b23-de0b867a06c4/3b6101cc-569e-470c-a87e-3c8dffafd2c1/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 446827,
+                "key": "FC-10560",
+                "hidden": false,
+                "typeName": "Bug",
+                "typeId": "10004",
+                "summary": "Cannot sent forms for a particular contract group in Newton Community (50411)",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10303&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "nparidon",
+                "assigneeKey": "nparidon",
+                "assigneeAccountId": "5c17bb609f443a65fecae3f1",
+                "assigneeName": "Nicholas Paridon",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c17bb609f443a65fecae3f1/89ba9797-a5d7-4c58-88c0-0a40548165e2/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "statusId": "12114",
+                "statusName": "Live in Production",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                "status": {
+                    "id": "12114",
+                    "name": "Live in Production",
+                    "description": "Available on Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/images/icons/statuses/generic.png",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 447257,
+                "key": "FC-10571",
+                "hidden": false,
+                "typeName": "Technical Debt",
+                "typeId": "10700",
+                "summary": "Stage: Hitting FC services with Absence token is throwing 401 error (unauthorized)",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10304&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "nparidon",
+                "assigneeKey": "nparidon",
+                "assigneeAccountId": "5c17bb609f443a65fecae3f1",
+                "assigneeName": "Nicholas Paridon",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c17bb609f443a65fecae3f1/89ba9797-a5d7-4c58-88c0-0a40548165e2/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 447764,
+                "key": "FC-10585",
+                "hidden": false,
+                "typeName": "Bug",
+                "typeId": "10004",
+                "summary": "Regression: While adding pay schedule in Job on the general configuration page getting a service error and data is not saved.",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10303&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "nparidon",
+                "assigneeKey": "nparidon",
+                "assigneeAccountId": "5c17bb609f443a65fecae3f1",
+                "assigneeName": "Nicholas Paridon",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c17bb609f443a65fecae3f1/89ba9797-a5d7-4c58-88c0-0a40548165e2/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 447890,
+                "key": "FC-10587",
+                "hidden": false,
+                "typeName": "Bug",
+                "typeId": "10004",
+                "summary": "QA and Stage Regression: Editing and Saving Permission page throwing a service error and data is not saved",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10303&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "nparidon",
+                "assigneeKey": "nparidon",
+                "assigneeAccountId": "5c17bb609f443a65fecae3f1",
+                "assigneeName": "Nicholas Paridon",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c17bb609f443a65fecae3f1/89ba9797-a5d7-4c58-88c0-0a40548165e2/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 447976,
+                "key": "FC-10588",
+                "hidden": false,
+                "typeName": "Task",
+                "typeId": "10002",
+                "summary": "Cape Henlopen - Whitelist Orgperson Service",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10318&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/critical.svg",
+                "priorityName": "High",
+                "done": true,
+                "assignee": "nparidon",
+                "assigneeKey": "nparidon",
+                "assigneeAccountId": "5c17bb609f443a65fecae3f1",
+                "assigneeName": "Nicholas Paridon",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c17bb609f443a65fecae3f1/89ba9797-a5d7-4c58-88c0-0a40548165e2/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 448825,
+                "key": "FC-10603",
+                "hidden": false,
+                "typeName": "Story",
+                "typeId": "10001",
+                "summary": "Intermittent but Suddenly Increased Errors Deactivating Form Templates",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/images/icons/issuetypes/story.svg",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "jparks",
+                "assigneeKey": "jparks",
+                "assigneeAccountId": "557058:0d3d3dff-eb13-43f6-8b23-de0b867a06c4",
+                "assigneeName": "John Parks",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:0d3d3dff-eb13-43f6-8b23-de0b867a06c4/3b6101cc-569e-470c-a87e-3c8dffafd2c1/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 449796,
+                "key": "FC-10631",
+                "hidden": false,
+                "typeName": "Task",
+                "typeId": "10002",
+                "summary": "Alamogordo - Delete FC Employees",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10318&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "nparidon",
+                "assigneeKey": "nparidon",
+                "assigneeAccountId": "5c17bb609f443a65fecae3f1",
+                "assigneeName": "Nicholas Paridon",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c17bb609f443a65fecae3f1/89ba9797-a5d7-4c58-88c0-0a40548165e2/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 1.0
+                    }
+                },
+                "statusId": "12117",
+                "statusName": "Approved / Ready to Ship",
+                "statusUrl": "http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/48/truck-icon.png",
+                "status": {
+                    "id": "12117",
+                    "name": "Approved / Ready to Ship",
+                    "description": "All dev and verification work completed on Dev/QA/Staging environment and approved for release by designated approver (e.g. PM, Team Lead, Dev Manager, etc.).\n\nPrimarily used at the end of Sprint to indicate item is ‘Done’. QA reviews items in this status as part of final release to Production.",
+                    "iconUrl": "http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/48/truck-icon.png",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 450439,
+                "key": "FC-10655",
+                "hidden": false,
+                "typeName": "Bug",
+                "typeId": "10004",
+                "summary": "PROD: Sending Forms to a Group of Employees Not Returning Accurate Results",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10303&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/major.svg",
+                "priorityName": "Highest",
+                "done": true,
+                "assignee": "jparks",
+                "assigneeKey": "jparks",
+                "assigneeAccountId": "557058:0d3d3dff-eb13-43f6-8b23-de0b867a06c4",
+                "assigneeName": "John Parks",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:0d3d3dff-eb13-43f6-8b23-de0b867a06c4/3b6101cc-569e-470c-a87e-3c8dffafd2c1/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 450448,
+                "key": "FC-10659",
+                "hidden": false,
+                "typeName": "Bug",
+                "typeId": "10004",
+                "summary": "PROD: Employee Credentials Report Not Running",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10303&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "jparks",
+                "assigneeKey": "jparks",
+                "assigneeAccountId": "557058:0d3d3dff-eb13-43f6-8b23-de0b867a06c4",
+                "assigneeName": "John Parks",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:0d3d3dff-eb13-43f6-8b23-de0b867a06c4/3b6101cc-569e-470c-a87e-3c8dffafd2c1/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "statusId": "10801",
+                "statusName": "Done",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10801",
+                    "name": "Done",
+                    "description": "Use for non-code issues that can be completed without pushing to Production",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "3",
+                        "key": "done",
+                        "colorName": "green"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            }
+        ],
+        "issuesNotCompletedInCurrentSprint": [
+            {
+                "id": 394638,
+                "key": "FC-8622",
+                "hidden": false,
+                "typeName": "Technical Debt",
+                "typeId": "10700",
+                "summary": "API Automation Home page (Overview Tab)- TrackForms Tile",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10304&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "65e956fd-2c6d-449e-b638-fde39f259255",
+                "assigneeKey": "65e956fd-2c6d-449e-b638-fde39f259255",
+                "assigneeAccountId": "5dd4228a2358f10ef5875bcf",
+                "assigneeName": "Garima Verma",
+                "avatarUrl": "https://secure.gravatar.com/avatar/d51f32d2d5b69f287cd5eb3d4c750f7d?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FGV-2.png",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 2.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 2.0
+                    }
+                },
+                "statusId": "10800",
+                "statusName": "In Progress",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10800",
+                    "name": "In Progress",
+                    "description": "Development work in progress",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "4",
+                        "key": "indeterminate",
+                        "colorName": "yellow"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 399026,
+                "key": "FC-8908",
+                "hidden": false,
+                "typeName": "Story",
+                "typeId": "10001",
+                "summary": "Reload job status table at regular intervals",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/images/icons/issuetypes/story.svg",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "51e672eb-6ca3-40ea-80b9-45f744f5d832",
+                "assigneeKey": "51e672eb-6ca3-40ea-80b9-45f744f5d832",
+                "assigneeAccountId": "5db09bc20343b80c307a63d5",
+                "assigneeName": "Craig Spencer",
+                "avatarUrl": "https://secure.gravatar.com/avatar/9449bb98125a6e4837834de2e8ce54ca?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "epic": "FC-8147",
+                "epicField": {
+                    "id": "customfield_10017",
+                    "label": "Feature",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "issueId": 382603,
+                    "epicKey": "FC-8147",
+                    "epicColor": "ghx-label-14",
+                    "text": "Form Export Downloads Page",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 2.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 2.0
+                    }
+                },
+                "statusId": "10800",
+                "statusName": "In Progress",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10800",
+                    "name": "In Progress",
+                    "description": "Development work in progress",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "4",
+                        "key": "indeterminate",
+                        "colorName": "yellow"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 401733,
+                "key": "FC-8972",
+                "hidden": false,
+                "typeName": "Story",
+                "typeId": "10001",
+                "summary": "Display multiple races on employee record (Read mode)",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/images/icons/issuetypes/story.svg",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": false,
+                "assignee": "jgeer",
+                "assigneeKey": "jgeer",
+                "assigneeAccountId": "557058:319a2b5d-0cd0-48aa-bd12-14501d0cb896",
+                "assigneeName": "Jared Geer",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:319a2b5d-0cd0-48aa-bd12-14501d0cb896/b6a6f98a-c04e-4054-9c29-39d0d8cc0deb/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "epic": "FC-8408",
+                "epicField": {
+                    "id": "customfield_10017",
+                    "label": "Feature",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "issueId": 389385,
+                    "epicKey": "FC-8408",
+                    "epicColor": "ghx-label-2",
+                    "text": "HRMS Enhancement - Capture Multiple Races in Central",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 2.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 2.0
+                    }
+                },
+                "statusId": "12000",
+                "statusName": "Backlog",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "12000",
+                    "name": "Backlog",
+                    "description": "",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "2",
+                        "key": "new",
+                        "colorName": "blue-gray"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 401741,
+                "key": "FC-8975",
+                "hidden": false,
+                "typeName": "Story",
+                "typeId": "10001",
+                "summary": "Remove \"Non-Resident Alien (of any race or ethnicity)\" option from Race dropdown",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/images/icons/issuetypes/story.svg",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": false,
+                "assignee": "jgeer",
+                "assigneeKey": "jgeer",
+                "assigneeAccountId": "557058:319a2b5d-0cd0-48aa-bd12-14501d0cb896",
+                "assigneeName": "Jared Geer",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:319a2b5d-0cd0-48aa-bd12-14501d0cb896/b6a6f98a-c04e-4054-9c29-39d0d8cc0deb/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "epic": "FC-8408",
+                "epicField": {
+                    "id": "customfield_10017",
+                    "label": "Feature",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "issueId": 389385,
+                    "epicKey": "FC-8408",
+                    "epicColor": "ghx-label-2",
+                    "text": "HRMS Enhancement - Capture Multiple Races in Central",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 3.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 3.0
+                    }
+                },
+                "statusId": "12000",
+                "statusName": "Backlog",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "12000",
+                    "name": "Backlog",
+                    "description": "",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "2",
+                        "key": "new",
+                        "colorName": "blue-gray"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 434102,
+                "key": "FC-10226",
+                "hidden": false,
+                "typeName": "Story",
+                "typeId": "10001",
+                "summary": "Display Current Assignments on new Assignments tab - Assignment basic data grid",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/images/icons/issuetypes/story.svg",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "jgeer",
+                "assigneeKey": "jgeer",
+                "assigneeAccountId": "557058:319a2b5d-0cd0-48aa-bd12-14501d0cb896",
+                "assigneeName": "Jared Geer",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:319a2b5d-0cd0-48aa-bd12-14501d0cb896/b6a6f98a-c04e-4054-9c29-39d0d8cc0deb/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "epic": "FC-9775",
+                "epicField": {
+                    "id": "customfield_10017",
+                    "label": "Feature",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "issueId": 426320,
+                    "epicKey": "FC-9775",
+                    "epicColor": "ghx-label-3",
+                    "text": "New Profile Tab for Staff Member Assignments",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 3.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 3.0
+                    }
+                },
+                "statusId": "10800",
+                "statusName": "In Progress",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10800",
+                    "name": "In Progress",
+                    "description": "Development work in progress",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "4",
+                        "key": "indeterminate",
+                        "colorName": "yellow"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 434104,
+                "key": "FC-10227",
+                "hidden": false,
+                "typeName": "Story",
+                "typeId": "10001",
+                "summary": "Display Current Assignments on new Assignments tab - Assignment header",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/images/icons/issuetypes/story.svg",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "808ba80a-ef72-460d-b652-4aabb0ae4e00",
+                "assigneeKey": "808ba80a-ef72-460d-b652-4aabb0ae4e00",
+                "assigneeAccountId": "5db0a1904da45e0da91170f2",
+                "assigneeName": "Will Morrison",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5db0a1904da45e0da91170f2/26185d25-7bfc-4e73-a95c-cf985cea1c09/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "epic": "FC-9775",
+                "epicField": {
+                    "id": "customfield_10017",
+                    "label": "Feature",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "issueId": 426320,
+                    "epicKey": "FC-9775",
+                    "epicColor": "ghx-label-3",
+                    "text": "New Profile Tab for Staff Member Assignments",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 2.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 2.0
+                    }
+                },
+                "statusId": "10800",
+                "statusName": "In Progress",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10800",
+                    "name": "In Progress",
+                    "description": "Development work in progress",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "4",
+                        "key": "indeterminate",
+                        "colorName": "yellow"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 434115,
+                "key": "FC-10230",
+                "hidden": false,
+                "typeName": "Story",
+                "typeId": "10001",
+                "summary": "Display Current Assignments on new Assignments tab - Assignment details",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/images/icons/issuetypes/story.svg",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "51e672eb-6ca3-40ea-80b9-45f744f5d832",
+                "assigneeKey": "51e672eb-6ca3-40ea-80b9-45f744f5d832",
+                "assigneeAccountId": "5db09bc20343b80c307a63d5",
+                "assigneeName": "Craig Spencer",
+                "avatarUrl": "https://secure.gravatar.com/avatar/9449bb98125a6e4837834de2e8ce54ca?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "epic": "FC-9775",
+                "epicField": {
+                    "id": "customfield_10017",
+                    "label": "Feature",
+                    "editable": false,
+                    "renderer": "epiclink",
+                    "issueId": 426320,
+                    "epicKey": "FC-9775",
+                    "epicColor": "ghx-label-3",
+                    "text": "New Profile Tab for Staff Member Assignments",
+                    "canRemoveEpic": false
+                },
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 3.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 3.0
+                    }
+                },
+                "statusId": "12000",
+                "statusName": "Backlog",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "12000",
+                    "name": "Backlog",
+                    "description": "",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "2",
+                        "key": "new",
+                        "colorName": "blue-gray"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            },
+            {
+                "id": 435920,
+                "key": "FC-10282",
+                "hidden": false,
+                "typeName": "Technical Debt",
+                "typeId": "10700",
+                "summary": "HRMS Org 517643 - Investigate why staff directory has ~300 more records than Transition file ",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10304&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": true,
+                "assignee": "SElmendorf",
+                "assigneeKey": "selmendorf",
+                "assigneeAccountId": "557058:c1e2242a-4e62-4054-a2cb-91f416b60317",
+                "assigneeName": "Stephen Elmendorf",
+                "avatarUrl": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:c1e2242a-4e62-4054-a2cb-91f416b60317/2d9b3267-06f4-4b3e-94aa-3417f5c473eb/48",
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 2.0
+                    }
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {
+                        "value": 2.0
+                    }
+                },
+                "statusId": "10800",
+                "statusName": "In Progress",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "10800",
+                    "name": "In Progress",
+                    "description": "Development work in progress",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "4",
+                        "key": "indeterminate",
+                        "colorName": "yellow"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            }
+        ],
+        "puntedIssues": [
+            {
+                "id": 445566,
+                "key": "FC-10523",
+                "hidden": false,
+                "typeName": "Bug",
+                "typeId": "10004",
+                "summary": "Imports are NOT processing in stage env",
+                "typeUrl": "https://frontlinetechnologies.atlassian.net/secure/viewavatar?size=medium&avatarId=10303&avatarType=issuetype",
+                "priorityUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                "priorityName": "Medium",
+                "done": false,
+                "hasCustomUserAvatar": false,
+                "flagged": false,
+                "columnStatistic": {
+                    "statFieldId": "issueCountExclSubs",
+                    "statFieldValue": {
+                        "value": 1.0,
+                        "text": "1.0"
+                    }
+                },
+                "currentEstimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "estimateStatisticRequired": false,
+                "estimateStatistic": {
+                    "statFieldId": "customfield_10021",
+                    "statFieldValue": {}
+                },
+                "statusId": "12000",
+                "statusName": "Backlog",
+                "statusUrl": "https://frontlinetechnologies.atlassian.net/",
+                "status": {
+                    "id": "12000",
+                    "name": "Backlog",
+                    "description": "",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "statusCategory": {
+                        "id": "2",
+                        "key": "new",
+                        "colorName": "blue-gray"
+                    }
+                },
+                "fixVersions": [],
+                "projectId": 13305,
+                "linkedPagesCount": 0
+            }
+        ],
+        "issuesCompletedInAnotherSprint": [],
+        "completedIssuesInitialEstimateSum": {
+            "value": 47.0,
+            "text": "47.0"
+        },
+        "completedIssuesEstimateSum": {
+            "value": 51.0,
+            "text": "51.0"
+        },
+        "issuesNotCompletedInitialEstimateSum": {
+            "value": 19.0,
+            "text": "19.0"
+        },
+        "issuesNotCompletedEstimateSum": {
+            "value": 19.0,
+            "text": "19.0"
+        },
+        "allIssuesEstimateSum": {
+            "value": 80.0,
+            "text": "80.0"
+        },
+        "puntedIssuesInitialEstimateSum": {
+            "text": "null"
+        },
+        "puntedIssuesEstimateSum": {
+            "text": "null"
+        },
+        "issuesCompletedInAnotherSprintInitialEstimateSum": {
+            "text": "null"
+        },
+        "issuesCompletedInAnotherSprintEstimateSum": {
+            "text": "null"
+        },
+        "issueKeysAddedDuringSprint": {
+            "FC-10588": true,
+            "FC-10446": true,
+            "FC-10523": true,
+            "FC-10655": true,
+            "FC-10520": true,
+            "FC-10553": true,
+            "FC-10323": true,
+            "FC-10499": true,
+            "FC-10587": true,
+            "FC-10631": true,
+            "FC-10585": true,
+            "FC-10560": true,
+            "FC-10571": true,
+            "FC-10539": true,
+            "FC-10548": true,
+            "FC-10559": true,
+            "FC-10603": true,
+            "FC-10659": true,
+            "FC-10525": true
+        }
+    },
+    "sprint": {
+        "id": 3325,
+        "sequence": 3233,
+        "name": "Team FC : US - Sprint 94",
+        "state": "CLOSED",
+        "linkedPagesCount": 0,
+        "goal": "7/19/2021 - 7/30/2021\n\n- Start work on new React Assignments Tab\n- Continue work on the System Job's page\n- Continue work on Multiple Race (HRMS) support\n- Performance testing around Permissions services",
+        "startDate": "19/Jul/21 10:48 AM",
+        "endDate": "30/Jul/21 10:48 AM",
+        "isoStartDate": "2021-07-19T10:48:39-0400",
+        "isoEndDate": "2021-07-30T10:48:00-0400",
+        "completeDate": "02/Aug/21 9:59 AM",
+        "isoCompleteDate": "2021-08-02T09:59:52-0400",
+        "canUpdateSprint": true,
+        "remoteLinks": [],
+        "daysRemaining": 0
+    },
+    "lastUserToClose": "<a class=\"user-hover\" rel=\"5c17bb609f443a65fecae3f1\" id=\"_5c17bb609f443a65fecae3f1\" data-user=\"{&quot;accountId&quot;: &quot;5c17bb609f443a65fecae3f1&quot;}\" href=\"/secure/ViewProfile.jspa?accountId=5c17bb609f443a65fecae3f1\">Nicholas Paridon</a>",
+    "supportsPages": true
+}
