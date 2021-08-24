@@ -4,9 +4,12 @@ import os
 import datetime as dt
 
 class kpi_month:
-    year=0
-    month=0
-    velocity_reports = []
+    def __init__(self, debug):
+        self.year=0
+        self.month=0
+        self.velocity_reports = []
+        self.debug = debug
+        #return super(kpi_month, self).__new__(self)
 
 async def get_sprint_ids_by_month(project, year, month, black_list):
         jsondata = await get_sprint_list(project)
@@ -27,7 +30,7 @@ async def get_sprint_list(project):
         ## get a list of all sprints
         auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
         url = f'https://frontlinetechnologies.atlassian.net/rest/greenhopper/1.0/integration/teamcalendars/sprint/list?jql=project={project}'
-        print(url)
+        #print(url)
         async with aiohttp.ClientSession(auth=auth) as session:
                 raw = await session.get(url)
                 response = await raw.text()

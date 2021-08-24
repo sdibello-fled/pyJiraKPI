@@ -36,7 +36,7 @@ class jira_velocity_report:
     daysRemaining = 0
     debugFlag = False
 
-    def __inti__(self, debugFlag):
+    def __init__(self, debugFlag): 
         # constructor
         debugFlag = debugFlag
         
