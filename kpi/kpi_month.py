@@ -46,6 +46,7 @@ class kpi_month:
         self.Tickets_Resolved = count_by_severity()
         self.Tickets_Received = count_by_severity()
         self.Velocity = 0
+        self.TotalBugCount = 0
 
         #summed items from the velocity reports
         self.monthly_completedIssuesInitialEstimateSum = 0
@@ -78,7 +79,6 @@ class kpi_month:
                 self.sprint_id_list.append(each.sprintId)
 
     def calculate_sprint_churn(self):
-        #self.Sprint_Churn = (self.monthly_allIssuesEstimateSum - self.monthly_completedIssuesEstimateSum) / self.monthly_allIssuesEstimateSum
         self.Sprint_Churn =  self.monthly_count_puntedIssues / self.monthly_count_completedIssues
 
     def calculate_sprint_completion_rate(self):
@@ -115,6 +115,7 @@ class kpi_month:
         self.Number_Stories_Gherkin_Format = await kpi_query.get_gherkin_format(self.project, self.sprint_id_list, self.debug)
         self.Number_of_Stories = await kpi_query.get_all_stories(self.project, self.sprint_id_list, self.debug)
         self.Gherkin_Story_Rate = self.Number_Stories_Gherkin_Format / self.Number_of_Stories
+        self.TotalBugCount = await kpi_query.get_total_bug_count(self.project, self.debug)
 
     async def calculate_kpis(self):
         #acquire any missing data
@@ -184,6 +185,7 @@ class kpi_month:
         print("Tech Debt Paydown (SP) = " + str(self.Tech_Debt_Paydown))
         print("Tech Debt Paydown Ratio = " + str(self.Tech_Debt_Paydown_Ratio))
         print("Testability = " )
+        print("Total Bug Count = " + str(self.TotalBugCount))
         print("------")
 
     def calculate_first_time_right(self):
