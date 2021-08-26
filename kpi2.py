@@ -12,7 +12,7 @@ async def main():
 
         year = 2021
         mon = 7
-        debugFlag = True
+        debugFlag = False
         project = 'HCMAT'
         rapid_view = '588'
         #project = 'FC'
@@ -37,11 +37,9 @@ async def main():
         for v1 in all_sprints_month.velocity_reports:
                 if 'US ' in v1.name: 
                         us_team.velocity_reports.append(v1)
-                        print('*')
 
                 elif 'Noida ' in v1.name:
                         noida_team.velocity_reports.append(v1)
-                        print('*')
 
         print('us team sprints')
         for v2 in us_team.velocity_reports:

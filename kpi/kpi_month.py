@@ -13,6 +13,8 @@ class count_by_severity:
         self.highest = 0
 
 class kpi_month:
+    overall_velocity = 0
+
     def __init__(self, project, year, month, debug):
         self.project = project
         self.year=year
@@ -83,7 +85,7 @@ class kpi_month:
         self.Sprint_Completion_Rate = self.monthly_completedIssuesEstimateSum / self.monthly_completedIssuesInitialEstimateSum 
 
     async def calculate_sprint_readiness(self):
-        data = await kpi_query.get_all_backlog_issues(self.project, self.debug)
+        data = await kpi_query.get_all_backlog_stories(self.project, self.debug)
         for response in data:
             self.Sprint_Readiness += self.total_story_points(response)
 
@@ -134,16 +136,22 @@ class kpi_month:
                 self.monthly_count_issuesCompletedInAnotherSprint =+ len(vel.issuesCompletedInAnotherSprint)
                 self.monthly_count_issueKeysAddedDuringSprint =+ len(vel.issueKeysAddedDuringSprint)
         
-        self.Velocity = self.monthly_completedIssuesEstimateSum / len(self.velocity_reports)
-        self.Escape_Velocity_Rate = (self.Escape_Velocity/2) / self.Velocity 
+        self.Velocity = self.monthly_completedIssuesEstimateSum / (len(self.velocity_reports)/2)
+        kpi_month.overall_velocity =+ self.Velocity
+        #Todo - find a better way to manage the team count
+        self.Escape_Velocity_Rate = (self.Escape_Velocity/2) / self.monthly_count_completedIssues 
         self.calculate_first_time_right()
         self.calculate_sprint_churn()
-        self.calculate_sprint_completion_rate()
-        self.calculate_sprint_readiness_ratio()
         await self.calculate_sprint_readiness()
         await self.calculate_tech_debt()
+        self.calculate_sprint_completion_rate()
+        self.calculate_sprint_readiness_ratio()
+        self.calculate_tech_debt_ratio()
 
     def print_kpis(self):
+        stringlist = map(str, self.sprint_id_list)
+        list_of_ids = ",".join(stringlist)
+        print("sprints = " + list_of_ids)
         print("monthly_completedIssuesInitialEstimateSum = " + str(self.monthly_completedIssuesInitialEstimateSum))
         print("monthly_completedIssuesEstimateSum = " + str(self.monthly_completedIssuesEstimateSum))
         print("monthly_issuesNotCompletedInitialEstimateSum = " + str(self.monthly_issuesNotCompletedInitialEstimateSum))
@@ -153,6 +161,12 @@ class kpi_month:
         print("monthly_puntedIssuesEstimateSum = " + str(self.monthly_puntedIssuesEstimateSum))
         print("monthly_issuesCompletedInAnotherSprintInitialEstimateSum = " + str(self.monthly_issuesCompletedInAnotherSprintInitialEstimateSum))
         print("monthly_issuesCompletedInAnotherSprintEstimateSum = " + str(self.monthly_issuesCompletedInAnotherSprintEstimateSum))
+        print("....")
+        print("monthly_count_completedIssues = " + str(self.monthly_count_completedIssues))
+        print("monthly_count_issuesNotCompletedInCurrentSprint = " + str(self.monthly_count_issuesNotCompletedInCurrentSprint))
+        print("monthly_count_puntedIssues = " + str(self.monthly_count_puntedIssues))
+        print("monthly_count_issuesCompletedInAnotherSprint = " + str(self.monthly_count_issuesCompletedInAnotherSprint))
+        print("monthly_count_issueKeysAddedDuringSprint = " + str(self.monthly_count_issueKeysAddedDuringSprint))
         print("....")
         print("Team Velocity = " + str(self.Velocity))
         print("Escape_Velocity = " + str(self.Escape_Velocity))
@@ -166,7 +180,7 @@ class kpi_month:
         print("Sprint Churn = " + str(self.Sprint_Churn))
         print("Sprint Completion Rate = " + str(self.Sprint_Completion_Rate))
         print("Spread Readiness = " + str(self.Sprint_Readiness))
-        print("Spread Readiness Ratio = " + str(self.Sprint_Readiness))
+        print("Spread Readiness Ratio = " + str(self.Sprint_Readiness_Ratio))
         print("Tech Debt Paydown (SP) = " + str(self.Tech_Debt_Paydown))
         print("Tech Debt Paydown Ratio = " + str(self.Tech_Debt_Paydown_Ratio))
         print("Testability = " )

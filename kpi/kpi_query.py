@@ -21,8 +21,8 @@ async def get_all_stories(project, sprint_id_array, debug = False):
         jql = f'project = "{project}" AND Sprint in  ({list_of_ids}) and type = "Story"'
         return await run_generic_jql_count(jql, debug)
 
-async def get_all_backlog_issues(project, debug):
-        jql = f'project = {project} and statusCategory = "To Do" and "Story Points[Number]" > 0'
+async def get_all_backlog_stories(project, debug):
+        jql = f'project = {project} and statusCategory = "To Do" and "Story Points[Number]" > 0 and type = "Story"'
         return await paging_manager_generic_jql(jql, debug)
 
 
