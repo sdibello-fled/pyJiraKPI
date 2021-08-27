@@ -30,12 +30,25 @@ async def get_all_backlog_stories(project, debug):
         jql = f'project = {project} and statusCategory = "To Do" and "Story Points[Number]" > 0 and type = "Story"'
         return await paging_manager_generic_jql(jql, debug)
 
+async def get_all_open_bugs(project, debug):
+        jql = f'project = {project} and statusCategory != Done and type = bug and "Zendesk Ticket Count[Number]" > 0'
+        return await paging_manager_generic_jql(jql, debug)
+
 
 async def get_all_tech_debt(project, sprint_id_array, debug):
         ## get a list of all sprints
         stringlist = map(str, sprint_id_array)
         list_of_ids = ",".join(stringlist)
         jql = f'project = "{project}" and Sprint in ({list_of_ids}) and type = "Technical Debt"'
+        return await paging_manager_generic_jql(jql, debug)
+
+async def get_created_support_defects(project, start_date, end_date, debug):
+        debug = True
+        jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type = "bug" and "Zendesk Ticket Count[Number]" > 0'
+        return await paging_manager_generic_jql(jql, debug)
+
+async def get_completed_support_defects(project, start_date, end_date, debug):
+        jql = f'project="{project}" and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" and statusCategory = Done and and type = "bug" and "Zendesk Ticket Count[Number]" > 0'
         return await paging_manager_generic_jql(jql, debug)
 
 
@@ -53,9 +66,6 @@ async def run_generic_jql_count(jql, debug = False):
         response = json.loads(response)
     
     return response["total"]        
-
-#https://frontlinetechnologies.atlassian.net/rest/api/2/search?maxResults=150&jql=project%20=%20%22HCMAT%22%20AND%20Sprint%20in%20%20(3223,3224,3420)%20and%20type%20=%20%22Story%22&MaxResults=200
-#https://frontlinetechnologies.atlassian.net/rest/api/2/search?startAt=1&jql=project%20=%20%22HCMAT%22%20AND%20Sprint%20in%20%20(3223,3224,3420)%20and%20type%20=%20%22Story%22&MaxResults=200
 
 
 async def paging_manager_generic_jql(jql, debug = False, maxresults=100, page=0):

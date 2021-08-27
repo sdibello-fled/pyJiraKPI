@@ -47,6 +47,7 @@ class kpi_month:
         self.Tickets_Received = count_by_severity()
         self.Velocity = 0
         self.TotalBugCount = 0
+        self.CreatedSupportTicketsDuringSprints = None 
 
         #summed items from the velocity reports
         self.monthly_completedIssuesInitialEstimateSum = 0
@@ -88,6 +89,49 @@ class kpi_month:
         data = await kpi_query.get_all_backlog_stories(self.project, self.debug)
         for response in data:
             self.Sprint_Readiness += self.total_story_points(response)
+
+    async def calculate_created_support_tickets(self):
+        counts = []
+        total_overallCount = 0
+        total_highestCount = 0
+        total_highCount = 0
+        total_mediumCount = 0
+        total_lowCount = 0
+        data = await kpi_query.get_created_support_defects(self.project, self.start_date, self.end_date, self.debug )
+        for response in data:
+            counts.append(self.parse_out_all_bugs(response))
+        for count in counts:
+            total_overallCount =+ count[0]
+            total_highestCount =+ count[1]
+            total_highCount =+ count[2]
+            total_mediumCount =+ count[3]
+            total_lowCount =+ count[4]
+
+        tupCounts = (total_overallCount, total_highestCount, total_highCount, total_mediumCount, total_lowCount)
+        return tupCounts
+        
+
+    def parse_out_all_bugs(self, data):
+        overallCount = 0
+        highestCount = 0
+        highCount = 0
+        mediumCount = 0
+        lowCount = 0
+        for i in data['issues']:
+            overallCount =+ 1
+            if 'priority' in i['fields']:
+                if i['fields']['priority'] != None:
+                    if i['fields']['priority']['name'] == "High":
+                        highCount += 1
+                    elif i['fields']['priority']['name'] == "Highest":
+                        highestCount += 1
+                    elif i['fields']['priority']['name'] == "Medium":
+                        mediumCount += 1
+                    elif i['fields']['priority']['name'] == "Lowest":
+                        lowCount += 1
+
+        tuple1 = (overallCount, highestCount, highCount, mediumCount, lowCount)
+        return tuple1
 
     async def calculate_tech_debt(self):
         data = await kpi_query.get_all_tech_debt(self.project, self.sprint_id_list, self.debug)
@@ -148,6 +192,7 @@ class kpi_month:
         self.calculate_sprint_completion_rate()
         self.calculate_sprint_readiness_ratio()
         self.calculate_tech_debt_ratio()
+        self.CreatedSupportTicketsDuringSprints = await self.calculate_created_support_tickets()
 
     def print_kpis(self):
         stringlist = map(str, self.sprint_id_list)
@@ -186,6 +231,7 @@ class kpi_month:
         print("Tech Debt Paydown Ratio = " + str(self.Tech_Debt_Paydown_Ratio))
         print("Testability = " )
         print("Total Bug Count = " + str(self.TotalBugCount))
+        print("Created Support Tickets = " + str(self.CreatedSupportTicketsDuringSprints[1]) + ":" + str(self.CreatedSupportTicketsDuringSprints[2]) + ":" + str(self.CreatedSupportTicketsDuringSprints[3]) + ":" + str(self.CreatedSupportTicketsDuringSprints[4]) )
         print("------")
 
     def calculate_first_time_right(self):
