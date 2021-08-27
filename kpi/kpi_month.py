@@ -29,10 +29,6 @@ class kpi_month:
         self.Escape_Velocity_Rate = 0
         self.First_Time_Right = 0
 
-        self.Ability_to_Estimate = 0
-        self.Bugs_Count = 0
-        self.Number_Stories_Gherkin_Format = 0
-        self.Gherkin_Story_Rate = 0
         self.Number_of_Stories = 0
         self.Security_Focus = 0
         self.Sprint_Churn = 0
@@ -43,11 +39,17 @@ class kpi_month:
         self.Tech_Debt_Paydown = 0
         self.Tech_Debt_Paydown_Ratio = 0
         self.Test_Automation = 0
-        self.Tickets_Resolved = count_by_severity()
-        self.Tickets_Received = count_by_severity()
         self.Velocity = 0
+        # items that are project in scope, not team.  Should be moved up
+        self.Ability_to_Estimate = 0
+        self.Bugs_Count = 0
+        self.Gherkin_Story_Rate = 0
+        self.Number_Stories_Gherkin_Format = 0
         self.TotalBugCount = 0
         self.CreatedSupportTicketsDuringSprints = None 
+        self.CompletedSupportTicketsDuringSprints = None
+        self.Tickets_Resolved = count_by_severity()
+        self.Tickets_Received = count_by_severity()
 
         #summed items from the velocity reports
         self.monthly_completedIssuesInitialEstimateSum = 0
@@ -89,6 +91,27 @@ class kpi_month:
         data = await kpi_query.get_all_backlog_stories(self.project, self.debug)
         for response in data:
             self.Sprint_Readiness += self.total_story_points(response)
+
+    async def calculate_completed_support_tickets(self):
+        counts = []
+        total_overallCount = 0
+        total_highestCount = 0
+        total_highCount = 0
+        total_mediumCount = 0
+        total_lowCount = 0
+        data = await kpi_query.get_completed_support_defects(self.project, self.start_date, self.end_date, self.debug )
+        for response in data:
+            counts.append(self.parse_out_all_bugs(response))
+        for count in counts:
+            total_overallCount =+ count[0]
+            total_highestCount =+ count[1]
+            total_highCount =+ count[2]
+            total_mediumCount =+ count[3]
+            total_lowCount =+ count[4]
+
+        tupCounts = (total_overallCount, total_highestCount, total_highCount, total_mediumCount, total_lowCount)
+        return tupCounts
+
 
     async def calculate_created_support_tickets(self):
         counts = []
@@ -193,6 +216,8 @@ class kpi_month:
         self.calculate_sprint_readiness_ratio()
         self.calculate_tech_debt_ratio()
         self.CreatedSupportTicketsDuringSprints = await self.calculate_created_support_tickets()
+        self.CompletedSupportTicketsDuringSprints = await self.calculate_completed_support_tickets()
+
 
     def print_kpis(self):
         stringlist = map(str, self.sprint_id_list)
@@ -232,6 +257,7 @@ class kpi_month:
         print("Testability = " )
         print("Total Bug Count = " + str(self.TotalBugCount))
         print("Created Support Tickets = " + str(self.CreatedSupportTicketsDuringSprints[1]) + ":" + str(self.CreatedSupportTicketsDuringSprints[2]) + ":" + str(self.CreatedSupportTicketsDuringSprints[3]) + ":" + str(self.CreatedSupportTicketsDuringSprints[4]) )
+        print("Completed Support Tickets = " + str(self.CompletedSupportTicketsDuringSprints[1]) + ":" + str(self.CompletedSupportTicketsDuringSprints[2]) + ":" + str(self.CompletedSupportTicketsDuringSprints[3]) + ":" + str(self.CompletedSupportTicketsDuringSprints[4]) )
         print("------")
 
     def calculate_first_time_right(self):

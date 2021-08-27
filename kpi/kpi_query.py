@@ -36,20 +36,20 @@ async def get_all_open_bugs(project, debug):
 
 
 async def get_all_tech_debt(project, sprint_id_array, debug):
-        ## get a list of all sprints
-        stringlist = map(str, sprint_id_array)
-        list_of_ids = ",".join(stringlist)
-        jql = f'project = "{project}" and Sprint in ({list_of_ids}) and type = "Technical Debt"'
-        return await paging_manager_generic_jql(jql, debug)
+    ## get a list of all sprints
+    stringlist = map(str, sprint_id_array)
+    list_of_ids = ",".join(stringlist)
+    jql = f'project = "{project}" and Sprint in ({list_of_ids}) and type = "Technical Debt"'
+    return await paging_manager_generic_jql(jql, debug)
 
 async def get_created_support_defects(project, start_date, end_date, debug):
-        debug = True
-        jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type = "bug" and "Zendesk Ticket Count[Number]" > 0'
-        return await paging_manager_generic_jql(jql, debug)
+    jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type = "bug" and "Zendesk Ticket Count[Number]" > 0'
+    return await paging_manager_generic_jql(jql, debug)
 
 async def get_completed_support_defects(project, start_date, end_date, debug):
-        jql = f'project="{project}" and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" and statusCategory = Done and and type = "bug" and "Zendesk Ticket Count[Number]" > 0'
-        return await paging_manager_generic_jql(jql, debug)
+    debug=True
+    jql = f'project="{project}" and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" and statusCategory = Done and type in ("bug","Support Defect","Support Request")'
+    return await paging_manager_generic_jql(jql, debug)
 
 
 async def run_generic_jql_count(jql, debug = False):
