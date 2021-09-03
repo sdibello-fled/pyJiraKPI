@@ -16,7 +16,7 @@ async def get_gherkin_format(project, sprint_id_array, debug = False):
 
 async def get_total_bug_count(project, debug):
         ## get a list of all sprints
-        jql = f'project="{project}" and statusCategory != Done and type = bug and "Zendesk Ticket Count[Number]" > 0'
+        jql = f'project="{project}" and statusCategory != Done and type in ("bug", "Support Request", "Support Defect")'
         return await run_generic_jql_count(jql, debug)
 
 async def get_all_stories(project, sprint_id_array, debug = False):
@@ -31,7 +31,7 @@ async def get_all_backlog_stories(project, debug):
         return await paging_manager_generic_jql(jql, debug)
 
 async def get_all_open_bugs(project, debug):
-        jql = f'project = {project} and statusCategory != Done and type = bug and "Zendesk Ticket Count[Number]" > 0'
+        jql = f'project = {project} and statusCategory != Done and type = bug'
         return await paging_manager_generic_jql(jql, debug)
 
 
@@ -43,11 +43,10 @@ async def get_all_tech_debt(project, sprint_id_array, debug):
     return await paging_manager_generic_jql(jql, debug)
 
 async def get_created_support_defects(project, start_date, end_date, debug):
-    jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type = "bug" and "Zendesk Ticket Count[Number]" > 0'
+    jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type in ("bug","Support Defect","Support Request")'
     return await paging_manager_generic_jql(jql, debug)
 
 async def get_completed_support_defects(project, start_date, end_date, debug):
-    debug=True
     jql = f'project="{project}" and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" and statusCategory = Done and type in ("bug","Support Defect","Support Request")'
     return await paging_manager_generic_jql(jql, debug)
 

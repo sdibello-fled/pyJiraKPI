@@ -11,7 +11,7 @@ async def main():
         load_dotenv()
 
         year = 2021
-        mon = 6
+        mon = 8
         debugFlag = False
         project = 'HCMAT'
         rapid_view = '588'

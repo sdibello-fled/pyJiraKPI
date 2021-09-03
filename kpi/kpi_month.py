@@ -141,7 +141,7 @@ class kpi_month:
         mediumCount = 0
         lowCount = 0
         for i in data['issues']:
-            overallCount =+ 1
+            overallCount += 1
             if 'priority' in i['fields']:
                 if i['fields']['priority'] != None:
                     if i['fields']['priority']['name'] == "High":
@@ -256,12 +256,12 @@ class kpi_month:
         print("Tech Debt Paydown Ratio = " + str(self.Tech_Debt_Paydown_Ratio))
         print("Testability = " )
         print("Total Bug Count = " + str(self.TotalBugCount))
-        print("Created Support Tickets = " + str(self.CreatedSupportTicketsDuringSprints[1]) + ":" + str(self.CreatedSupportTicketsDuringSprints[2]) + ":" + str(self.CreatedSupportTicketsDuringSprints[3]) + ":" + str(self.CreatedSupportTicketsDuringSprints[4]) )
-        print("Completed Support Tickets = " + str(self.CompletedSupportTicketsDuringSprints[1]) + ":" + str(self.CompletedSupportTicketsDuringSprints[2]) + ":" + str(self.CompletedSupportTicketsDuringSprints[3]) + ":" + str(self.CompletedSupportTicketsDuringSprints[4]) )
+        print("Created Support Tickets = total-" + str(self.CreatedSupportTicketsDuringSprints[0]) + "-" + str(self.CreatedSupportTicketsDuringSprints[1]) + ":" + str(self.CreatedSupportTicketsDuringSprints[2]) + ":" + str(self.CreatedSupportTicketsDuringSprints[3]) + ":" + str(self.CreatedSupportTicketsDuringSprints[4]) )
+        print("Completed Support Tickets = total-" + str(self.CompletedSupportTicketsDuringSprints[0]) + "-" + str(self.CompletedSupportTicketsDuringSprints[1]) + ":" + str(self.CompletedSupportTicketsDuringSprints[2]) + ":" + str(self.CompletedSupportTicketsDuringSprints[3]) + ":" + str(self.CompletedSupportTicketsDuringSprints[4]) )
         print("------")
 
     def calculate_first_time_right(self):
-        self.First_Time_Right = (self.monthly_issuesNotCompletedInitialEstimateSum / self.monthly_completedIssuesEstimateSum)
+        self.First_Time_Right = (self.monthly_completedIssuesInitialEstimateSum / self.monthly_completedIssuesEstimateSum)
 
 #end of class..
 
