@@ -144,13 +144,13 @@ class kpi_month:
             overallCount += 1
             if 'priority' in i['fields']:
                 if i['fields']['priority'] != None:
-                    if i['fields']['priority']['name'] == "High":
+                    if i['fields']['priority']['name'] == " P2 - High":
                         highCount += 1
-                    elif i['fields']['priority']['name'] == "Highest":
+                    elif i['fields']['priority']['name'] == "P1 - Highest":
                         highestCount += 1
-                    elif i['fields']['priority']['name'] == "Medium":
+                    elif i['fields']['priority']['name'] == "P3 - Medium":
                         mediumCount += 1
-                    elif i['fields']['priority']['name'] == "Lowest":
+                    elif i['fields']['priority']['name'] == "P4 - Lowest":
                         lowCount += 1
 
         tuple1 = (overallCount, highestCount, highCount, mediumCount, lowCount)
