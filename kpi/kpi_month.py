@@ -249,7 +249,7 @@ class kpi_month:
         print("Release Delivery = " )
         print("Release on Time = " )
         print("Sprint Churn = " + str(self.Sprint_Churn))
-        print("Sprint Completion Rate = " + str(self.Sprint_Completion_Rate))
+        print("Sprint Completion Rate = (" + str(self.monthly_completedIssuesEstimateSum) + " / " + str(self.monthly_completedIssuesInitialEstimateSum) + " ) " + str(self.Sprint_Completion_Rate))
         print("Spread Readiness = " + str(self.Sprint_Readiness))
         print("Spread Readiness Ratio = " + str(self.Sprint_Readiness_Ratio))
         print("Tech Debt Paydown (SP) = " + str(self.Tech_Debt_Paydown))

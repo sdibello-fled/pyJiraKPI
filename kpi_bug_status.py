@@ -66,7 +66,7 @@ async def run_generic_jql(project, jql):
 async def bug_count(store):
         ## get a list of all bugs for a project that are no closed.
         auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
-        jql = f'project="{store.project}" and statusCategory != Done and "Zendesk Ticket Count[Number]" > 0 and type = "Bug"'
+        jql = f'project="{store.project}" and statusCategory != Done and type = "Bug"'
         return await run_generic_jql(store.project, jql)
            
 async def get_all_tickets_in_sprints(project, sprint_id_array):
@@ -94,12 +94,12 @@ async def get_priority_tickets_in_sprints(project, sprint_id_array, priority):
         ## get a list of all sprints
         stringlist = map(str, sprint_id_array)
         listi = ",".join(stringlist)
-        jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Defect", "Support Request", "bug") And priority = {priority}'
+        jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Defect", "Support Request", "bug") And priority = "{priority}"'
         return await run_generic_jql(project, jql)
 
 async def get_priority_tickets_not_done(project, priority):
         ## get a list of all sprints
-        jql = f'project = "{project}" and type in ("Support Defect", "Support Request", "bug") and "Zendesk Ticket Count[Number]" > 0 and StatusCategory = "In Progress" And priority = {priority}'
+        jql = f'project = "{project}" and type in ("Support Defect", "Support Request", "bug") and StatusCategory = "In Progress" And priority = "{priority}"'
         return await run_generic_jql(project, jql)
 
 async def process(data):
@@ -151,25 +151,25 @@ async def process(data):
         issues = last_two['issues']
 
         # API fails if you try to run them all in one jql because the maxresults doesn't work on this API.. poo!
-        highest =  await get_priority_tickets_in_sprints(data.project, last_complete, "Highest")
+        highest =  await get_priority_tickets_in_sprints(data.project, last_complete, "P1 - Highest")
         last_P1_count = int(highest['total'])
-        high =  await get_priority_tickets_in_sprints(data.project, last_complete, "High")
+        high =  await get_priority_tickets_in_sprints(data.project, last_complete, " P2 - High")
         last_P2_count = int(high['total'])
-        Medium =  await get_priority_tickets_in_sprints(data.project, last_complete, "Medium")
+        Medium =  await get_priority_tickets_in_sprints(data.project, last_complete, "P3 - Medium")
         last_P3_count = int(Medium['total'])
-        Low =  await get_priority_tickets_in_sprints(data.project, last_complete, "Low")
+        Low =  await get_priority_tickets_in_sprints(data.project, last_complete, "P4 - Low")
         last_P4_count = int(Low['total'])
 
         print(f'[RESOLVED] last sprint {data.project} P1 tickets P1:{last_P1_count} P2:{last_P2_count}, P3:{last_P3_count}, P4:{last_P4_count}')
 
         # API fails if you try to run them all in one jql because the maxresults doesn't work on this API.. poo!
-        undone_highest =  await get_priority_tickets_not_done(data.project, "Highest")
+        undone_highest =  await get_priority_tickets_not_done(data.project, "P1 - Highest")
         undone_P1_count = int(undone_highest['total'])
-        undone_high =  await get_priority_tickets_not_done(data.project, "High")
+        undone_high =  await get_priority_tickets_not_done(data.project, " P2 - High")
         undone_P2_count = int(undone_high['total'])
-        undone_medium =  await get_priority_tickets_not_done(data.project, "Medium")
+        undone_medium =  await get_priority_tickets_not_done(data.project, "P3 - Medium")
         undone_P3_count = int(undone_medium['total'])
-        undone_low =  await get_priority_tickets_not_done(data.project, "Low")
+        undone_low =  await get_priority_tickets_not_done(data.project, "P4 - Low")
         undone_P4_count = int(undone_low['total'])
 
         print(f'[IN PROGRESS] {data.project} P1 tickets P1:{undone_P1_count} P2:{undone_P2_count}, P3:{undone_P3_count}, P4:{undone_P4_count}')
