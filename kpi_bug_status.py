@@ -66,14 +66,14 @@ async def run_generic_jql(project, jql):
 async def bug_count(store):
         ## get a list of all bugs for a project that are no closed.
         auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
-        jql = f'project="{store.project}" and statusCategory != Done and type = "Bug"'
+        jql = f'project="{store.project}" and statusCategory != Done and issuetype = bug'
         return await run_generic_jql(store.project, jql)
            
 async def get_all_tickets_in_sprints(project, sprint_id_array):
         ## get a list of all sprints
         stringlist = map(str, sprint_id_array)
         listi = ",".join(stringlist)
-        jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Defect", "Support Request", "bug")'
+        jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Defect", "Support Request") or issuetype = bug'
         return await run_generic_jql(project, jql)
  
 async def get_defects_tickets_in_sprints(project, sprint_id_array):
@@ -94,12 +94,12 @@ async def get_priority_tickets_in_sprints(project, sprint_id_array, priority):
         ## get a list of all sprints
         stringlist = map(str, sprint_id_array)
         listi = ",".join(stringlist)
-        jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Defect", "Support Request", "bug") And priority = "{priority}"'
+        jql = f'project = "{project}" AND Sprint in ({listi}) and issuetype = bug OR type in ("Support Defect", "Support Request") And priority = "{priority}"'
         return await run_generic_jql(project, jql)
 
 async def get_priority_tickets_not_done(project, priority):
         ## get a list of all sprints
-        jql = f'project = "{project}" and type in ("Support Defect", "Support Request", "bug") and StatusCategory = "In Progress" And priority = "{priority}"'
+        jql = f'project = "{project}" and type in ("Support Defect", "Support Request") or issuetype = bug and StatusCategory = "In Progress" And priority = "{priority}"'
         return await run_generic_jql(project, jql)
 
 async def process(data):

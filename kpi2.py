@@ -13,13 +13,24 @@ async def main():
         year = 2021
         mon = 8
         debugFlag = False
+        trackedProjects = []
         project = 'HCMAT'
         rapid_view = '588'
         #project = 'FC'
         #rapid_view = '464'
+        hcmat = {
+                'project':'HCMAT',
+                'view':'588'
+        }
+        fc = {
+                'project':'FC',
+                'view':'464'
+        }
+        trackedProjects.append(hcmat)
+        trackedProjects.append(fc)
 
         sprint_black_list = [3152]
-        #Todo
+        #TODO
         #sprints_white_list = []
         sprint_id_list = await kpi_month.get_sprint_ids_by_month(project, year, mon, sprint_black_list) 
         
