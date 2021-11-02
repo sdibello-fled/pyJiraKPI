@@ -11,13 +11,9 @@ async def main():
         load_dotenv()
 
         year = 2021
-        mon = 8
+        mon = 10
         debugFlag = False
         trackedProjects = []
-        #project = 'HCMAT'
-        #rapid_view = '588'
-        #project = 'FC'
-        #rapid_view = '464'
         hcmat = {
                 'project':'HCMAT',
                 'view':'588'
@@ -51,13 +47,24 @@ async def main():
                                us_team.velocity_reports.append(v1)
 
                        elif 'Noida ' in v1.name:
-                               noida_team.velocity_reports.append(v1)
+                               noida_team.velocity_reports.append(v1)                
+
+               await us_team.calculate_kpis()
+
+               await noida_team.calculate_kpis()
+
+               #calculate team level items, like escape
+               totalCompletedIssues = us_team.monthly_count_completedIssues
+               totalCompletedIssues += noida_team.monthly_count_completedIssues
+               escape_velocity = us_team.Escape_Velocity
+               escape_rate = escape_velocity / totalCompletedIssues
+               us_team.Escape_Velocity_Rate = escape_rate
+               noida_team.Escape_Velocity_Rate = escape_rate
 
                print('us team sprints')
                for v2 in us_team.velocity_reports:
                        print(v2.name)
 
-               await us_team.calculate_kpis()
 
                us_team.print_kpis()
 
@@ -65,7 +72,6 @@ async def main():
                for v3 in noida_team.velocity_reports:
                        print(v3.name)
 
-               await noida_team.calculate_kpis()
                noida_team.print_kpis()
 
 if __name__ == '__main__':
