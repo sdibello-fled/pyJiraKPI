@@ -61,22 +61,23 @@ async def analyze_sprints(store):
 async def bug_count(store):
         ## get a list of all bugs for a project that are no closed.
         auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
-        jql = f'project="{store.project}" and statusCategory != Done and issuetype = bug'
-        return await paging_manager_generic_jql(jql, False, 100, 0)
+        jql = f'project="{store.project}" and statusCategory not in ("Done") and type in ("Support Request", "Bug")'
+        return await run_generic_jql(jql, False, 100, 0)
            
 async def get_all_tickets_in_sprints(project, sprint_id_array):
         ## get a list of all sprints
         stringlist = map(str, sprint_id_array)
         listi = ",".join(stringlist)
         jql = f'project = "{project}" AND Sprint in ({listi}) and issuetype = bug'
-        return await paging_manager_generic_jql(jql)
+        return await paging_manager_generic_jql(jql, True, 100, 0)
 
 async def get_requests_tickets_in_sprints(project, sprint_id_array):
         ## get a list of all sprints
         stringlist = map(str, sprint_id_array)
         listi = ",".join(stringlist)
         jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Request", "Bug")'
-        return await paging_manager_generic_jql(jql)
+        return await paging_manager_generic_jql(jql, False, 100, 0)
+        ger_generic_jql(jql)
 
 async def get_priority_tickets_in_sprints(project, sprint_id_array, priority):
         ## get a list of all sprints
@@ -94,8 +95,8 @@ async def get_priority_tickets_not_done(project, priority):
 async def get_request_and_bug_tickets_in_sprints(project, sprint_id_array):
         stringlist = map(str, sprint_id_array)
         listi = ",".join(stringlist)
-        jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Request", "Bug")'
-        return await paging_manager_generic_jql(jql, True)
+        jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Request", "Bug") and statusCategory = "Done"'
+        return await paging_manager_generic_jql(jql, False, 100, 0)
 
 def parse_out_all_bugs_and_requests(data):
     bugCount = 0
@@ -143,13 +144,8 @@ async def process(data):
         last_four_bugs = int(parsed[1])
         last_four_requests = int(parsed[2])
         data.total_bugs_resolved_last4 = last_four_bugs
-        data.total_issues_resolved_last4 = last_four_count
         data.total_requests_resolved_last4 = last_four_requests
-
-        # elif data.project == 'FC':
-        #         last_four =  await get_all_tickets_in_sprints(data.project, last_four)
-        #         last_four_count = int(last_four['total'])
-        #         data.total_bugs_resolved_last4 = last_four_count
+        data.total_issues_resolved_last4 = last_four_count
 
         requests_data =  await get_requests_tickets_in_sprints(data.project, last_complete)
         for paged_request in requests_data:
@@ -164,13 +160,13 @@ async def process(data):
                 last_two_count += int(paged_request['total'])
                 data.total_issues_resolved_last1 += last_two_count
 
+        ## Don't need to page here, just need the total from the first call.
         total_bug = await bug_count(data)
-        for paged_request in total_bug:
-                total_bug_count += int(paged_request['total'])
-                data.total_bugs_unresolved += total_bug_count
+        total_bug_count += int(total_bug['total'])
+        data.total_bugs_unresolved += total_bug_count
 
-        print(f'resolved {data.project} tickets on the last four sprints {data.total_bugs_resolved_last4} ')
-        print(f'resolved {data.project} tickets on the last sprint {data.total_issues_resolved_last1} ({last_one_defects}/{last_one_requests})' )
+        print(f'resolved {data.project} tickets on the last four sprints {data.total_issues_resolved_last4} - requests = {data.total_requests_resolved_last4} - bugs - {data.total_bugs_resolved_last4} ')
+        print(f'resolved {data.project} tickets on the last sprint {data.total_issues_resolved_last1} (defects - {last_one_defects}/ requests - {last_one_requests})' )
         print(f'unresolved {data.project} tickets  {data.total_bugs_unresolved}')
 
         ##issues = last_two['issues']
@@ -211,7 +207,6 @@ async def main():
         enddate = now + timedelta(days=-70)
         data.start_date = now
         data.end_date = enddate
-
 
         #data.project = 'HCMAT'
         data.project = 'FC'
