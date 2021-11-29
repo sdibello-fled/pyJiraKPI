@@ -275,9 +275,11 @@ async def get_sprint_ids_by_month(project, year, month, black_list):
                 s1 = slice(0,8)
                 date_time_obj = dt.datetime.strptime(enddate[s1], '%d%m%Y')
                 if date_time_obj.month == int(month) and date_time_obj.year == int(year):
-                        if SprintId not in black_list:
+                    for plist in sprint['projects']:
+                        if plist['key'] == project:
+                            if SprintId not in black_list:
                                 id_list.append(SprintId)
-    
+
         return id_list
 
 async def get_sprint_list(project):
