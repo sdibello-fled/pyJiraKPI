@@ -11,7 +11,7 @@ async def main():
         load_dotenv()
 
         year = 2021
-        mon = 10
+        mon = 11
         debugFlag = False
         trackedProjects = []
         hcmat = {

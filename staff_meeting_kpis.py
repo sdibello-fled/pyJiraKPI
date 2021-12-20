@@ -61,7 +61,7 @@ async def analyze_sprints(store):
 async def bug_count(store):
         ## get a list of all bugs for a project that are no closed.
         auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
-        jql = f'project="{store.project}" and statusCategory not in ("Done") and type in ("Support Request", "Bug")'
+        jql = f'project="{store.project}" and statusCategory not in ("Done") and type in ("Bug")'
         return await run_generic_jql(jql, False, 100, 0)
            
 async def get_all_tickets_in_sprints(project, sprint_id_array):
