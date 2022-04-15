@@ -7,11 +7,32 @@ from kpi import kpi_month
 from dotenv import load_dotenv
 from jira_velocity.velocity_report import *
 
+async def printVelocity(velo):
+    print ("============== report ===================")
+    print ("completedIssuesInitialEstimateSum - {} ".format(velo.completedIssuesInitialEstimateSum))
+    print ("completedIssuesEstimateSum - {} ".format(velo.completedIssuesEstimateSum))
+    print ("issuesNotCompletedInitialEstimateSum - {} ".format(velo.issuesNotCompletedInitialEstimateSum))
+    print ("issuesNotCompletedEstimateSum - {}".format(velo.issuesNotCompletedEstimateSum))
+    print ("SprintID - {}".format(velo.sprintId))
+    print ("Name - {}".format(velo.name))
+    #print (velo.completedIssues) 
+    #print (velo.issuesNotCompletedInCurrentSprint) 
+    #print (velo.puntedIssues)
+    #print (velo.issuesCompletedInAnotherSprint)
+    #print ("issueKeysAddedDuringSprint - {}".format(velo.issueKeysAddedDuringSprint))
+    print ("issuesNotCompletedInitialEstimateSum - {}".format(velo.issuesNotCompletedInitialEstimateSum))
+    print ("issuesCompletedInAnotherSprintEstimateSum - {}".format(velo.issuesCompletedInAnotherSprintEstimateSum))
+    print ("issuesCompletedInAnotherSprintInitialEstimateSum - {}".format(velo.issuesCompletedInAnotherSprintInitialEstimateSum))
+    print ("puntedIssuesEstimateSum - {}".format(velo.puntedIssuesEstimateSum))
+    print ("puntedIssuesInitialEstimateSum - {}".format(velo.puntedIssuesInitialEstimateSum))
+    print ("allIssuesEstimateSum - {}".format(velo.allIssuesEstimateSum))
+    return 
+
 async def main():
         load_dotenv()
 
-        year = 2021
-        mon = 11
+        year = 2022
+        mon = 3
         debugFlag = False
         trackedProjects = []
         hcmat = {
@@ -37,7 +58,10 @@ async def main():
                    veloReport = jira_velocity_report(debugFlag)
                    raw_velocity = await veloReport.get_sprint_velocity_report(os.environ.get('JIRA_USER'), os.environ.get('JIRA_API_KEY'), id, proj['view'])
                    velocity = await veloReport.velocity_report_parse(raw_velocity)
+                   #await printVelocity(velocity)
                    all_sprints_month.velocity_reports.append(velocity)
+
+
 
                # filter the velocity reports
                us_team = kpi_month.kpi_month(proj['project'], year, mon, debugFlag)

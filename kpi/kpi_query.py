@@ -27,6 +27,13 @@ async def get_all_stories(project, sprint_id_array, debug = False):
         jql = f'project = "{project}" AND Sprint in  ({list_of_ids}) and type = "Story"'
         return await run_generic_jql_count(jql, debug)
 
+async def get_all_soc2_stories(project, start_date, end_date, debug):
+    jql = f'project = "{project}" and type not in (test, feature, Sub-task)  and statusCategory = Done and status != Canceled and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" order by key'
+    print(jql)
+    if debug:
+        print(f'get-get_all_soc2_stories jql - {jql}')
+    return await paging_manager_generic_jql(jql, debug)
+
 async def get_all_backlog_stories(project, debug):
         jql = f'project = {project} and statusCategory = "To Do" and "Story Points[Number]" > 0 and type = "Story"'
         return await paging_manager_generic_jql(jql, debug)
@@ -63,7 +70,7 @@ async def run_generic_jql_count(jql, debug = False):
     url = f'https://frontlinetechnologies.atlassian.net/rest/api/2/search?jql={jql}'
 
     if debug:
-        print(jql)
+        #print(jql)
         print(url)
     
     async with aiohttp.ClientSession(auth=auth) as session:
@@ -85,15 +92,16 @@ async def paging_manager_generic_jql(jql, debug = False, maxresults=100, page=0)
 
     for x in range(math.ceil(totalPossible/resultCount)-1):
         page_num = page_num + 1
-        additional_response = await run_generic_jql(jql, debug, maxresults, page_num)
+        startat = page_num * 100 + 1
+        additional_response = await run_generic_jql(jql, debug, maxresults, startat)
         all_results.append(additional_response)
+
     return all_results
 
 
 async def run_generic_jql(jql, debug , maxresults, page):
     auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
     url = f'https://frontlinetechnologies.atlassian.net/rest/api/2/search?maxResults={maxresults}&startAt={page}&jql={jql}'
-
     if debug:
         print(jql)
         print(url)
