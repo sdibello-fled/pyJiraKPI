@@ -1,3 +1,6 @@
+from tkinter import N
+
+
 class jira_ticket_store:
 
     # properties
@@ -25,6 +28,57 @@ def parse_jira_api_response(data, debugFlag):
         items.append(ticket)
     
     return items
+
+def count_by_type(data):
+    count = 0
+    memory_list = dict()
+
+    for ticket in data:
+        if ticket['fields']['issuetype'] != None:
+            value = str(ticket['fields']['issuetype']['name'])
+            if value in  memory_list:
+                memory_list[value] = int(memory_list[value]) + 1
+            else:
+                memory_list[value] = 1
+    return memory_list
+
+def count_priority(data):
+    highest = 0
+    high = 0
+    medium = 0
+    low = 0
+    memory_list = dict()
+
+    for ticket in data:
+        if ticket['fields']['priority'] != None:
+            value = str(ticket['fields']['priority']['name'])
+            if value in  memory_list:
+                memory_list[value] = int(memory_list[value]) + 1
+            else:
+                memory_list[value] = 1
+
+    if "P1 - Highest" in memory_list:
+        highest = memory_list["P1 - Highest"]
+    else:
+        highest = 0
+
+    if " P2 - High" in memory_list:
+        high = memory_list[" P2 - High"]
+    else:
+        high = 0
+
+    if "P3 - Medium" in memory_list:
+        medium = memory_list["P3 - Medium"]
+    else:
+        medium = 0
+
+    if "P4 - Lowest" in memory_list:
+        low = memory_list["P4 - Lowest"]
+    else:
+        low = 0
+    
+    return highest, high, medium, low
+
 
 def parse_issue_type(response, debugFlag):
     issuetype = ""

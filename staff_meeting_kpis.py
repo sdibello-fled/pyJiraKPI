@@ -4,7 +4,9 @@ import aiohttp
 import asyncio
 from datetime import timedelta, date, datetime
 from dotenv import load_dotenv
+from jira_item import jira_ticket
 from kpi.kpi_query import *
+import jira_item
 
 class kpi_bug_status_store:
     start_date = ""
@@ -24,6 +26,7 @@ class kpi_bug_status_store:
     active_sprints = []
     sprint_white_list = []
     sprint_black_list = []
+    tickets = []
     debug = False
 
 
@@ -77,7 +80,6 @@ async def get_requests_tickets_in_sprints(project, sprint_id_array):
         listi = ",".join(stringlist)
         jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Request", "Bug")'
         return await paging_manager_generic_jql(jql, False, 100, 0)
-        ger_generic_jql(jql)
 
 async def get_priority_tickets_in_sprints(project, sprint_id_array, priority):
         ## get a list of all sprints
@@ -86,9 +88,14 @@ async def get_priority_tickets_in_sprints(project, sprint_id_array, priority):
         jql = f'project = "{project}" AND Sprint in ({listi}) AND issuetype in ("Support Request", "Bug") AND priority = "{priority}"'
         return await run_generic_jql(jql, False, 100, 0)
 
-async def get_priority_tickets_not_done(project, priority):
+async def get_priority_tickets_not_done_by_priority(project, priority):
         ## get a list of all sprints
         jql = f'project = "{project}" and issuetype in ("Support Request", "Bug") and StatusCategory = "In Progress" And priority = "{priority}"'
+        return await run_generic_jql(jql, False, 100, 0)
+
+async def get_priority_tickets_not_done(project):
+        ## get a list of all sprints
+        jql = f'project = "{project}" and issuetype in ("Support Request", "Bug") and StatusCategory = "In Progress"'
         return await run_generic_jql(jql, False, 100, 0)
 
 
@@ -116,12 +123,11 @@ def parse_out_all_bugs_and_requests(data):
     tuple1 = (overallCount, bugCount, supportRequestCount)
     return tuple1
 
-
-
 async def process(data):
         data = await analyze_sprints(data)
         data.sprints.sort()
         data.active_sprints.sort()
+        bugs_requests_data = []
 
         sprint_number = data.teams * 4
         last_four = data.sprints[-sprint_number:]
@@ -139,60 +145,47 @@ async def process(data):
         print(data.active_sprints)
 
         result =  await get_request_and_bug_tickets_in_sprints(data.project, last_four)
-        parsed = parse_out_all_bugs_and_requests(result)
-        last_four_count = int(parsed[0])
-        last_four_bugs = int(parsed[1])
-        last_four_requests = int(parsed[2])
+        last_four_count, last_four_bugs, last_four_requests = parse_out_all_bugs_and_requests(result)
         data.total_bugs_resolved_last4 = last_four_bugs
         data.total_requests_resolved_last4 = last_four_requests
         data.total_issues_resolved_last4 = last_four_count
 
-        requests_data =  await get_requests_tickets_in_sprints(data.project, last_complete)
-        for paged_request in requests_data:
+        requests_bugs_data =  await get_requests_tickets_in_sprints(data.project, last_complete)
+        for paged_request in requests_bugs_data:
                 last_one_requests += int(paged_request['total'])
-        
-        defects_data =  await get_request_and_bug_tickets_in_sprints(data.project, last_complete)
-        for paged_request in requests_data:
-                last_one_defects += int(paged_request['total'])
 
-        last_two =  await get_all_tickets_in_sprints(data.project, last_complete)
-        for paged_request in last_two:
-                last_two_count += int(paged_request['total'])
-                data.total_issues_resolved_last1 += last_two_count
+        for api_response in requests_bugs_data:
+                if api_response['issues']:
+                        bugs_requests_data = bugs_requests_data + api_response['issues']
+
+        last_P1_count, last_P2_count, last_P3_count, last_P4_count = jira_ticket.count_priority(bugs_requests_data)
+        type_dic = jira_ticket.count_by_type(bugs_requests_data)
+        last_one_defects = int(type_dic["Bug"])
+        last_one_requests = int(type_dic["Support Request"])
+        data.total_issues_resolved_last1 = last_one_defects + last_one_requests
 
         ## Don't need to page here, just need the total from the first call.
         total_bug = await bug_count(data)
         total_bug_count += int(total_bug['total'])
         data.total_bugs_unresolved += total_bug_count
 
+        # things not complete here.
+        total_bug_notdone = await get_priority_tickets_not_done(data.project) 
+        if isinstance(total_bug_count, list):
+                for api_response in total_bug_notdone:
+                        if api_response['issues']:
+                                undone_bugs = bugs_requests_data + api_response['issues']
+        else:
+                if api_response['issues']:
+                        undone_bugs = bugs_requests_data + api_response['issues']
+
+        undone_P1_count, undone_P2_count, undone_P3_count, undone_P4_count = jira_ticket.count_priority(undone_bugs)
+
+
         print(f'resolved {data.project} tickets on the last four sprints {data.total_issues_resolved_last4} - requests = {data.total_requests_resolved_last4} - bugs - {data.total_bugs_resolved_last4} ')
         print(f'resolved {data.project} tickets on the last sprint {data.total_issues_resolved_last1} (defects - {last_one_defects}/ requests - {last_one_requests})' )
         print(f'unresolved {data.project} tickets  {data.total_bugs_unresolved}')
-
-        ##issues = last_two['issues']
-
-        # API fails if you try to run them all in one jql because the maxresults doesn't work on this API.. poo!
-        highest =  await get_priority_tickets_in_sprints(data.project, last_complete, "P1 - Highest")
-        last_P1_count = int(highest['total'])
-        high =  await get_priority_tickets_in_sprints(data.project, last_complete, " P2 - High")
-        last_P2_count = int(high['total'])
-        Medium =  await get_priority_tickets_in_sprints(data.project, last_complete, "P3 - Medium")
-        last_P3_count = int(Medium['total'])
-        Low =  await get_priority_tickets_in_sprints(data.project, last_complete, "P4 - Low")
-        last_P4_count = int(Low['total'])
-
         print(f'[RESOLVED] last sprint {data.project} P1 tickets P1:{last_P1_count} P2:{last_P2_count}, P3:{last_P3_count}, P4:{last_P4_count}')
-
-        # API fails if you try to run them all in one jql because the maxresults doesn't work on this API.. poo!
-        undone_highest =  await get_priority_tickets_not_done(data.project, "P1 - Highest")
-        undone_P1_count = int(undone_highest['total'])
-        undone_high =  await get_priority_tickets_not_done(data.project, " P2 - High")
-        undone_P2_count = int(undone_high['total'])
-        undone_medium =  await get_priority_tickets_not_done(data.project, "P3 - Medium")
-        undone_P3_count = int(undone_medium['total'])
-        undone_low =  await get_priority_tickets_not_done(data.project, "P4 - Low")
-        undone_P4_count = int(undone_low['total'])
-
         print(f'[IN PROGRESS] {data.project} P1 tickets P1:{undone_P1_count} P2:{undone_P2_count}, P3:{undone_P3_count}, P4:{undone_P4_count}')
 
 async def main():
@@ -208,8 +201,8 @@ async def main():
         data.start_date = now
         data.end_date = enddate
 
-        #data.project = 'HCMAT'
-        data.project = 'FC'
+        data.project = 'HCMAT'
+        #data.project = 'FC'
         data.sprint_black_list = [3152, 1301]
         data.sprint_white_list = []
         data.sprints = []
