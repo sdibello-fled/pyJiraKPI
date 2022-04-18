@@ -141,8 +141,8 @@ async def process(data):
 
         last_complete = data.sprints[-data.teams:]
 
-        print(data.sprints)
-        print(data.active_sprints)
+        print("last 4 sprints - " + data.sprints)
+        print("active spritns - "  + data.active_sprints)
 
         result =  await get_request_and_bug_tickets_in_sprints(data.project, last_four)
         last_four_count, last_four_bugs, last_four_requests = parse_out_all_bugs_and_requests(result)

@@ -222,6 +222,7 @@ class kpi_month:
     def print_kpis(self):
         stringlist = map(str, self.sprint_id_list)
         list_of_ids = ",".join(stringlist)
+        print("-------------------------------------------")
         print("sprints = " + list_of_ids)
         print("monthly_completedIssuesInitialEstimateSum = " + str(self.monthly_completedIssuesInitialEstimateSum))
         print("monthly_completedIssuesEstimateSum = " + str(self.monthly_completedIssuesEstimateSum))
@@ -258,7 +259,7 @@ class kpi_month:
         print("Total Bug Count = " + str(self.TotalBugCount))
         print("Created Support Tickets = total-" + str(self.CreatedSupportTicketsDuringSprints[0]) + "-" + str(self.CreatedSupportTicketsDuringSprints[1]) + ":" + str(self.CreatedSupportTicketsDuringSprints[2]) + ":" + str(self.CreatedSupportTicketsDuringSprints[3]) + ":" + str(self.CreatedSupportTicketsDuringSprints[4]) )
         print("Completed Support Tickets = total-" + str(self.CompletedSupportTicketsDuringSprints[0]) + "-" + str(self.CompletedSupportTicketsDuringSprints[1]) + ":" + str(self.CompletedSupportTicketsDuringSprints[2]) + ":" + str(self.CompletedSupportTicketsDuringSprints[3]) + ":" + str(self.CompletedSupportTicketsDuringSprints[4]) )
-        print("------")
+        print("-------------------------------------------")
 
     def calculate_first_time_right(self):
         self.First_Time_Right = (self.monthly_completedIssuesInitialEstimateSum / self.monthly_completedIssuesEstimateSum)
