@@ -4,6 +4,7 @@ import os
 import datetime as dt
 import calendar
 from . import kpi_query 
+import numpy as np  
 
 class count_by_severity:
     def __init__(self):
@@ -21,6 +22,7 @@ class kpi_month:
         self.month=month
         self.debug = debug
         self.sprint_id_list = []
+        self.abilityToEstimateValue = []
 
         #kpis from spreadsheet
         self.velocity_reports = []
@@ -66,6 +68,7 @@ class kpi_month:
         self.monthly_count_puntedIssues = 0
         self.monthly_count_issuesCompletedInAnotherSprint = 0
         self.monthly_count_issueKeysAddedDuringSprint = 0
+        self.monthly_calc_abilityToEstimate = 0
 
         #basic date stuff to get data
         last_day_of_month = calendar.monthrange(self.year, self.month)[1]
@@ -203,6 +206,7 @@ class kpi_month:
                 self.monthly_count_puntedIssues =+ len(vel.puntedIssues)
                 self.monthly_count_issuesCompletedInAnotherSprint =+ len(vel.issuesCompletedInAnotherSprint)
                 self.monthly_count_issueKeysAddedDuringSprint =+ len(vel.issueKeysAddedDuringSprint)
+                self.abilityToEstimateValue.append(vel.kpi_abilityToEstimate)
         
         self.Velocity = self.monthly_completedIssuesEstimateSum / (len(self.velocity_reports)/2)
         kpi_month.overall_velocity =+ self.Velocity
@@ -215,6 +219,7 @@ class kpi_month:
         self.calculate_sprint_completion_rate()
         self.calculate_sprint_readiness_ratio()
         self.calculate_tech_debt_ratio()
+        self.monthly_calc_abilityToEstimate = np.average(self.abilityToEstimateValue)
         self.CreatedSupportTicketsDuringSprints = await self.calculate_created_support_tickets()
         self.CompletedSupportTicketsDuringSprints = await self.calculate_completed_support_tickets()
 
@@ -255,6 +260,7 @@ class kpi_month:
         print("Spread Readiness Ratio = " + str(self.Sprint_Readiness_Ratio))
         print("Tech Debt Paydown (SP) = " + str(self.Tech_Debt_Paydown))
         print("Tech Debt Paydown Ratio = " + str(self.Tech_Debt_Paydown_Ratio))
+        print("Ability To Estimate = {}".format(str(self.monthly_calc_abilityToEstimate)))
         print("Testability = " )
         print("Total Bug Count = " + str(self.TotalBugCount))
         print("Created Support Tickets = total-" + str(self.CreatedSupportTicketsDuringSprints[0]) + "-" + str(self.CreatedSupportTicketsDuringSprints[1]) + ":" + str(self.CreatedSupportTicketsDuringSprints[2]) + ":" + str(self.CreatedSupportTicketsDuringSprints[3]) + ":" + str(self.CreatedSupportTicketsDuringSprints[4]) )

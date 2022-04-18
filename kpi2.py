@@ -26,6 +26,7 @@ async def printVelocity(velo):
     print ("puntedIssuesEstimateSum - {}".format(velo.puntedIssuesEstimateSum))
     print ("puntedIssuesInitialEstimateSum - {}".format(velo.puntedIssuesInitialEstimateSum))
     print ("allIssuesEstimateSum - {}".format(velo.allIssuesEstimateSum))
+    print ("ability To Estimate - {}".format(velo.monthly_calc_abilityToEstimate))
     return 
 
 async def main():

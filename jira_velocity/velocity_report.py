@@ -1,6 +1,7 @@
 import json
 import aiohttp
 import datetime as dt
+import numpy as np  
 
 class jira_velocity_report:
     # lists of issues
@@ -21,6 +22,10 @@ class jira_velocity_report:
     issuesCompletedInAnotherSprintInitialEstimateSum = 0
     issuesCompletedInAnotherSprintEstimateSum = 0
 
+    # kpis
+    kpi_abilityToEstimate = 0
+    abilityToEstimateValues = []
+
     # properties
     id = 0
     view = 0
@@ -40,6 +45,25 @@ class jira_velocity_report:
         # constructor
         debugFlag = debugFlag
         
+
+    def calculate(self):
+        #ability to estimate - beginning value / ending value.
+        for issue in self.completedIssues:
+            currentSP = 0
+            initialSP = 0
+            if issue['currentEstimateStatistic'] != None:
+                if len(issue['currentEstimateStatistic']['statFieldValue']) != 0:
+                    currentSP = issue['currentEstimateStatistic']['statFieldValue']['value']
+            if issue['estimateStatistic'] != None:
+                if len(issue['estimateStatistic']['statFieldValue']) != 0:
+                    initialSP = issue['estimateStatistic']['statFieldValue']['value']
+            if currentSP != 0:
+                if initialSP != 0:
+                    self.abilityToEstimateValues.append(abs(currentSP / initialSP)) 
+        
+        self.kpi_abilityToEstimate = np.sum(self.abilityToEstimateValues) / len(self.abilityToEstimateValues)
+
+
 
     async def get_sprint_velocity_report(self, jira_user, jira_api_key, id, view):        
             auth = aiohttp.BasicAuth(login = jira_user, password = jira_api_key)
@@ -113,6 +137,8 @@ class jira_velocity_report:
             self.puntedIssues = data['puntedIssues'] 
             self.issuesCompletedInAnotherSprint = data['issuesCompletedInAnotherSprint']
             self.issueKeysAddedDuringSprint = data['issueKeysAddedDuringSprint']            
+
+            self.calculate()
 
             return self
 
