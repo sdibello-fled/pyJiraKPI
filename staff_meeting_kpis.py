@@ -74,7 +74,7 @@ async def get_all_tickets_in_sprints(project, sprint_id_array):
         jql = f'project = "{project}" AND Sprint in ({listi}) and issuetype = bug'
         return await paging_manager_generic_jql(jql, True, 100, 0)
 
-async def get_requests_tickets_in_sprints(project, sprint_id_array):
+async def get_requests_tickets_not_done_in_sprints(project, sprint_id_array):
         ## get a list of all sprints
         stringlist = map(str, sprint_id_array)
         listi = ",".join(stringlist)
@@ -99,13 +99,14 @@ async def get_priority_tickets_not_done(project):
         return await run_generic_jql(jql, False, 100, 0)
 
 
-async def get_request_and_bug_tickets_in_sprints(project, sprint_id_array):
+async def get_request_and_bug_tickets_done_in_sprints(project, sprint_id_array):
         stringlist = map(str, sprint_id_array)
         listi = ",".join(stringlist)
         jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Request", "Bug") and statusCategory = "Done"'
         return await paging_manager_generic_jql(jql, False, 100, 0)
 
-def parse_out_all_bugs_and_requests(data):
+# just gets the count of bugs and support requests in the set of data passed
+def count_all_bugs_and_requests(data):
     bugCount = 0
     supportRequestCount = 0
     requestCount = 0
@@ -130,6 +131,7 @@ async def process(data):
         bugs_requests_data = []
 
         sprint_number = data.teams * 4
+        # risky reliance on the number of the sprints to sort.
         last_four = data.sprints[-sprint_number:]
         last_four_requests = 0
         last_four_bugs = 0
@@ -141,16 +143,14 @@ async def process(data):
 
         last_complete = data.sprints[-data.teams:]
 
-        print("last 4 sprints - " + data.sprints)
-        print("active spritns - "  + data.active_sprints)
+        print("last 5 closed sprints - " + str(data.sprints))
+        print("active sprints - "  + str(data.active_sprints))
 
-        result =  await get_request_and_bug_tickets_in_sprints(data.project, last_four)
-        last_four_count, last_four_bugs, last_four_requests = parse_out_all_bugs_and_requests(result)
-        data.total_bugs_resolved_last4 = last_four_bugs
-        data.total_requests_resolved_last4 = last_four_requests
-        data.total_issues_resolved_last4 = last_four_count
+        #last four - is really last five. ( what i've done in the last sprint ( last 1 ) and the 2 monthes before that ( last 4 ) - 1 + 4 is five.)
+        result =  await get_request_and_bug_tickets_done_in_sprints(data.project, last_four)
+        data.total_issues_resolved_last4, data.total_bugs_resolved_last4, data.total_requests_resolved_last4 = count_all_bugs_and_requests(result)
 
-        requests_bugs_data =  await get_requests_tickets_in_sprints(data.project, last_complete)
+        requests_bugs_data =  await get_requests_tickets_not_done_in_sprints(data.project, last_complete)
         for paged_request in requests_bugs_data:
                 last_one_requests += int(paged_request['total'])
 
