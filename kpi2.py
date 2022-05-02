@@ -99,15 +99,6 @@ async def main():
 
                noida_team.print_kpis()
 
-def get_or_create_eventloop():
-        try:
-                loop = asyncio.get_running_loop()
-        except RuntimeError as ex:
-                loop = asyncio.new_event_loop()
-                asyncio.set_event_loop(loop)
-                return asyncio.get_event_loop()
-
-
 if __name__ == '__main__':
-        loop = get_or_create_eventloop()
-        loop.run_until_complete(main())
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+        asyncio.run(main())
