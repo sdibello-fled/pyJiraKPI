@@ -207,5 +207,5 @@ async def main():
         await process(data)
 
 if __name__ == '__main__':
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(main())
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+        asyncio.run(main())
