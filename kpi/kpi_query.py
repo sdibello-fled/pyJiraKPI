@@ -6,15 +6,12 @@ import os
 #get the count of bugs.
 async def get_escape_velocity(project, start_date, end_date, debug = False):
         jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type = "bug" and status != Canceled '
-        print(jql)
         return await run_generic_jql_count(jql, debug)
 
 #get the count of all items touched.
 async def get_escape_velocity_comparitor(project, start_date, end_date, debug = False):
         jql = f'project="{project}" and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" and statusCategory in ("In Progress", "Done") and type Not in (Sub-task, Test, Feature)'
-        print(jql)
         return await run_generic_jql_count(jql, debug)
-
 
 async def get_gherkin_format(project, sprint_id_array, debug = False):
         ## get a list of all sprints
@@ -37,7 +34,6 @@ async def get_all_stories(project, sprint_id_array, debug = False):
 
 async def get_all_soc2_stories(project, start_date, end_date, debug):
     jql = f'project = "{project}" and type not in (test, feature, Sub-task)  and statusCategory = Done and status != Canceled and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" order by key'
-    print(jql)
     if debug:
         print(f'get-get_all_soc2_stories jql - {jql}')
     return await paging_manager_generic_jql(jql, debug)
@@ -78,7 +74,6 @@ async def run_generic_jql_count(jql, debug = False):
     url = f'https://frontlinetechnologies.atlassian.net/rest/api/2/search?jql={jql}'
 
     if debug:
-        #print(jql)
         print(url)
     
     async with aiohttp.ClientSession(auth=auth) as session:
