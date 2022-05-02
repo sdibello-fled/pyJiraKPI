@@ -42,6 +42,7 @@ class kpi_month:
         self.Tech_Debt_Paydown_Ratio = 0
         self.Test_Automation = 0
         self.Velocity = 0
+        self.Total_Count_Stories_Worked_On = 0
         # items that are project in scope, not team.  Should be moved up
         self.Ability_to_Estimate = 0
         self.Bugs_Count = 0
@@ -211,7 +212,9 @@ class kpi_month:
         self.Velocity = self.monthly_completedIssuesEstimateSum / (len(self.velocity_reports)/2)
         kpi_month.overall_velocity =+ self.Velocity
         #Todo - find a better way to manage the team count
-        self.Escape_Velocity_Rate = (self.Escape_Velocity/2) / self.monthly_count_completedIssues 
+        
+        self.Total_Count_Stories_Worked_On = await kpi_query.get_escape_velocity_comparitor(self.project, self.start_date, self.end_date, self.debug)
+        self.Escape_Velocity_Rate = self.Escape_Velocity / self.Total_Count_Stories_Worked_On
         self.calculate_first_time_right()
         self.calculate_sprint_churn()
         await self.calculate_sprint_readiness()

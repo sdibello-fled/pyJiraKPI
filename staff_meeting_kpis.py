@@ -88,10 +88,6 @@ async def get_priority_tickets_in_sprints(project, sprint_id_array, priority):
         jql = f'project = "{project}" AND Sprint in ({listi}) AND issuetype in ("Support Request", "Bug") AND priority = "{priority}"'
         return await run_generic_jql(jql, False, 100, 0)
 
-async def get_priority_tickets_not_done_by_priority(project, priority):
-        ## get a list of all sprints
-        jql = f'project = "{project}" and issuetype in ("Support Request", "Bug") and StatusCategory = "In Progress" And priority = "{priority}"'
-        return await run_generic_jql(jql, False, 100, 0)
 
 async def get_priority_tickets_not_done(project):
         ## get a list of all sprints
