@@ -36,16 +36,14 @@ async def main():
         mon = 4
         debugFlag = False
         trackedProjects = []
-        hcmat = {
+        trackedProjects.append({
                 'project':'HCMAT',
                 'view':'588'
-        }
-        fc = {
+        })
+        trackedProjects.append({
                 'project':'FC',
                 'view':'464'
-        }
-        trackedProjects.append(hcmat)
-        trackedProjects.append(fc)
+        })
 
         sprint_black_list = [3152]
         #TODO
@@ -62,17 +60,16 @@ async def main():
                    #await printVelocity(velocity)
                    all_sprints_month.velocity_reports.append(velocity)
 
-
-
                # filter the velocity reports
                us_team = kpi_month.kpi_month(proj['project'], year, mon, debugFlag)
                noida_team = kpi_month.kpi_month(proj['project'], year, mon, debugFlag)
                for v1 in all_sprints_month.velocity_reports:
-                       if 'US ' in v1.name: 
+                        if 'US ' in v1.name: 
                                us_team.velocity_reports.append(v1)
-
-                       elif 'Noida ' in v1.name:
-                               noida_team.velocity_reports.append(v1)                
+                        elif 'Noida ' in v1.name:
+                                noida_team.velocity_reports.append(v1)
+                        else:
+                                print(f"error in categorizing sprint - {v1}")                
 
                await us_team.calculate_kpis()
 

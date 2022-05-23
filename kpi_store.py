@@ -131,8 +131,6 @@ class kpi_store:
     ## Story points attempted by story points completed
     def calculate_completion_rate(self):
         self.completion_rate = (self.sum_completed_issue_estimate_sum/self.sum_completed_issue_initial_estimate_sum)
-        if self.completion_rate > 1:
-            self.completion_rate = 1
 
     def __init__(self ):
         self.now = dt.datetime.now()

@@ -43,6 +43,8 @@ async def get_sprint_list(project):
         return response           
 
 async def analyze_sprints(store):
+        store.active_sprints = []
+        store.sprints = []
         jsondata = await get_sprint_list(store.project)
         sprints = jsondata['sprints']
         for sprint in sprints:
@@ -120,11 +122,15 @@ def count_all_bugs_and_requests(data):
     tuple1 = (overallCount, bugCount, supportRequestCount)
     return tuple1
 
-async def process(data):
+async def process(data):       
         data = await analyze_sprints(data)
         data.sprints.sort()
         data.active_sprints.sort()
         bugs_requests_data = []
+        data.total_issues_resolved_last4 = []
+        data.total_bugs_resolved_last4 = [] 
+        data.total_requests_resolved_last4 = []
+        requests_bugs_data = []
 
         sprint_number = data.teams * 4
         # risky reliance on the number of the sprints to sort.
@@ -136,6 +142,11 @@ async def process(data):
         last_four_count = 0
         last_two_count = 0
         total_bug_count = 0
+        last_P1_count = 0
+        last_P2_count = 0
+        last_P3_count = 0
+        last_P4_count = 0
+        
 
         last_complete = data.sprints[-data.teams:]
 
@@ -156,14 +167,22 @@ async def process(data):
 
         last_P1_count, last_P2_count, last_P3_count, last_P4_count = jira_ticket.count_priority(bugs_requests_data)
         type_dic = jira_ticket.count_by_type(bugs_requests_data)
-        last_one_defects = int(type_dic["Bug"])
-        last_one_requests = int(type_dic["Support Request"])
+        if "Bug" in type_dic:
+                last_one_defects = int(type_dic["Bug"])
+        else:
+                last_one_defects = 0
+
+        if "Support Request" in type_dic:
+                last_one_requests = int(type_dic["Support Request"])
+        else:
+                last_one_requests = 0
+
         data.total_issues_resolved_last1 = last_one_defects + last_one_requests
 
         ## Don't need to page here, just need the total from the first call.
         total_bug = await bug_count(data)
         total_bug_count += int(total_bug['total'])
-        data.total_bugs_unresolved += total_bug_count
+        data.total_bugs_unresolved = total_bug_count
 
         # things not complete here.
         total_bug_notdone = await get_priority_tickets_not_done(data.project) 
@@ -197,13 +216,17 @@ async def main():
         data.start_date = now
         data.end_date = enddate
 
-        data.project = 'HCMAT'
-        #data.project = 'FC'
+        data.project = 'FC'
         data.sprint_black_list = [3152, 1301]
         data.sprint_white_list = []
         data.sprints = []
         last_four_count = 0
 
+        await process(data)
+
+        print ('===========================')
+
+        data.project = 'HCMAT'
         await process(data)
 
 if __name__ == '__main__':

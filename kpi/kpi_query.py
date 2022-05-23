@@ -69,6 +69,15 @@ async def get_bugs_requests_in_sprint_list(project, sprint_id_array, debug = Fal
         jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Request", "Bug")'
         return await paging_manager_generic_jql(jql, debug)
 
+async def get_big_list_of_all_support(project, debug = False):
+    jql = f'project = "{project}" AND (issueType in (Bug) AND "Zendesk Ticket IDs[Paragraph]" is not EMPTY OR issueType in ("Support Request")) AND status not in (Canceled, "Live in Production", Done, Rejected) AND priority in ("P1 - Highest", "P2 - High", "P3 - Medium", "P4 - Low") ORDER BY created DESC, priority'
+    return await paging_manager_generic_jql(jql, debug)
+
+async def get_big_list_of_all_support_requests(project, debug = False):
+    jql = f'project = "{project}" AND (issueType in (Bug) AND "Zendesk Ticket IDs[Paragraph]" is not EMPTY OR issueType in ("Support Request")) AND status not in (Canceled, "Live in Production", Done, Rejected) AND priority in ("P1 - Highest", "P2 - High", "P3 - Medium", "P4 - Low") ORDER BY created DESC, priority'
+    return await paging_manager_generic_jql(jql, debug)
+
+
 async def run_generic_jql_count(jql, debug = False):
     auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
     url = f'https://frontlinetechnologies.atlassian.net/rest/api/2/search?jql={jql}'

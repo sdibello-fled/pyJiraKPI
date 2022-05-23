@@ -19,7 +19,7 @@ class jira_ticket_store:
         # constructor
         debugFlag = debugFlag
 
-
+# helper function to help parse out the api response.
 def parse_jira_api_response(data, debugFlag):
     items = jira_ticket_store(debugFlag)
     items = []
@@ -29,6 +29,7 @@ def parse_jira_api_response(data, debugFlag):
     
     return items
 
+# returns a dictionary of the "type" of the issue, and the count to how many of that type there where.
 def count_by_type(data):
     count = 0
     memory_list = dict()
@@ -42,6 +43,7 @@ def count_by_type(data):
                 memory_list[value] = 1
     return memory_list
 
+# gives you back a tuple with the count of the priority of all the tickes in data
 def count_priority(data):
     highest = 0
     high = 0
@@ -79,6 +81,13 @@ def count_priority(data):
     
     return highest, high, medium, low
 
+def parse_only_date_information(response, debugFlag):
+    issuetype = ""
+    jira = jira_ticket_store(debugFlag)
+    jira.key = response['key']
+    jira.lastUpdated = response['fields']['updated']
+    jira.createdDate = response['fields']['created']
+    return jira    
 
 def parse_issue_type(response, debugFlag):
     issuetype = ""
