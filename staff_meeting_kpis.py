@@ -171,6 +171,7 @@ async def process(data):
                 last_one_defects = int(type_dic["Bug"])
         else:
                 last_one_defects = 0
+                
 
         if "Support Request" in type_dic:
                 last_one_requests = int(type_dic["Support Request"])

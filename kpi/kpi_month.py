@@ -182,7 +182,7 @@ class kpi_month:
 
     async def acquire_pre_data(self):
         self.create_id_list()
-        self.Escape_Velocity = await kpi_query.get_escape_velocity(self.project, self.start_date, self.end_date, self.debug)
+        self.Escape_Velocity = await kpi_query.get_escape_velocity(self.project, self.start_date, self.end_date, True)
         self.Number_Stories_Gherkin_Format = await kpi_query.get_gherkin_format(self.project, self.sprint_id_list, self.debug)
         self.Number_of_Stories = await kpi_query.get_all_stories(self.project, self.sprint_id_list, self.debug)
         self.Gherkin_Story_Rate = self.Number_Stories_Gherkin_Format / self.Number_of_Stories
@@ -213,8 +213,9 @@ class kpi_month:
         kpi_month.overall_velocity =+ self.Velocity
         #Todo - find a better way to manage the team count
         
-        self.Total_Count_Stories_Worked_On = await kpi_query.get_escape_velocity_comparitor(self.project, self.start_date, self.end_date, self.debug)
+        self.Total_Count_Stories_Worked_On = await kpi_query.get_escape_velocity_comparitor(self.project, self.start_date, self.end_date, self.debug)       
         self.Escape_Velocity_Rate = self.Escape_Velocity / self.Total_Count_Stories_Worked_On
+        print(f'{self.Escape_Velocity} / {self.Total_Count_Stories_Worked_On} = {self.Escape_Velocity_Rate}')
         self.calculate_first_time_right()
         self.calculate_sprint_churn()
         await self.calculate_sprint_readiness()

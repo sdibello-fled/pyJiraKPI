@@ -33,7 +33,7 @@ async def main():
         load_dotenv()
 
         year = 2022
-        mon = 4
+        mon = 7
         debugFlag = False
         trackedProjects = []
         trackedProjects.append({
