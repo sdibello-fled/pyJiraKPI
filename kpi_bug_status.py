@@ -156,7 +156,7 @@ async def process(data):
         # API fails if you try to run them all in one jql because the maxresults doesn't work on this API.. poo!
         highest =  await get_priority_tickets_in_sprints(data.project, last_complete, "P1 - Highest")
         last_P1_count = int(highest['total'])
-        high =  await get_priority_tickets_in_sprints(data.project, last_complete, " P2 - High")
+        high =  await get_priority_tickets_in_sprints(data.project, last_complete, "P2 - High")
         last_P2_count = int(high['total'])
         Medium =  await get_priority_tickets_in_sprints(data.project, last_complete, "P3 - Medium")
         last_P3_count = int(Medium['total'])
@@ -168,7 +168,7 @@ async def process(data):
         # API fails if you try to run them all in one jql because the maxresults doesn't work on this API.. poo!
         undone_highest =  await get_priority_tickets_not_done(data.project, "P1 - Highest")
         undone_P1_count = int(undone_highest['total'])
-        undone_high =  await get_priority_tickets_not_done(data.project, " P2 - High")
+        undone_high =  await get_priority_tickets_not_done(data.project, "P2 - High")
         undone_P2_count = int(undone_high['total'])
         undone_medium =  await get_priority_tickets_not_done(data.project, "P3 - Medium")
         undone_P3_count = int(undone_medium['total'])

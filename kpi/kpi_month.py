@@ -148,7 +148,7 @@ class kpi_month:
             overallCount += 1
             if 'priority' in i['fields']:
                 if i['fields']['priority'] != None:
-                    if i['fields']['priority']['name'] == " P2 - High":
+                    if i['fields']['priority']['name'] == "P2 - High":
                         highCount += 1
                     elif i['fields']['priority']['name'] == "P1 - Highest":
                         highestCount += 1
