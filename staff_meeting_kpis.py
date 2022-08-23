@@ -80,7 +80,7 @@ async def get_requests_tickets_not_done_in_sprints(project, sprint_id_array):
         ## get a list of all sprints
         stringlist = map(str, sprint_id_array)
         listi = ",".join(stringlist)
-        jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Request", "Bug")'
+        jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Request", "Bug") and statusCategory != Done'
         return await paging_manager_generic_jql(jql, False, 100, 0)
 
 async def get_priority_tickets_in_sprints(project, sprint_id_array, priority):
@@ -93,8 +93,8 @@ async def get_priority_tickets_in_sprints(project, sprint_id_array, priority):
 
 async def get_priority_tickets_not_done(project):
         ## get a list of all sprints
-        jql = f'project = "{project}" and issuetype in ("Support Request", "Bug") and StatusCategory = "In Progress"'
-        return await run_generic_jql(jql, False, 100, 0)
+        jql = f'project = "{project}" and issuetype in ("Support Request", "Bug") and statusCategory not in ("To Do", Done)'
+        return await paging_manager_generic_jql(jql, False, 100, 0)
 
 
 async def get_request_and_bug_tickets_done_in_sprints(project, sprint_id_array):
@@ -187,7 +187,7 @@ async def process(data):
 
         # things not complete here.
         total_bug_notdone = await get_priority_tickets_not_done(data.project) 
-        if isinstance(total_bug_count, list):
+        if isinstance(total_bug_notdone, list):
                 for api_response in total_bug_notdone:
                         if api_response['issues']:
                                 undone_bugs = bugs_requests_data + api_response['issues']

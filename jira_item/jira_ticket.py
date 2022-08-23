@@ -54,6 +54,8 @@ def count_priority(data):
     for ticket in data:
         if ticket['fields']['priority'] != None:
             value = str(ticket['fields']['priority']['name'])
+            id = ticket['key']
+            print( f'{id}, -> {value}')
             if value in  memory_list:
                 memory_list[value] = int(memory_list[value]) + 1
             else:
@@ -64,8 +66,8 @@ def count_priority(data):
     else:
         highest = 0
 
-    if " P2 - High" in memory_list:
-        high = memory_list[" P2 - High"]
+    if "P2 - High" in memory_list:
+        high = memory_list["P2 - High"]
     else:
         high = 0
 
@@ -79,6 +81,7 @@ def count_priority(data):
     else:
         low = 0
     
+    print(f'{highest} - {high} - {medium} - {low}')
     return highest, high, medium, low
 
 def parse_only_date_information(response, debugFlag):
