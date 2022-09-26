@@ -255,6 +255,7 @@ class kpi_month:
         print("First Time Right Percent = " + str(self.First_Time_Right))
         print("Meetings Overhead = " )
         print("# in Gherkin Format = " + str(self.Number_Stories_Gherkin_Format) )
+        print("Number of Stories (minus regression) = " + str(self.Number_of_Stories) )
         print("Gherkin Format KPI = " + str(self.Gherkin_Story_Rate) )
         print("Release Delivery = " )
         print("Release on Time = " )

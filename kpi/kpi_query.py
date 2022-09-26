@@ -14,10 +14,10 @@ async def get_escape_velocity_comparitor(project, start_date, end_date, debug = 
         return await run_generic_jql_count(jql, debug)
 
 async def get_gherkin_format(project, sprint_id_array, debug = False):
-        ## get a list of all sprints
+        ## count the total number of stories in the sprint that are in the gherkin format.
         stringlist = map(str, sprint_id_array)
         list_of_ids = ",".join(stringlist)
-        jql = f'project = "{project}" AND Sprint in  ({list_of_ids}) AND text ~ "Given*When*Then" and type = "Story"'
+        jql = f'project = "{project}" AND Sprint in  ({list_of_ids}) AND text ~ "Given*When*Then" and type = "Story" and (summary !~ "\\[Defect\\]" or summary !~ "\\[QA\\]" or summary !~ "\\[Stage\\]")'
         return await run_generic_jql_count(jql, debug)
 
 async def get_total_bug_count(project, debug):
@@ -26,10 +26,11 @@ async def get_total_bug_count(project, debug):
         return await run_generic_jql_count(jql, debug)
 
 async def get_all_stories(project, sprint_id_array, debug = False):
-        ## get a list of all sprints
+        ## get a list of all stories - excluding regression bugs with [defect], [qa], [stage] in the summary
         stringlist = map(str, sprint_id_array)
         list_of_ids = ",".join(stringlist)
-        jql = f'project = "{project}" AND Sprint in  ({list_of_ids}) and type = "Story"'
+        ##jql = f'project = "{project}" AND Sprint in  ({list_of_ids}) and type = "Story"'
+        jql = f'project = "{project}" AND Sprint in  ({list_of_ids}) AND  type = "Story" and (summary !~ "\\[Defect\\]" or summary !~ "\\[QA\\]" or summary !~ "\\[Stage\\]")'
         return await run_generic_jql_count(jql, debug)
 
 async def get_all_soc2_stories(project, start_date, end_date, debug):
@@ -77,6 +78,19 @@ async def get_big_list_of_all_support_requests(project, debug = False):
     jql = f'project = "{project}" AND (issueType in (Bug) AND "Zendesk Ticket IDs[Paragraph]" is not EMPTY OR issueType in ("Support Request")) AND status not in (Canceled, "Live in Production", Done, Rejected) AND priority in ("P1 - Highest", "P2 - High", "P3 - Medium", "P4 - Low") ORDER BY created DESC, priority'
     return await paging_manager_generic_jql(jql, debug)
 
+async def run_specific_url_count(url, debug = False):
+    auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
+
+    if debug:
+        print(url)
+    
+    async with aiohttp.ClientSession(auth=auth) as session:
+        raw = await session.get(url.replace('\\','\\\\'))
+        response = await raw.text()
+        response = json.loads(response)
+     
+    return response["total"]        
+
 
 async def run_generic_jql_count(jql, debug = False):
     auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
@@ -86,7 +100,7 @@ async def run_generic_jql_count(jql, debug = False):
         print(url)
     
     async with aiohttp.ClientSession(auth=auth) as session:
-        raw = await session.get(url)
+        raw = await session.get(url.replace('\\','\\\\'))
         response = await raw.text()
         response = json.loads(response)
     
