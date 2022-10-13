@@ -77,11 +77,9 @@ async def main():
                await us_team.calculate_kpis()
                await noida_team.calculate_kpis()
 
-
                print('us team sprints')
                for v2 in us_team.velocity_reports:
                        print(v2.name)
-
 
                us_team.print_kpis()
 
