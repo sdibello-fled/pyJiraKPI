@@ -37,7 +37,7 @@ async def get_all_soc2_stories(project, start_date, end_date, debug):
     jql = f'project = "{project}" and type not in (test, feature, Sub-task)  and statusCategory = Done and status != Canceled and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" order by key'
     if debug:
         print(f'get-get_all_soc2_stories jql - {jql}')
-    return await combinational_paging_manager_generic_jql(jql, debug)
+    return await paging_manager_generic_jql(jql, debug)
 
 async def get_all_backlog_stories(project, debug):
         jql = f'project = {project} and statusCategory = "To Do" and "Story Points[Number]" > 0 and type = "Story"'
@@ -55,11 +55,11 @@ async def get_all_tech_debt(project, sprint_id_array, debug):
     return await combinational_paging_manager_generic_jql(jql, debug)
 
 async def get_created_support_defects(project, start_date, end_date, debug):
-    jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type in ("bug")'
+    jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type in ("bug", "Support Request")'
     return await combinational_paging_manager_generic_jql(jql, debug)
 
 async def get_completed_support_defects(project, start_date, end_date, debug):
-    jql = f'project="{project}" and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" and statusCategory = Done and type in ("bug")'
+    jql = f'project="{project}" and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" and statusCategory = Done and type in ("bug", "Support Request")'
     return await combinational_paging_manager_generic_jql(jql, debug)
 
 # used in staff meeting only
