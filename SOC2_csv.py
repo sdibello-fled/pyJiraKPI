@@ -28,11 +28,8 @@ async def main():
             data = await kpi_query.get_all_soc2_stories(projectName, '2022-04-01', '2022-05-31', False)
             # go through the list of responeses ( need to pull issues from each one.)
             print ("Data Acquired")
-            for api_response in data:
-                if api_response['issues']:
-                    issues = issues + api_response['issues']
 
-            for issue in issues:
+            for issue in data['issues']:
                 tickets.append(jira_ticket.parse_issue_type(issue, False))
         
             rows = []
