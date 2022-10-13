@@ -71,17 +71,12 @@ async def main():
                         else:
                                 print(f"error in categorizing sprint - {v1}")                
 
+                # group level stuff, can be on either 'team'
+               await us_team.acquire_group_data()
+                # team level stuff
                await us_team.calculate_kpis()
-
                await noida_team.calculate_kpis()
 
-               #calculate team level items, like escape
-               #totalCompletedIssues = us_team.monthly_count_completedIssues
-               #totalCompletedIssues += noida_team.monthly_count_completedIssues
-               #escape_velocity = us_team.Escape_Velocity
-               #escape_rate = escape_velocity / totalCompletedIssues
-               #us_team.Escape_Velocity_Rate = escape_rate
-               #noida_team.Escape_Velocity_Rate = escape_rate
 
                print('us team sprints')
                for v2 in us_team.velocity_reports:

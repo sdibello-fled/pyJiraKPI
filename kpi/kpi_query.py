@@ -37,30 +37,30 @@ async def get_all_soc2_stories(project, start_date, end_date, debug):
     jql = f'project = "{project}" and type not in (test, feature, Sub-task)  and statusCategory = Done and status != Canceled and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" order by key'
     if debug:
         print(f'get-get_all_soc2_stories jql - {jql}')
-    return await paging_manager_generic_jql(jql, debug)
+    return await combinational_paging_manager_generic_jql(jql, debug)
 
 async def get_all_backlog_stories(project, debug):
         jql = f'project = {project} and statusCategory = "To Do" and "Story Points[Number]" > 0 and type = "Story"'
-        return await paging_manager_generic_jql(jql, debug)
+        return await combinational_paging_manager_generic_jql(jql, debug)
 
 async def get_all_open_bugs(project, debug):
         jql = f'project = {project} and statusCategory != Done and type = bug'
-        return await paging_manager_generic_jql(jql, debug)
+        return await combinational_paging_manager_generic_jql(jql, debug)
 
 async def get_all_tech_debt(project, sprint_id_array, debug):
     ## get a list of all sprints
     stringlist = map(str, sprint_id_array)
     list_of_ids = ",".join(stringlist)
     jql = f'project = "{project}" and Sprint in ({list_of_ids}) and type = "Technical Debt"'
-    return await paging_manager_generic_jql(jql, debug)
+    return await combinational_paging_manager_generic_jql(jql, debug)
 
 async def get_created_support_defects(project, start_date, end_date, debug):
     jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type in ("bug")'
-    return await paging_manager_generic_jql(jql, debug)
+    return await combinational_paging_manager_generic_jql(jql, debug)
 
 async def get_completed_support_defects(project, start_date, end_date, debug):
     jql = f'project="{project}" and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" and statusCategory = Done and type in ("bug")'
-    return await paging_manager_generic_jql(jql, debug)
+    return await combinational_paging_manager_generic_jql(jql, debug)
 
 # used in staff meeting only
 async def get_bugs_requests_in_sprint_list(project, sprint_id_array, debug = False):
@@ -68,15 +68,15 @@ async def get_bugs_requests_in_sprint_list(project, sprint_id_array, debug = Fal
         stringlist = map(str, sprint_id_array)
         listi = ",".join(stringlist)
         jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Request", "Bug")'
-        return await paging_manager_generic_jql(jql, debug)
+        return await combinational_paging_manager_generic_jql(jql, debug)
 
 async def get_big_list_of_all_support(project, debug = False):
     jql = f'project = "{project}" AND (issueType in (Bug) AND "Zendesk Ticket IDs[Paragraph]" is not EMPTY OR issueType in ("Support Request")) AND status not in (Canceled, "Live in Production", Done, Rejected) AND priority in ("P1 - Highest", "P2 - High", "P3 - Medium", "P4 - Low") ORDER BY created DESC, priority'
-    return await paging_manager_generic_jql(jql, debug)
+    return await combinational_paging_manager_generic_jql(jql, debug)
 
 async def get_big_list_of_all_support_requests(project, debug = False):
     jql = f'project = "{project}" AND (issueType in (Bug) AND "Zendesk Ticket IDs[Paragraph]" is not EMPTY OR issueType in ("Support Request")) AND status not in (Canceled, "Live in Production", Done, Rejected) AND priority in ("P1 - Highest", "P2 - High", "P3 - Medium", "P4 - Low") ORDER BY created DESC, priority'
-    return await paging_manager_generic_jql(jql, debug)
+    return await combinational_paging_manager_generic_jql(jql, debug)
 
 async def run_specific_url_count(url, debug = False):
     auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))

@@ -93,8 +93,7 @@ class kpi_month:
 
     async def calculate_sprint_readiness(self):
         data = await kpi_query.get_all_backlog_stories(self.project, self.debug)
-        for response in data:
-            self.Sprint_Readiness += self.total_story_points(response)
+        self.Sprint_Readiness += self.total_story_points(data['issues'])
 
     async def calculate_completed_support_tickets(self):
         counts = []
@@ -104,8 +103,7 @@ class kpi_month:
         total_mediumCount = 0
         total_lowCount = 0
         data = await kpi_query.get_completed_support_defects(self.project, self.start_date, self.end_date, self.debug )
-        for response in data:
-            counts.append(self.parse_out_all_bugs(response))
+        counts.append(self.parse_out_all_bugs(data))
         for count in counts:
             total_overallCount =+ count[0]
             total_highestCount =+ count[1]
@@ -125,8 +123,7 @@ class kpi_month:
         total_mediumCount = 0
         total_lowCount = 0
         data = await kpi_query.get_created_support_defects(self.project, self.start_date, self.end_date, self.debug )
-        for response in data:
-            counts.append(self.parse_out_all_bugs(response))
+        counts.append(self.parse_out_all_bugs(data))
         for count in counts:
             total_overallCount =+ count[0]
             total_highestCount =+ count[1]
@@ -162,8 +159,7 @@ class kpi_month:
 
     async def calculate_tech_debt(self):
         data = await kpi_query.get_all_tech_debt(self.project, self.sprint_id_list, self.debug)
-        for response in data:
-            self.Tech_Debt_Paydown += self.total_story_points(response)
+        self.Tech_Debt_Paydown += self.total_story_points(data['issues'])
     
     def calculate_sprint_readiness_ratio(self):
         self.Sprint_Readiness_Ratio = self.Sprint_Readiness / self.Velocity
@@ -172,26 +168,31 @@ class kpi_month:
         self.Tech_Debt_Paydown_Ratio = self.Tech_Debt_Paydown / self.Velocity
 
     def total_story_points(self, data):
-            issues = data['issues']
             total = 0
-            for i in issues:
+            for i in data:
                     if 'customfield_10021' in i['fields']:
                             if i['fields']['customfield_10021'] != None:
                                     total += i['fields']['customfield_10021']                
             return total
 
-    async def acquire_pre_data(self):
+    async def acquire_group_data(self):
         self.create_id_list()
         self.Escape_Velocity = await kpi_query.get_escape_velocity(self.project, self.start_date, self.end_date, True)
         self.Number_Stories_Gherkin_Format = await kpi_query.get_gherkin_format(self.project, self.sprint_id_list, self.debug)
         self.Number_of_Stories = await kpi_query.get_all_stories(self.project, self.sprint_id_list, self.debug)
         self.Gherkin_Story_Rate = self.Number_Stories_Gherkin_Format / self.Number_of_Stories
         self.TotalBugCount = await kpi_query.get_total_bug_count(self.project, self.debug)
+        self.Total_Count_Stories_Worked_On = await kpi_query.get_escape_velocity_comparitor(self.project, self.start_date, self.end_date, self.debug)       
+        self.Escape_Velocity_Rate = self.Escape_Velocity / self.Total_Count_Stories_Worked_On
+        print(f'{self.Escape_Velocity} / {self.Total_Count_Stories_Worked_On} = {self.Escape_Velocity_Rate}')
+        
+    async def acquire_pre_data(self):
+        self.create_id_list()
 
     async def calculate_kpis(self):
         #acquire any missing data
-        await self.acquire_pre_data()
         #sum up the values from the velocity reports
+        await self.acquire_pre_data()
         for vel in self.velocity_reports:
                 self.monthly_completedIssuesInitialEstimateSum =+ vel.completedIssuesInitialEstimateSum
                 self.monthly_completedIssuesEstimateSum =+ vel.completedIssuesEstimateSum
@@ -213,9 +214,6 @@ class kpi_month:
         kpi_month.overall_velocity =+ self.Velocity
         #Todo - find a better way to manage the team count
         
-        self.Total_Count_Stories_Worked_On = await kpi_query.get_escape_velocity_comparitor(self.project, self.start_date, self.end_date, self.debug)       
-        self.Escape_Velocity_Rate = self.Escape_Velocity / self.Total_Count_Stories_Worked_On
-        print(f'{self.Escape_Velocity} / {self.Total_Count_Stories_Worked_On} = {self.Escape_Velocity_Rate}')
         self.calculate_first_time_right()
         self.calculate_sprint_churn()
         await self.calculate_sprint_readiness()
