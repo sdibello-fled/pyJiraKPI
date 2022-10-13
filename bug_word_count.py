@@ -38,9 +38,6 @@ async def main():
             issues = []
             data = await kpi_query.get_big_list_of_all_support(proj['project'])
             # go through the list of responeses ( need to pull issues from each one.)
-            for api_response in data:
-                if api_response['issues']:
-                    issues = issues + api_response['issues']
 
             for year in years:
                 print("====================")
@@ -48,7 +45,7 @@ async def main():
                 print("====================")
                 startDate = datetime(year, 1, 1).replace(tzinfo=timezone.utc)
                 endDate = datetime(year, 12, 31).replace(tzinfo=timezone.utc)
-                for issue in issues:
+                for issue in data['issues']:
                     ticket = jira_ticket.parse_only_date_information(issue, False)
                     TicketCreated = datetime.strptime(ticket.createdDate, '%Y-%m-%dT%H:%M:%S.%f%z')
                     TicketUpdated = datetime.strptime(ticket.lastUpdated, '%Y-%m-%dT%H:%M:%S.%f%z')
