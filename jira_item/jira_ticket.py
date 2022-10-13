@@ -1,5 +1,7 @@
 from tkinter import N
 
+from numpy import isin
+
 
 class jira_ticket_store:
 
@@ -44,18 +46,24 @@ def count_by_type(data):
     return memory_list
 
 # gives you back a tuple with the count of the priority of all the tickes in data
-def count_priority(data):
+def count_priority(data, debugFlag):
     highest = 0
     high = 0
     medium = 0
     low = 0
     memory_list = dict()
 
+    # allow user to send in a list of issues, or the entire response. 
+    # if the entire response - then we need to pull out the issues.
+    if not isinstance(data, list):
+        data = data['issues']
+
     for ticket in data:
         if ticket['fields']['priority'] != None:
             value = str(ticket['fields']['priority']['name'])
             id = ticket['key']
-            print( f'{id}, -> {value}')
+            if debugFlag == True:
+                print( f'{id}, -> {value}')
             if value in  memory_list:
                 memory_list[value] = int(memory_list[value]) + 1
             else:
@@ -81,7 +89,9 @@ def count_priority(data):
     else:
         low = 0
     
-    print(f'{highest} - {high} - {medium} - {low}')
+    if debugFlag == True:
+        print(f'{highest} - {high} - {medium} - {low}')
+
     return highest, high, medium, low
 
 def parse_only_date_information(response, debugFlag):

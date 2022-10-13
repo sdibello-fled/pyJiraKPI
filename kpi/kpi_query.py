@@ -124,6 +124,26 @@ async def paging_manager_generic_jql(jql, debug = False, maxresults=100, page=0)
 
     return all_results
 
+### takes the first request of a paging result, and adds the other "issues" results to that one.
+### this looks more like a single result with all the issues in it - rather then a list of results that must be paged though
+async def combinational_paging_manager_generic_jql(jql, debug = False, maxresults=100, page=0):
+    all_issues = []
+    first_response = await run_generic_jql(jql, debug, maxresults, page)
+    totalPossible = first_response["total"]
+    resultCount = first_response["maxResults"]
+    all_issues.extend(first_response['issues'])
+    page_num = 0
+
+    for x in range(math.ceil(totalPossible/resultCount)-1):
+        page_num = page_num + 1
+        startat = page_num * 100 + 1
+        additional_response = await run_generic_jql(jql, debug, maxresults, startat)
+        all_issues.extend(additional_response['issues'])
+
+    first_response['issues'] = all_issues
+    return first_response    
+
+
 
 async def run_generic_jql(jql, debug , maxresults, page):
     auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
