@@ -98,9 +98,14 @@ async def get_priority_tickets_not_done(project):
 
 
 async def get_request_and_bug_tickets_done_in_sprints(project, sprint_id_array):
+        ### HCMAT moved away from this due to use of kanban
         stringlist = map(str, sprint_id_array)
         listi = ",".join(stringlist)
         jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Request", "Bug") and statusCategory = "Done"'
+        return await paging_manager_generic_jql(jql, False, 100, 0)
+
+async def get_request_and_bug_tickets_done_in_days(project, daysBack):
+        jql = f'project = {project} and statusCategory = Done and type in ("Support Request", Bug ) and statusCategoryChangedDate > "-{daysBack}d"'
         return await paging_manager_generic_jql(jql, False, 100, 0)
 
 # just gets the count of bugs and support requests in the set of data passed
@@ -154,7 +159,9 @@ async def process(data):
         print("active sprints - "  + str(data.active_sprints))
 
         #last four - is really last five. ( what i've done in the last sprint ( last 1 ) and the 2 monthes before that ( last 4 ) - 1 + 4 is five.)
-        result =  await get_request_and_bug_tickets_done_in_sprints(data.project, last_four)
+        
+        #result =  await get_request_and_bug_tickets_done_in_sprints(data.project, last_four)
+        result = await get_request_and_bug_tickets_done_in_days(data.project, "56")
         data.total_issues_resolved_last4, data.total_bugs_resolved_last4, data.total_requests_resolved_last4 = count_all_bugs_and_requests(result)
 
         requests_bugs_data =  await get_requests_tickets_not_done_in_sprints(data.project, last_complete)
