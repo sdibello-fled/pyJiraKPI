@@ -185,6 +185,15 @@ class kpi_month:
         self.Total_Count_Stories_Worked_On = await kpi_query.get_escape_velocity_comparitor(self.project, self.start_date, self.end_date, self.debug)       
         self.Escape_Velocity_Rate = self.Escape_Velocity / self.Total_Count_Stories_Worked_On
         print(f'{self.Escape_Velocity} / {self.Total_Count_Stories_Worked_On} = {self.Escape_Velocity_Rate}')
+
+    def copy_group_data(self, other):
+        self.Escape_Velocity = other.Escape_Velocity
+        self.Number_Stories_Gherkin_Format = other.Number_Stories_Gherkin_Format 
+        self.Number_of_Stories = other.Number_of_Stories
+        self.Gherkin_Story_Rate = other.Gherkin_Story_Rate
+        self.TotalBugCount = other.TotalBugCount
+        self.Total_Count_Stories_Worked_On = other.Total_Count_Stories_Worked_On
+        self.Escape_Velocity_Rate = other.Escape_Velocity_Rate 
         
     async def acquire_pre_data(self):
         self.create_id_list()

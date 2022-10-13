@@ -75,6 +75,7 @@ async def main():
                await us_team.acquire_group_data()
                 # team level stuff
                await us_team.calculate_kpis()
+               noida_team.copy_group_data(us_team)
                await noida_team.calculate_kpis()
 
                print('us team sprints')
