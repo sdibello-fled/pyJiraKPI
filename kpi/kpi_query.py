@@ -78,6 +78,13 @@ async def get_big_list_of_all_support_requests(project, debug = False):
     jql = f'project = "{project}" AND (issueType in (Bug) AND "Zendesk Ticket IDs[Paragraph]" is not EMPTY OR issueType in ("Support Request")) AND status not in (Canceled, "Live in Production", Done, Rejected) AND priority in ("P1 - Highest", "P2 - High", "P3 - Medium", "P4 - Low") ORDER BY created DESC, priority'
     return await combinational_paging_manager_generic_jql(jql, debug)
 
+## year offset would be -1 for last year, -2 for the year before
+async def get_all_remaps(debug, yearOffset):
+    year = str(yearOffset)
+    jql = f'created >= startOfyear({year}) AND created <= endOfYear({year}) AND text ~ Remap and project = HCMAT'
+    return await combinational_paging_manager_generic_jql(jql, debug)
+ 
+
 async def run_specific_url_count(url, debug = False):
     auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
 
