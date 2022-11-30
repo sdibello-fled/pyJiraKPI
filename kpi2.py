@@ -1,6 +1,4 @@
 import os
-import json
-import aiohttp
 import asyncio
 import datetime as dt
 from kpi import kpi_month
@@ -29,11 +27,11 @@ async def printVelocity(velo):
     print ("ability To Estimate - {}".format(velo.monthly_calc_abilityToEstimate))
     return 
 
-async def main():
+async def main(p_month, p_year):
         load_dotenv()
 
-        year = 2022
-        mon = 10
+        year = p_year
+        mon = p_month
         debugFlag = False
         trackedProjects = []
         trackedProjects.append({
@@ -92,4 +90,4 @@ async def main():
 
 if __name__ == '__main__':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-        asyncio.run(main())
+        asyncio.run(main(11, 2022))
