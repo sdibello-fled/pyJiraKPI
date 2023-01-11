@@ -7,6 +7,7 @@ class jira_ticket_store:
 
     # properties
     key = ""
+    project = ""
     issuetype = ""
     priority = ""
     summary = ""
@@ -16,10 +17,46 @@ class jira_ticket_store:
     lastUpdated = ""
     assignee = ""
     createdDate = ""
+    severity = ""
+    raw = ""
+    debugFlag = False
 
     def __init__(self, debugFlag): 
         # constructor
-        debugFlag = debugFlag
+        self.debugFlag = debugFlag
+
+    def set_raw(self, data):
+        self.raw = data
+
+        if self.raw['key'] != None:
+            self.id = self.raw['key']
+
+        self.project = str(self.id).split("-")[0]
+
+        return str(self.id)
+            
+    def parse_item_priority(self):
+
+        if self.raw['fields']['priority'] != None:
+            value = str(self.raw['fields']['priority']['name'])
+            if self.debugFlag == True:
+                print( f'{self.id}, Priority -> {value}')
+            self.priority = value            
+
+        return value
+
+    def parse_item_severity(self):
+        value = "Null"
+        if 'customfield_13760' in self.raw['fields']:
+            if self.raw['fields']['customfield_13760'] != None:
+                if self.raw['fields']['customfield_13760']['value'] != None:
+                    value = self.raw['fields']['customfield_13760']['value']
+                if self.debugFlag == True:
+                    print( f'{self.id}, Severity -> {value}')
+        self.severity = value
+        return value
+
+
 
 # helper function to help parse out the api response.
 def parse_jira_api_response(data, debugFlag):
@@ -44,6 +81,8 @@ def count_by_type(data):
             else:
                 memory_list[value] = 1
     return memory_list
+
+
 
 # gives you back a tuple with the count of the priority of all the tickes in data
 def count_priority(data, debugFlag):
