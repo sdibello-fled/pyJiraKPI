@@ -6,12 +6,11 @@ from numpy import isin
 class jira_ticket_store:
 
     # properties
-    key = ""
     project = ""
     issuetype = ""
     priority = ""
     summary = ""
-    id = 0
+    id = ""
     priority = ""
     status = ""
     lastUpdated = ""

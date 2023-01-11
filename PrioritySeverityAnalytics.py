@@ -32,15 +32,19 @@ def split_severity_project_priority(data):
 
 def project_rollup(project):
     dict = {}
+    item_list = {}
     ticket = project[0]
 
     for ticket in project:
         key_tuple = jira_prisev(ticket.project, ticket.severity, ticket.priority) 
         if tuple(key_tuple) in dict.keys():
             dict[tuple(key_tuple)] = int(dict[tuple(key_tuple)]) + 1
+            item_list[tuple(key_tuple)] = item_list[tuple(key_tuple)] + "," + str(ticket.id) 
         else:
             dict[tuple(key_tuple)] = 1
-    return dict
+            item_list[tuple(key_tuple)] = str(ticket.id) 
+        
+    return dict, item_list
 
 
 
@@ -48,14 +52,18 @@ async def main():
     load_dotenv()
     data = await get_HCM_all()
     parsed_data_rollup = {}
+    ticket_list_rollup = {}
     parsed_data = split_severity_project_priority(data)
     print(f'{len(parsed_data)} list')
 
-    parsed_data_rollup = project_rollup(parsed_data)  
+    parsed_data_rollup, ticket_list_rollup = project_rollup(parsed_data)  
     mykeys = list(parsed_data_rollup.keys())
     mykeys.sort(key = lambda x:x[0])
     sorted_dict = {i: parsed_data_rollup[i] for i in mykeys}
-    print(sorted_dict)         
+    #print(sorted_dict)         
+
+    for key in sorted_dict:
+        print(f'{key} - {parsed_data_rollup[key]} = {ticket_list_rollup[key]}')
 
 
 
