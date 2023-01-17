@@ -15,6 +15,11 @@ async def get_HCM_all():
         jql = f'(project in ("HCM: Absence and Time", "Frontline Recruit ", "Frontline Teachers Teachers ", "Business Solutions Data Dev and Eng", "Frontline PG NEW", "ERP-CA (OL5)", "ERP-CA (OL6 / Portal)", "CW-0575 (Accelify)", "Frontline Central ", HRMS, "Frontline Identity Management", Morpheus, "Frontline APIs and Butler", Mobile, SEI-SEG-Tri-State, SEI-SEG-Enrich, SEI-SEG-V5, SEI-SEG-V3, "OH SIS", "EHR Health", "IM Refresh - IHDM", "Software Development", "TipWeb IT - IHDM(Hayes)", "TipWeb IT Mobile - IHDM(Hayes)", "TipWeb IM - IHDM(Hayes)", "Help Desk - IHDM(Hayes)") OR project in (Platform) AND component in ("Team: Rio") AND issuetype != Bug) AND issuetype in ("Support request", Bug, "Support Defect") AND (status in ("Backlog (Project)", Backlog) OR Sprint in (openSprints())) AND priority in ("P1 - Highest", "P2 - High", "P3 - Medium", "P4 - Low")  ORDER BY cf[11000] ASC, Severity ASC, priority DESC, created DESC'
         return await combinational_paging_manager_generic_jql(jql, False, 100, 0)
 
+async def get_Mine_all():
+        jql = f'project in ("HCM: Absence and Time", "Frontline Central ") AND issuetype in ("Support request", Bug, "Support Defect") AND (status in ("Backlog (Project)", Backlog) OR Sprint in (openSprints())) AND priority in ("P1 - Highest", "P2 - High", "P3 - Medium", "P4 - Low") and StatusCategory != Done  ORDER BY cf[11000] ASC, Severity ASC, priority DESC, created DESC'
+        return await combinational_paging_manager_generic_jql(jql, False, 100, 0)
+
+
 def split_severity_project_priority(data):
 
     ticket_list = []
@@ -50,7 +55,8 @@ def project_rollup(project):
 
 async def main():       
     load_dotenv()
-    data = await get_HCM_all()
+    #data = await get_HCM_all()
+    data = await get_Mine_all()
     parsed_data_rollup = {}
     ticket_list_rollup = {}
     parsed_data = split_severity_project_priority(data)
