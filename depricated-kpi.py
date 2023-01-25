@@ -5,8 +5,8 @@ import asyncio
 import calendar
 import sys
 import datetime as dt
-import kpi_store
-import sprint_velocity_store
+import kpi.kpi_store as kpi_store
+import jira_velocity.sprint_velocity_store as sprint_velocity_store
 from dotenv import load_dotenv
 
 

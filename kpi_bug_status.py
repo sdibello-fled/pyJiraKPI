@@ -120,11 +120,6 @@ async def process(data):
         print(data.active_sprints)
 
         if data.project == 'HCMAT':
-                # requests_data =  await get_requests_tickets_in_sprints(data.project, last_four)
-                # last_four_requests = int(requests_data['total'])
-                # defects_data =  await get_defects_tickets_in_sprints(data.project, last_four)
-                # last_four_defects = int(defects_data['total'])
-                # data.total_bugs_resolved_last4 = last_four_requests + last_four_defects
                 last_four =  await get_defects_tickets_in_sprints(data.project, last_four)
                 last_four_count = int(last_four['total'])
                 data.total_bugs_resolved_last4 = last_four_count
