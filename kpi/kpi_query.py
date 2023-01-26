@@ -83,7 +83,14 @@ async def get_all_remaps(debug, yearOffset):
     year = str(yearOffset)
     jql = f'created >= startOfyear({year}) AND created <= endOfYear({year}) AND text ~ Remap and project = HCMAT'
     return await combinational_paging_manager_generic_jql(jql, debug)
- 
+
+async def get_all_user_touched_tickets(debug, project, year_offset, ):
+    first_year = str(year_offset)
+    behind_first_year = str(year_offset + 1)
+    jql = f'project = {project} and type in ("Support request", "bug")  and statusCategory = Done and status != Canceled and statusCategoryChangedDate > startOfYear({first_year}) and statusCategoryChangedDate < startOfYear({behind_first_year})'
+    return await combinational_paging_manager_generic_jql(jql, debug)
+
+
 
 async def run_specific_url_count(url, debug = False):
     auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
