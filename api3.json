@@ -1,0 +1,1228 @@
+{
+    "expand": "names,schema",
+    "startAt": 0,
+    "maxResults": 50,
+    "total": 1,
+    "issues": [
+        {
+            "expand": "operations,versionedRepresentations,editmeta,changelog,customfield_11800.requestTypePractice,renderedFields",
+            "id": "390470",
+            "self": "https://frontlinetechnologies.atlassian.net/rest/api/3/issue/390470",
+            "key": "FC-8435",
+            "fields": {
+                "customfield_13346": null,
+                "customfield_13588": null,
+                "customfield_13345": [],
+                "resolution": null,
+                "customfield_13469": null,
+                "customfield_13347": null,
+                "customfield_13589": null,
+                "customfield_10500": null,
+                "lastViewed": "2023-01-26T10:08:39.797-0500",
+                "customfield_13690": null,
+                "customfield_13692": null,
+                "customfield_13691": null,
+                "customfield_13694": null,
+                "customfield_13693": null,
+                "customfield_13451": null,
+                "customfield_13696": null,
+                "customfield_13695": null,
+                "customfield_13453": null,
+                "customfield_13698": null,
+                "customfield_13697": null,
+                "labels": [
+                    "GCPS",
+                    "GCPSPhase2",
+                    "HRMS",
+                    "NextGen"
+                ],
+                "customfield_13699": null,
+                "customfield_13328": null,
+                "customfield_13329": null,
+                "aggregatetimeoriginalestimate": null,
+                "issuelinks": [],
+                "assignee": null,
+                "components": [
+                    {
+                        "self": "https://frontlinetechnologies.atlassian.net/rest/api/3/component/14431",
+                        "id": "14431",
+                        "name": "FC: Scrum Team 1"
+                    },
+                    {
+                        "self": "https://frontlinetechnologies.atlassian.net/rest/api/3/component/14429",
+                        "id": "14429",
+                        "name": "TEAM: Gas Guzzlers (FC)"
+                    }
+                ],
+                "customfield_13560": null,
+                "customfield_13681": null,
+                "customfield_13680": null,
+                "customfield_13683": null,
+                "customfield_13562": null,
+                "customfield_13441": null,
+                "customfield_13561": null,
+                "customfield_13440": null,
+                "customfield_13682": null,
+                "customfield_13685": null,
+                "customfield_13443": null,
+                "customfield_13563": null,
+                "customfield_13684": null,
+                "customfield_13442": null,
+                "customfield_13687": null,
+                "customfield_13445": null,
+                "customfield_13565": null,
+                "customfield_13444": null,
+                "customfield_13686": null,
+                "customfield_13689": null,
+                "customfield_13688": null,
+                "customfield_13446": null,
+                "customfield_13559": null,
+                "customfield_13438": null,
+                "customfield_13558": null,
+                "customfield_13437": null,
+                "customfield_13679": null,
+                "customfield_13439": null,
+                "subtasks": [],
+                "customfield_13791": null,
+                "customfield_13670": null,
+                "customfield_13790": null,
+                "customfield_13793": null,
+                "customfield_13430": "Wed Nov 09 15:23:05 UTC 2022",
+                "customfield_13672": null,
+                "customfield_13671": null,
+                "customfield_13792": null,
+                "customfield_13795": null,
+                "reporter": {
+                    "self": "https://frontlinetechnologies.atlassian.net/rest/api/3/user?accountId=557058%3A5cdec080-e980-494a-b805-ad39b680d2a9",
+                    "accountId": "557058:5cdec080-e980-494a-b805-ad39b680d2a9",
+                    "emailAddress": "mshahidi@frontlineed.com",
+                    "avatarUrls": {
+                        "48x48": "https://secure.gravatar.com/avatar/73cfa52c444d648f89e6ab23dfe09a19?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMS-2.png",
+                        "24x24": "https://secure.gravatar.com/avatar/73cfa52c444d648f89e6ab23dfe09a19?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMS-2.png",
+                        "16x16": "https://secure.gravatar.com/avatar/73cfa52c444d648f89e6ab23dfe09a19?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMS-2.png",
+                        "32x32": "https://secure.gravatar.com/avatar/73cfa52c444d648f89e6ab23dfe09a19?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMS-2.png"
+                    },
+                    "displayName": "Melanie Shahidi",
+                    "active": true,
+                    "timeZone": "America/New_York",
+                    "accountType": "atlassian"
+                },
+                "customfield_13674": null,
+                "customfield_13552": null,
+                "customfield_13673": null,
+                "customfield_13794": null,
+                "customfield_13676": null,
+                "customfield_13434": null,
+                "customfield_13555": null,
+                "customfield_13433": null,
+                "customfield_13796": null,
+                "customfield_13675": null,
+                "customfield_13799": null,
+                "customfield_13557": null,
+                "customfield_13436": null,
+                "customfield_13678": null,
+                "customfield_13677": null,
+                "customfield_13798": null,
+                "customfield_13435": null,
+                "customfield_13669": {
+                    "self": "https://frontlinetechnologies.atlassian.net/rest/api/3/customFieldOption/13303",
+                    "value": "No",
+                    "id": "13303"
+                },
+                "customfield_13426": null,
+                "customfield_13668": null,
+                "customfield_13789": null,
+                "customfield_13428": null,
+                "customfield_11800": null,
+                "progress": {
+                    "progress": 0,
+                    "total": 0
+                },
+                "votes": {
+                    "self": "https://frontlinetechnologies.atlassian.net/rest/api/3/issue/FC-8435/votes",
+                    "votes": 0,
+                    "hasVoted": false
+                },
+                "issuetype": {
+                    "self": "https://frontlinetechnologies.atlassian.net/rest/api/3/issuetype/10000",
+                    "id": "10000",
+                    "description": "A big user story that needs to be broken down. Created by JIRA Software - do not edit or delete.",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/images/icons/issuetypes/epic.svg",
+                    "name": "Feature",
+                    "subtask": false,
+                    "hierarchyLevel": 1
+                },
+                "customfield_13780": null,
+                "customfield_13782": null,
+                "customfield_13661": null,
+                "customfield_13781": null,
+                "project": {
+                    "self": "https://frontlinetechnologies.atlassian.net/rest/api/3/project/13305",
+                    "id": "13305",
+                    "key": "FC",
+                    "name": "Frontline Central ",
+                    "projectTypeKey": "software",
+                    "simplified": false,
+                    "avatarUrls": {
+                        "48x48": "https://frontlinetechnologies.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/16327",
+                        "24x24": "https://frontlinetechnologies.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/16327?size=small",
+                        "16x16": "https://frontlinetechnologies.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/16327?size=xsmall",
+                        "32x32": "https://frontlinetechnologies.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/16327?size=medium"
+                    }
+                },
+                "customfield_13663": null,
+                "customfield_13784": null,
+                "customfield_13783": null,
+                "customfield_13662": null,
+                "customfield_13665": null,
+                "customfield_13786": null,
+                "customfield_13543": null,
+                "customfield_13664": null,
+                "customfield_13785": null,
+                "customfield_13667": null,
+                "customfield_13788": null,
+                "customfield_13425": null,
+                "customfield_13424": null,
+                "customfield_13666": null,
+                "customfield_13787": null,
+                "customfield_13658": null,
+                "customfield_13779": null,
+                "customfield_13657": null,
+                "customfield_13778": null,
+                "customfield_13539": null,
+                "customfield_10700": null,
+                "resolutiondate": null,
+                "watches": {
+                    "self": "https://frontlinetechnologies.atlassian.net/rest/api/3/issue/FC-8435/watchers",
+                    "watchCount": 2,
+                    "isWatching": false
+                },
+                "customfield_13771": null,
+                "customfield_13650": null,
+                "customfield_10020": "1|hy33z3:",
+                "customfield_13770": null,
+                "customfield_13773": null,
+                "customfield_10021": null,
+                "customfield_12200": [
+                    {
+                        "self": "https://frontlinetechnologies.atlassian.net/rest/api/3/customFieldOption/11508",
+                        "value": "None",
+                        "id": "11508"
+                    }
+                ],
+                "customfield_13652": null,
+                "customfield_13772": null,
+                "customfield_13651": null,
+                "customfield_13775": null,
+                "customfield_13532": null,
+                "customfield_13774": null,
+                "customfield_12201": {
+                    "version": 1,
+                    "type": "doc",
+                    "content": [
+                        {
+                            "type": "paragraph",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "Log of what changed - Post Team Committing to taking on the work.  (Please use the following format)"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "Date  |  Who Requested    |     Short Description"
+                                },
+                                {
+                                    "type": "hardBreak"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "-------------------------------------------------"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "customfield_13777": null,
+                "customfield_13776": null,
+                "customfield_10016": {
+                    "self": "https://frontlinetechnologies.atlassian.net/rest/api/3/customFieldOption/10000",
+                    "value": "To Do",
+                    "id": "10000"
+                },
+                "customfield_10017": "Store I-9 data as part of the shared staff profile ",
+                "customfield_10018": "ghx-label-8",
+                "customfield_13649": null,
+                "customfield_13648": null,
+                "customfield_10019": null,
+                "customfield_13769": null,
+                "updated": "2023-01-15T22:08:18.919-0500",
+                "timeoriginalestimate": null,
+                "customfield_13760": null,
+                "description": {
+                    "version": 1,
+                    "type": "doc",
+                    "content": [
+                        {
+                            "type": "paragraph",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "Short Name",
+                                    "marks": [
+                                        {
+                                            "type": "strong"
+                                        },
+                                        {
+                                            "type": "textColor",
+                                            "attrs": {
+                                                "color": "#000000"
+                                            }
+                                        },
+                                        {
+                                            "type": "underline"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "text",
+                                    "text": ":",
+                                    "marks": [
+                                        {
+                                            "type": "textColor",
+                                            "attrs": {
+                                                "color": "#000000"
+                                            }
+                                        },
+                                        {
+                                            "type": "underline"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "I-9 Employment Verification ",
+                                    "marks": [
+                                        {
+                                            "type": "textColor",
+                                            "attrs": {
+                                                "color": "#000000"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "Description",
+                                    "marks": [
+                                        {
+                                            "type": "strong"
+                                        },
+                                        {
+                                            "type": "textColor",
+                                            "attrs": {
+                                                "color": "#000000"
+                                            }
+                                        },
+                                        {
+                                            "type": "underline"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "text",
+                                    "text": ":",
+                                    "marks": [
+                                        {
+                                            "type": "textColor",
+                                            "attrs": {
+                                                "color": "#000000"
+                                            }
+                                        },
+                                        {
+                                            "type": "underline"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "For HR Directors who are onboarding newly hired staff members",
+                                    "marks": [
+                                        {
+                                            "type": "textColor",
+                                            "attrs": {
+                                                "color": "#000000"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "Who needs to capture I-9 employment verification information electronically as structured data on the staff member's profile. Standardized Form Template will facilitate the ability to capture I-9 data during the onboarding process. Once approved, this data will be stored as part of the staff member's profile. This update will support integration with the Federal e-verify service and will enable our customer's with the option to store I-9 data electronically, and verify employment verification with our solution. Unlike today, ",
+                                    "marks": [
+                                        {
+                                            "type": "textColor",
+                                            "attrs": {
+                                                "color": "#000000"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "I-9 information is only stored in a webform that can't be leveraged for E-verify integration and can't be extracted as part of the employment data export reports/templates. ",
+                                    "marks": [
+                                        {
+                                            "type": "textColor",
+                                            "attrs": {
+                                                "color": "#000000"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "Anticipated benefits",
+                                    "marks": [
+                                        {
+                                            "type": "strong"
+                                        },
+                                        {
+                                            "type": "textColor",
+                                            "attrs": {
+                                                "color": "#000000"
+                                            }
+                                        },
+                                        {
+                                            "type": "underline"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "text",
+                                    "text": ":",
+                                    "marks": [
+                                        {
+                                            "type": "textColor",
+                                            "attrs": {
+                                                "color": "#000000"
+                                            }
+                                        },
+                                        {
+                                            "type": "underline"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "bulletList",
+                            "content": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "content": [
+                                                {
+                                                    "type": "text",
+                                                    "text": "_"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "Electronic storage of I-9 data along with I-9 webforms provided customers with additional options for data storage, integration, and reportability",
+                                                    "marks": [
+                                                        {
+                                                            "type": "textColor",
+                                                            "attrs": {
+                                                                "color": "#000000"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "_"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "content": [
+                                                {
+                                                    "type": "text",
+                                                    "text": "_"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "Improved self-service capabilities during the onboarding process will increase end- user adoption of this data",
+                                                    "marks": [
+                                                        {
+                                                            "type": "textColor",
+                                                            "attrs": {
+                                                                "color": "#000000"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "_"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "content": [
+                                                {
+                                                    "type": "text",
+                                                    "text": "_"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "Future integration with Mobile will facilitate collecting I-9 data from new hires as part of a mobile onboarding experience.",
+                                                    "marks": [
+                                                        {
+                                                            "type": "textColor",
+                                                            "attrs": {
+                                                                "color": "#000000"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "_"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "Leading indicators of success",
+                                    "marks": [
+                                        {
+                                            "type": "strong"
+                                        },
+                                        {
+                                            "type": "textColor",
+                                            "attrs": {
+                                                "color": "#000000"
+                                            }
+                                        },
+                                        {
+                                            "type": "underline"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "text",
+                                    "text": ":",
+                                    "marks": [
+                                        {
+                                            "type": "textColor",
+                                            "attrs": {
+                                                "color": "#000000"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "bulletList",
+                            "content": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "content": [
+                                                {
+                                                    "type": "text",
+                                                    "text": "_"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "Increased customer retention",
+                                                    "marks": [
+                                                        {
+                                                            "type": "textColor",
+                                                            "attrs": {
+                                                                "color": "#000000"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "_"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "content": [
+                                                {
+                                                    "type": "text",
+                                                    "text": "_"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "Improved NPS scores",
+                                                    "marks": [
+                                                        {
+                                                            "type": "textColor",
+                                                            "attrs": {
+                                                                "color": "#000000"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "_"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "content": [
+                                                {
+                                                    "type": "text",
+                                                    "text": "_"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "Increase new sales ",
+                                                    "marks": [
+                                                        {
+                                                            "type": "textColor",
+                                                            "attrs": {
+                                                                "color": "#000000"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "_"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "content": [
+                                                {
+                                                    "type": "text",
+                                                    "text": "_"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "Improve data integration capabilities with e-Verify as well as nightly sFTP data exchange",
+                                                    "marks": [
+                                                        {
+                                                            "type": "textColor",
+                                                            "attrs": {
+                                                                "color": "#000000"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "_"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "Non-functional requirements",
+                                    "marks": [
+                                        {
+                                            "type": "strong"
+                                        },
+                                        {
+                                            "type": "textColor",
+                                            "attrs": {
+                                                "color": "#000000"
+                                            }
+                                        },
+                                        {
+                                            "type": "underline"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "text",
+                                    "text": ":",
+                                    "marks": [
+                                        {
+                                            "type": "textColor",
+                                            "attrs": {
+                                                "color": "#000000"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "bulletList",
+                            "content": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "content": [
+                                                {
+                                                    "type": "text",
+                                                    "text": "_"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "Foundational piece for building E-verify integration",
+                                                    "marks": [
+                                                        {
+                                                            "type": "textColor",
+                                                            "attrs": {
+                                                                "color": "#000000"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "_"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "UI Concepts (Need UX Input Here):",
+                                    "marks": [
+                                        {
+                                            "type": "em"
+                                        },
+                                        {
+                                            "type": "strong"
+                                        },
+                                        {
+                                            "type": "textColor",
+                                            "attrs": {
+                                                "color": "#000000"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": " "
+                                }
+                            ]
+                        },
+                        {
+                            "type": "mediaSingle",
+                            "attrs": {
+                                "layout": "center"
+                            },
+                            "content": [
+                                {
+                                    "type": "media",
+                                    "attrs": {
+                                        "type": "external",
+                                        "width": 500,
+                                        "height": 183,
+                                        "url": "https://myfrontline.aha.io/attachments/6968843930886178534/token/27d8f3da4d60d45053822f907af3fde9061b58ec04f484bd447a34b11968cc62.download?size=original"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": []
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "Tech Notes:",
+                                    "marks": [
+                                        {
+                                            "type": "strong"
+                                        },
+                                        {
+                                            "type": "underline"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "bulletList",
+                            "content": [
+                                {
+                                    "type": "listItem",
+                                    "content": [
+                                        {
+                                            "type": "paragraph",
+                                            "content": [
+                                                {
+                                                    "type": "text",
+                                                    "text": "The following employees in stage org "
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "763994",
+                                                    "marks": [
+                                                        {
+                                                            "type": "strong"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": " have values for the "
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "I9Data",
+                                                    "marks": [
+                                                        {
+                                                            "type": "code"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "  property:"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "bulletList",
+                                            "content": [
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "paragraph",
+                                                            "content": [
+                                                                {
+                                                                    "type": "text",
+                                                                    "text": "00981396-2ede-4c2e-9a36-f09768469e53",
+                                                                    "marks": [
+                                                                        {
+                                                                            "type": "code"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "paragraph",
+                                                            "content": [
+                                                                {
+                                                                    "type": "text",
+                                                                    "text": "005746df-e4b5-4779-bb56-45752519b4be",
+                                                                    "marks": [
+                                                                        {
+                                                                            "type": "code"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "paragraph",
+                                                            "content": [
+                                                                {
+                                                                    "type": "text",
+                                                                    "text": "83a9390c-8c74-45e1-a3fa-2c772af3bf27",
+                                                                    "marks": [
+                                                                        {
+                                                                            "type": "code"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "listItem",
+                                                    "content": [
+                                                        {
+                                                            "type": "paragraph",
+                                                            "content": [
+                                                                {
+                                                                    "type": "text",
+                                                                    "text": "cc2e174e-fd0b-4e44-9b58-89c20aa1a2de",
+                                                                    "marks": [
+                                                                        {
+                                                                            "type": "code"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "customfield_13641": null,
+                "customfield_11100": "https://myfrontline.aha.io/features/FCN-151",
+                "customfield_13640": null,
+                "customfield_13764": null,
+                "customfield_13522": null,
+                "customfield_13642": null,
+                "customfield_13763": null,
+                "customfield_10015": null,
+                "customfield_13765": null,
+                "customfield_13757": {
+                    "version": 1,
+                    "type": "doc",
+                    "content": [
+                        {
+                            "type": "paragraph",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "Note the condition"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "customfield_13636": null,
+                "customfield_13635": null,
+                "customfield_13756": null,
+                "customfield_13638": null,
+                "customfield_13758": null,
+                "customfield_13637": null,
+                "customfield_13639": null,
+                "summary": "Store I-9 data as part of the shared staff profile ",
+                "customfield_13751": null,
+                "customfield_13630": null,
+                "customfield_13753": null,
+                "customfield_13632": null,
+                "customfield_13631": null,
+                "customfield_13752": null,
+                "customfield_12300": 0.0,
+                "customfield_13755": null,
+                "customfield_13634": null,
+                "customfield_13754": null,
+                "customfield_13512": null,
+                "customfield_13633": null,
+                "customfield_13746": null,
+                "customfield_13745": null,
+                "customfield_13624": null,
+                "customfield_13627": null,
+                "customfield_13748": null,
+                "customfield_13747": null,
+                "customfield_13629": null,
+                "customfield_13628": null,
+                "duedate": "2021-09-30",
+                "statuscategorychangedate": "2022-08-02T09:30:48.873-0400",
+                "customfield_13860": null,
+                "fixVersions": [
+                    {
+                        "self": "https://frontlinetechnologies.atlassian.net/rest/api/3/version/23690",
+                        "id": "23690",
+                        "description": "https://myfrontline.aha.io/releases/FCN-R-79",
+                        "name": "2023.Q2 - Structured Onboarding & E-Verify Integration",
+                        "archived": false,
+                        "released": false,
+                        "releaseDate": "2023-06-30"
+                    }
+                ],
+                "customfield_13863": null,
+                "customfield_13742": null,
+                "customfield_13741": null,
+                "customfield_13862": null,
+                "customfield_13744": null,
+                "customfield_13623": null,
+                "customfield_13743": null,
+                "customfield_13622": null,
+                "customfield_13735": null,
+                "customfield_13856": null,
+                "customfield_13855": null,
+                "customfield_13613": null,
+                "customfield_13734": null,
+                "customfield_13737": null,
+                "customfield_13616": null,
+                "customfield_13858": null,
+                "customfield_13857": null,
+                "customfield_13736": null,
+                "customfield_10900": null,
+                "customfield_13739": null,
+                "customfield_13618": null,
+                "customfield_13738": null,
+                "customfield_13859": null,
+                "customfield_13617": null,
+                "customfield_13850": null,
+                "customfield_13610": null,
+                "priority": {
+                    "self": "https://frontlinetechnologies.atlassian.net/rest/api/3/priority/3",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/images/icons/priorities/minor.svg",
+                    "name": "P3 - Medium",
+                    "id": "3"
+                },
+                "customfield_13852": null,
+                "customfield_13851": null,
+                "customfield_13730": null,
+                "customfield_13612": null,
+                "customfield_13854": null,
+                "customfield_13733": null,
+                "customfield_13611": null,
+                "customfield_13853": null,
+                "customfield_13724": null,
+                "customfield_13603": null,
+                "customfield_13602": null,
+                "customfield_13723": null,
+                "customfield_13726": null,
+                "customfield_13847": null,
+                "customfield_13605": null,
+                "customfield_13846": null,
+                "customfield_13604": null,
+                "customfield_13725": null,
+                "customfield_13728": null,
+                "customfield_13607": null,
+                "timeestimate": null,
+                "customfield_13849": null,
+                "versions": [],
+                "customfield_13848": null,
+                "customfield_13727": null,
+                "customfield_13606": null,
+                "customfield_13609": null,
+                "customfield_13608": null,
+                "customfield_13729": null,
+                "status": {
+                    "self": "https://frontlinetechnologies.atlassian.net/rest/api/3/status/10800",
+                    "description": "Development work in progress",
+                    "iconUrl": "https://frontlinetechnologies.atlassian.net/",
+                    "name": "In Progress",
+                    "id": "10800",
+                    "statusCategory": {
+                        "self": "https://frontlinetechnologies.atlassian.net/rest/api/3/statuscategory/4",
+                        "id": 4,
+                        "key": "indeterminate",
+                        "colorName": "yellow",
+                        "name": "In Progress"
+                    }
+                },
+                "customfield_13841": null,
+                "customfield_13720": null,
+                "customfield_13840": null,
+                "customfield_13843": null,
+                "customfield_13601": null,
+                "customfield_13722": null,
+                "customfield_13842": null,
+                "customfield_13600": null,
+                "customfield_13721": null,
+                "customfield_13834": null,
+                "customfield_13713": null,
+                "customfield_13833": null,
+                "customfield_13712": null,
+                "customfield_13836": null,
+                "customfield_13715": null,
+                "customfield_13714": null,
+                "customfield_13835": null,
+                "aggregatetimeestimate": 0,
+                "customfield_13717": null,
+                "customfield_13838": null,
+                "customfield_13837": null,
+                "customfield_13719": null,
+                "customfield_13718": null,
+                "creator": {
+                    "self": "https://frontlinetechnologies.atlassian.net/rest/api/3/user?accountId=5c49ca9bcc3a1d3d8a2bc2d0",
+                    "accountId": "5c49ca9bcc3a1d3d8a2bc2d0",
+                    "avatarUrls": {
+                        "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c49ca9bcc3a1d3d8a2bc2d0/f4443da4-de57-4af6-b67d-fddd0d238af4/48",
+                        "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c49ca9bcc3a1d3d8a2bc2d0/f4443da4-de57-4af6-b67d-fddd0d238af4/24",
+                        "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c49ca9bcc3a1d3d8a2bc2d0/f4443da4-de57-4af6-b67d-fddd0d238af4/16",
+                        "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/5c49ca9bcc3a1d3d8a2bc2d0/f4443da4-de57-4af6-b67d-fddd0d238af4/32"
+                    },
+                    "displayName": "Atlassian Admin",
+                    "active": true,
+                    "timeZone": "America/New_York",
+                    "accountType": "atlassian"
+                },
+                "aggregateprogress": {
+                    "progress": 12540,
+                    "total": 12540,
+                    "percent": 100
+                },
+                "customfield_10200": null,
+                "customfield_13711": null,
+                "customfield_13832": null,
+                "customfield_13710": null,
+                "customfield_13702": 100.0,
+                "customfield_13701": {
+                    "self": "https://frontlinetechnologies.atlassian.net/rest/api/3/customFieldOption/13323",
+                    "value": "No",
+                    "id": "13323"
+                },
+                "customfield_13704": null,
+                "customfield_13703": {
+                    "self": "https://frontlinetechnologies.atlassian.net/rest/api/3/customFieldOption/13325",
+                    "value": "No",
+                    "id": "13325"
+                },
+                "customfield_13706": null,
+                "customfield_13705": null,
+                "customfield_13826": null,
+                "customfield_13708": null,
+                "customfield_13707": null,
+                "customfield_13709": null,
+                "timespent": null,
+                "aggregatetimespent": 12540,
+                "customfield_13700": null,
+                "customfield_13812": null,
+                "customfield_13811": null,
+                "customfield_13814": null,
+                "customfield_13813": null,
+                "customfield_13816": null,
+                "customfield_13815": null,
+                "workratio": -1,
+                "created": "2021-05-09T12:14:54.462-0400",
+                "customfield_13810": null,
+                "customfield_10300": {
+                    "hasEpicLinkFieldDependency": false,
+                    "showField": false,
+                    "nonEditableReason": {
+                        "reason": "PLUGIN_LICENSE_ERROR",
+                        "message": "The Parent Link is only available to Jira Premium users."
+                    }
+                },
+                "customfield_13801": null,
+                "customfield_13800": null,
+                "customfield_13803": null,
+                "customfield_13802": null,
+                "customfield_13805": null,
+                "customfield_13807": null,
+                "customfield_13806": null,
+                "customfield_13809": null,
+                "customfield_13808": null,
+                "customfield_13480": null,
+                "customfield_13590": null,
+                "customfield_13351": null,
+                "customfield_13592": null,
+                "customfield_13350": null,
+                "customfield_13474": null,
+                "customfield_13595": null,
+                "customfield_13352": null,
+                "customfield_13594": null,
+                "customfield_13597": null,
+                "customfield_13476": null,
+                "customfield_13596": null,
+                "customfield_13599": null,
+                "customfield_13357": "dark_purple",
+                "customfield_13478": null,
+                "customfield_13356": null,
+                "customfield_13598": null,
+                "customfield_13479": null,
+                "customfield_10400": "{pullrequest={dataType=pullrequest, state=MERGED, stateCount=10}, json={\"cachedValue\":{\"errors\":[],\"summary\":{\"pullrequest\":{\"overall\":{\"count\":10,\"lastUpdated\":\"2022-12-13T15:16:46.000-0500\",\"stateCount\":10,\"state\":\"MERGED\",\"dataType\":\"pullrequest\",\"open\":false},\"byInstanceType\":{\"GitHub\":{\"count\":10,\"name\":\"GitHub\"}}}}},\"isStale\":true}}",
+                "customfield_13349": null,
+                "customfield_11600": null
+            }
+        }
+    ]
+}

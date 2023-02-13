@@ -10,6 +10,7 @@ class jira_ticket_store:
     issuetype = ""
     priority = ""
     summary = ""
+    parent_key = ""
     id = ""
     priority = ""
     status = ""
@@ -53,6 +54,16 @@ class jira_ticket_store:
                 if self.debugFlag == True:
                     print( f'{self.id}, Severity -> {value}')
         self.severity = value
+        return value
+
+    def parse_item_parent_key(self):
+        value = "Null"
+        if 'parent' in self.raw['fields']:
+            if self.raw['fields']['parent']['key'] != None:
+                value = self.raw['fields']['parent']['key']
+            if self.debugFlag == True:
+                print( f'{self.id}, pareny -> {value}')
+        self.parent_key = value
         return value
 
 

@@ -84,11 +84,27 @@ async def get_all_remaps(debug, yearOffset):
     jql = f'created >= startOfyear({year}) AND created <= endOfYear({year}) AND text ~ Remap and project = HCMAT'
     return await combinational_paging_manager_generic_jql(jql, debug)
 
-async def get_all_user_touched_tickets(debug, project, year_offset, ):
+## unused at the momnt.
+async def get_support_in_year_range(debug, project, year_offset, year_gap = 1):
     first_year = str(year_offset)
-    behind_first_year = str(year_offset + 1)
+    behind_first_year = str(year_offset + year_gap)
     jql = f'project = {project} and type in ("Support request", "bug")  and statusCategory = Done and status != Canceled and statusCategoryChangedDate > startOfYear({first_year}) and statusCategoryChangedDate < startOfYear({behind_first_year})'
     return await combinational_paging_manager_generic_jql(jql, debug)
+
+## year offset is relative to the current year.  Should be negative.
+async def pull_user_touched_tickets(debug, project, user_guid, year_offset = 0):
+    if year_offset > 0:
+        print("A positive year offset doesn't make sense, unless you have a time machine.")
+        year_offset = year_offset * -1
+
+    year = str(year_offset)
+    jql_unlimited = f'project = {project} and ( worklogAuthor = {user_guid} or commentedBy = {user_guid} or assignee = {user_guid})  and not type = Sub-task order by statusCategoryChangedDate desc'
+    #jql_limited = f'project = {project} and statusCategoryChangedDate > startOfYear({year}) and statusCategoryChangedDate < endOfYear({year}) and ( worklogAuthor = {user_guid} or commentedBy = {user_guid} or assignee = {user_guid})  and not type = Sub-task order by statusCategoryChangedDate desc'
+    jql_limited = f'project = {project} and statusCategoryChangedDate > startOfYear({year}) and statusCategoryChangedDate < endOfYear({year}) and ( worklogAuthor = {user_guid} or assignee = {user_guid})  and type = Sub-task order by statusCategoryChangedDate desc'
+    if year_offset != 0:
+        return await combinational_paging_manager_generic_jql(jql_limited, debug)
+    else:
+        return await combinational_paging_manager_generic_jql(jql_unlimited, debug)
 
 
 
@@ -108,7 +124,7 @@ async def run_specific_url_count(url, debug = False):
 
 async def run_generic_jql_count(jql, debug = False):
     auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
-    url = f'https://frontlinetechnologies.atlassian.net/rest/api/2/search?jql={jql}'
+    url = f'https://frontlinetechnologies.atlassian.net/rest/api/3/search?jql={jql}'
 
     if debug:
         print(url)
@@ -161,7 +177,7 @@ async def combinational_paging_manager_generic_jql(jql, debug = False, maxresult
 
 async def run_generic_jql(jql, debug , maxresults, page):
     auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
-    url = f'https://frontlinetechnologies.atlassian.net/rest/api/2/search?maxResults={maxresults}&startAt={page}&jql={jql}'
+    url = f'https://frontlinetechnologies.atlassian.net/rest/api/3/search?maxResults={maxresults}&startAt={page}&jql={jql}'
     if debug:
         print(jql)
         print(url)
