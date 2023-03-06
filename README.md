@@ -2,28 +2,13 @@
 
 >  Please make sure your setup is complete
 
-## KPI Notes
-
-  1.  At the bottom of the kpi.py file, there is a section that needs to be updated according to the kpis you are running.
-
-        ```
-        store.year = 2020
-        store.month = 12
-        store.project = 'HCMAT'
-        store.rapid_view = '260'
-      ```
-
-      year and month are self explanatory, project is the JIRA project which you are using to get your data.  The rapid view is visible in jira in the url when viewing  scrum board your using to manage your team.
-
-      ![image](https://user-images.githubusercontent.com/63073403/105727818-75229380-5ef9-11eb-8c84-8225af0fb933.png)
-
 ## To Execute
 
   1. Right now you can simply run the kpi.py file.
   
-    python kpi.py
+    python kpi2.py
 
-  2. Option 2 - in vscode you can hit Ctrl-Shift-P with kpi.py open in the editor.
+  2. Option 2 - in vscode you can hit Ctrl-Shift-P with kpi2.py open in the editor.
 
 ![image](https://user-images.githubusercontent.com/63073403/105728267-f548f900-5ef9-11eb-90cd-117346fc4259.png)
 
