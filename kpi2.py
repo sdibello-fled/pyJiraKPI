@@ -4,6 +4,8 @@ import datetime as dt
 from kpi import kpi_month
 from dotenv import load_dotenv
 from jira_velocity.velocity_report import *
+from art import *
+
 
 async def printVelocity(velo):
     print ("============== report ===================")
@@ -73,16 +75,18 @@ async def main(p_month, p_year):
 
                print('us team sprints')
                for v2 in us_team.velocity_reports:
-                       print(v2.name)
+                        Art = text2art(v2.name)
+                        print(Art)
 
                us_team.print_kpis()
 
                print('noida team sprints')
                for v3 in noida_team.velocity_reports:
-                       print(v3.name)
+                        Art2 = text2art(v3.name)
+                        print(Art2)
 
                noida_team.print_kpis()
 
 if __name__ == '__main__':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-        asyncio.run(main(1, 2023))
+        asyncio.run(main(2, 2023))

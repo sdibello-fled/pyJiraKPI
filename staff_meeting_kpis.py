@@ -6,6 +6,7 @@ from datetime import timedelta, date, datetime
 from dotenv import load_dotenv
 from jira_item import jira_ticket
 from kpi.kpi_query import *
+from art import *
 import jira_item
 
 class kpi_bug_status_store:
@@ -207,11 +208,15 @@ async def main():
         data.sprints = []
         last_four_count = 0
 
+        Art = text2art("Central")
+        print(Art)
         await process(data)
 
         print ('===========================')
 
         data.project = 'HCMAT'
+        Art = text2art(data.project)
+        print(Art)
         await process(data)
 
 if __name__ == '__main__':
