@@ -33,11 +33,18 @@ async def main(p_month, p_year):
         trackedProjects = []
         trackedProjects.append({
                 'project':'HCMAT',
-                'view':'588'
+                'view':'588',
+                'teams':2
         })
         trackedProjects.append({
                 'project':'FC',
-                'view':'464'
+                'view':'464',
+                'teams':2
+        })
+        trackedProjects.append({
+                'project':'MOB',
+                'view':'507',
+                'teams':1
         })
 
         sprint_black_list = [3152]
@@ -63,30 +70,37 @@ async def main(p_month, p_year):
                                us_team.velocity_reports.append(v1)
                         elif 'Noida ' in v1.name:
                                 noida_team.velocity_reports.append(v1)
+                        elif 'Mobile ' in v1.name:
+                               us_team.velocity_reports.append(v1)                              
                         else:
                                 print(f"error in categorizing sprint - {v1}")                
 
                 # group level stuff, can be on either 'team'
                await us_team.acquire_group_data()
                 # team level stuff
-               await us_team.calculate_kpis()
-               noida_team.copy_group_data(us_team)
-               await noida_team.calculate_kpis()
 
-               print('us team sprints')
-               for v2 in us_team.velocity_reports:
-                        Art = text2art(v2.name)
-                        print(Art)
+               if len(us_team.velocity_reports) > 0:
+                       await us_team.calculate_kpis()
+                       noida_team.copy_group_data(us_team)
+                       print('us team sprints')
+                       for v2 in us_team.velocity_reports:
+                                        Art = text2art(v2.name)
+                                        print(Art)
 
-               us_team.print_kpis()
+                       us_team.print_kpis()
 
-               print('noida team sprints')
-               for v3 in noida_team.velocity_reports:
-                        Art2 = text2art(v3.name)
-                        print(Art2)
 
-               noida_team.print_kpis()
+               if len(noida_team.velocity_reports) > 0:
+                        await noida_team.calculate_kpis()
+                        print('noida team sprints')
+                        for v3 in noida_team.velocity_reports:
+                                        Art2 = text2art(v3.name)
+                                        print(Art2)
+
+                        noida_team.print_kpis()
+
+
 
 if __name__ == '__main__':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-        asyncio.run(main(2, 2023))
+        asyncio.run(main(3, 2023))
