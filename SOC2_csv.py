@@ -17,15 +17,17 @@ async def main():
         tickets = []
         hcmat = {'project':'HCMAT'}
         fc = {'project':'FC'}
+        mob = {'project':'MOB'}
         trackedProjects.append(hcmat)
         trackedProjects.append(fc)
+        trackedProjects.append(mob)
 
         print ("Start")
         for proj in trackedProjects:
             data = []
             issues = []
             projectName = proj['project']
-            data = await kpi_query.get_all_soc2_stories(projectName, '2022-04-01', '2022-05-31', False)
+            data = await kpi_query.get_all_soc2_stories(projectName, '2022-06-01', '2023-02-28', False)
             # go through the list of responeses ( need to pull issues from each one.)
             print ("Data Acquired")
 
