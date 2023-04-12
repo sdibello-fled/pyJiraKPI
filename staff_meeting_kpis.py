@@ -219,6 +219,13 @@ async def main():
         print(Art)
         await process(data)
 
+        print ('===========================')
+
+        data.project = 'MOB'
+        Art = text2art(data.project)
+        print(Art)
+        await process(data)
+
 if __name__ == '__main__':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
         asyncio.run(main())

@@ -88,6 +88,9 @@ class kpi_month:
     def calculate_sprint_churn(self):
         self.Sprint_Churn =  self.monthly_count_puntedIssues / self.monthly_count_completedIssues
 
+    def calculate_automation(self):
+         self.Test_Automation = self.Test_Automation
+
     def calculate_sprint_completion_rate(self):
         self.Sprint_Completion_Rate = self.monthly_completedIssuesEstimateSum / self.monthly_completedIssuesInitialEstimateSum 
 
@@ -182,7 +185,8 @@ class kpi_month:
         self.Number_of_Stories = await kpi_query.get_all_stories(self.project, self.sprint_id_list, self.debug)
         self.Gherkin_Story_Rate = self.Number_Stories_Gherkin_Format / self.Number_of_Stories
         self.TotalBugCount = await kpi_query.get_total_bug_count(self.project, self.debug)
-        self.Total_Count_Stories_Worked_On = await kpi_query.get_escape_velocity_comparitor(self.project, self.start_date, self.end_date, self.debug)       
+        self.Total_Count_Stories_Worked_On = await kpi_query.get_escape_velocity_comparitor(self.project, self.start_date, self.end_date, self.debug)    
+        self.Test_Automation = await kpi_query.get_automation_tickets(self.project, self.start_date, self.end_date, self.debug)   
         self.Escape_Velocity_Rate = self.Escape_Velocity / self.Total_Count_Stories_Worked_On
 
     def copy_group_data(self, other):
@@ -224,7 +228,7 @@ class kpi_month:
         else:
             self.Velocity = self.monthly_completedIssuesEstimateSum / (len(self.velocity_reports)/2)
 
-        kpi_month.overall_velocity =+ self.Velocity
+        self.overall_velocity =+ self.Velocity
         #Todo - find a better way to manage the team count
         
         self.calculate_first_time_right()
@@ -234,6 +238,7 @@ class kpi_month:
         self.calculate_sprint_completion_rate()
         self.calculate_sprint_readiness_ratio()
         self.calculate_tech_debt_ratio()
+        self.calculate_automation()
         self.monthly_calc_abilityToEstimate = np.average(self.abilityToEstimateValue)
         self.CreatedSupportTicketsDuringSprints = await self.calculate_created_support_tickets()
         self.CompletedSupportTicketsDuringSprints = await self.calculate_completed_support_tickets()

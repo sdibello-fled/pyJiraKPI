@@ -8,6 +8,11 @@ async def get_escape_velocity(project, start_date, end_date, debug = False):
         jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type = "bug" and status != Canceled '
         return await run_generic_jql_count(jql, debug)
 
+async def get_automation_tickets(project, start_date, end_date, debug = False):
+        jql = f'project = "{project}" AND summary ~ cypress AND issuetype = Story and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" and statusCategory in ("Done") '
+        print(jql)
+        return await combinational_paging_manager_generic_jql(jql, debug)
+
 #get the count of all items touched.
 async def get_escape_velocity_comparitor(project, start_date, end_date, debug = False):
         jql = f'project="{project}" and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" and statusCategory in ("In Progress", "Done") and type Not in (Sub-task, Test, Feature)'

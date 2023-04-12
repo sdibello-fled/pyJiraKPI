@@ -16,7 +16,7 @@ async def get_HCM_all():
         return await combinational_paging_manager_generic_jql(jql, False, 100, 0)
 
 async def get_Mine_all():
-        jql = f'project in ("HCM: Absence and Time", "Frontline Central ") AND issuetype in ("Support request", Bug, "Support Defect") AND (status in ("Backlog (Project)", Backlog) OR Sprint in (openSprints())) AND priority in ("P1 - Highest", "P2 - High", "P3 - Medium", "P4 - Low") and StatusCategory != Done  ORDER BY cf[11000] ASC, Severity ASC, priority DESC, created DESC'
+        jql = f'project in ("HCMAT", "FC", "MOB") AND issuetype in ("Support request", Bug, "Support Defect") AND (status in ("Backlog (Project)", Backlog) OR Sprint in (openSprints())) AND priority in ("P1 - Highest", "P2 - High", "P3 - Medium", "P4 - Low") and StatusCategory != Done  ORDER BY cf[11000] ASC, Severity ASC, priority DESC, created DESC'
         return await combinational_paging_manager_generic_jql(jql, False, 100, 0)
 
 
