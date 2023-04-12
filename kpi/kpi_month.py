@@ -16,11 +16,12 @@ class count_by_severity:
 class kpi_month:
     overall_velocity = 0
 
-    def __init__(self, project, year, month, debug):
+    def __init__(self, project, year, month, teams, debug):
         self.project = project
         self.year=year
         self.month=month
         self.debug = debug
+        self.team_count = teams
         self.sprint_id_list = []
         self.abilityToEstimateValue = []
 
@@ -41,6 +42,7 @@ class kpi_month:
         self.Tech_Debt_Paydown = 0
         self.Tech_Debt_Paydown_Ratio = 0
         self.Test_Automation = 0
+        self.Test_Automation_Tickets = []
         self.Velocity = 0
         self.Total_Count_Stories_Worked_On = 0
         # items that are project in scope, not team.  Should be moved up
@@ -89,7 +91,7 @@ class kpi_month:
         self.Sprint_Churn =  self.monthly_count_puntedIssues / self.monthly_count_completedIssues
 
     def calculate_automation(self):
-         self.Test_Automation = self.Test_Automation
+         self.Test_Automation = len(self.Test_Automation_Tickets)
 
     def calculate_sprint_completion_rate(self):
         self.Sprint_Completion_Rate = self.monthly_completedIssuesEstimateSum / self.monthly_completedIssuesInitialEstimateSum 
@@ -186,7 +188,7 @@ class kpi_month:
         self.Gherkin_Story_Rate = self.Number_Stories_Gherkin_Format / self.Number_of_Stories
         self.TotalBugCount = await kpi_query.get_total_bug_count(self.project, self.debug)
         self.Total_Count_Stories_Worked_On = await kpi_query.get_escape_velocity_comparitor(self.project, self.start_date, self.end_date, self.debug)    
-        self.Test_Automation = await kpi_query.get_automation_tickets(self.project, self.start_date, self.end_date, self.debug)   
+        self.Test_Automation_Tickets = await kpi_query.get_automation_tickets(self.project, self.start_date, self.end_date, self.debug)   
         self.Escape_Velocity_Rate = self.Escape_Velocity / self.Total_Count_Stories_Worked_On
 
     def copy_group_data(self, other):
@@ -197,6 +199,8 @@ class kpi_month:
         self.TotalBugCount = other.TotalBugCount
         self.Total_Count_Stories_Worked_On = other.Total_Count_Stories_Worked_On
         self.Escape_Velocity_Rate = other.Escape_Velocity_Rate 
+        self.Test_Automation = other.Test_Automation
+        self.Test_Automation_Tickets = other.Test_Automation_Tickets
         
     async def acquire_pre_data(self):
         self.create_id_list()
@@ -226,7 +230,7 @@ class kpi_month:
         if self.project == 'MOB':
             self.Velocity = self.monthly_completedIssuesEstimateSum / len(self.velocity_reports)
         else:
-            self.Velocity = self.monthly_completedIssuesEstimateSum / (len(self.velocity_reports)/2)
+            self.Velocity = self.monthly_completedIssuesEstimateSum / (len(self.velocity_reports)/self.team_count)
 
         self.overall_velocity =+ self.Velocity
         #Todo - find a better way to manage the team count
@@ -283,6 +287,7 @@ class kpi_month:
         print(f"Tech Debt Paydown Ratio = {self.Tech_Debt_Paydown_Ratio}")
         print(f"Ability To Estimate = {self.monthly_calc_abilityToEstimate:.4f}" )
         #print("Testability = " )
+        print("Automation Tickets = " + str(self.Test_Automation))
         print("Total Bug Count = " + str(self.TotalBugCount))
         print(f"Created Support Tickets = total={self.CreatedSupportTicketsDuringSprints[0]}   ->  {self.CreatedSupportTicketsDuringSprints[1]}:{self.CreatedSupportTicketsDuringSprints[2]}:{self.CreatedSupportTicketsDuringSprints[3]}:{self.CreatedSupportTicketsDuringSprints[4]}")
         print(f"Completed Support Tickets = total={self.CompletedSupportTicketsDuringSprints[0]}   ->  {self.CompletedSupportTicketsDuringSprints[1]}:{self.CompletedSupportTicketsDuringSprints[2]}:{self.CompletedSupportTicketsDuringSprints[3]}:{self.CompletedSupportTicketsDuringSprints[4]}") 

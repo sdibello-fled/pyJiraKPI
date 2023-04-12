@@ -8,6 +8,7 @@ async def get_escape_velocity(project, start_date, end_date, debug = False):
         jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type = "bug" and status != Canceled '
         return await run_generic_jql_count(jql, debug)
 
+#get a list of all tickets that are tagged with "Cypress"
 async def get_automation_tickets(project, start_date, end_date, debug = False):
         jql = f'project = "{project}" AND summary ~ cypress AND issuetype = Story and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" and statusCategory in ("Done") '
         print(jql)
