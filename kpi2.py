@@ -43,7 +43,7 @@ async def main(p_month, p_year):
         })
         trackedProjects.append({
                 'project':'MOB',
-                'view':'507',
+                'view':'509',
                 'teams':1
         })
 
