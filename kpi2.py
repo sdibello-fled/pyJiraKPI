@@ -1,10 +1,27 @@
 import os
+import operator as op
 import asyncio
 import datetime as dt
 from kpi import kpi_month
 from dotenv import load_dotenv
 from jira_velocity.velocity_report import *
 from art import *
+
+def removeCommonWords(name_list):
+        com=[]
+        removed = ""
+        sent1=list(name_list[0].split())
+        sent2=list(name_list[1].split())
+        sent_org=list(name_list[0].split())
+        for i in sent_org:
+                if op.countOf(sent2,i)>0:
+                        sent1.remove(i)
+                        sent2.remove(i)
+                        if len(removed) == 0:
+                                removed = i
+                        else:
+                                removed = f'{removed} {i}' 
+        return removed, ''.join(sent1), ''.join(sent2)
 
 
 async def printVelocity(velo):
@@ -51,6 +68,8 @@ async def main(p_month, p_year):
         #TODO
         #sprints_white_list = []
         for proj in trackedProjects:
+               name_list = []
+               name_list2 = []
                sprint_id_list = await kpi_month.get_sprint_ids_by_month(proj['project'], year, mon, sprint_black_list) 
 
                #loading all the velocity reports
@@ -84,8 +103,12 @@ async def main(p_month, p_year):
                        noida_team.copy_group_data(us_team)
                        print('us team sprints')
                        for v2 in us_team.velocity_reports:
-                                        Art = text2art(v2.name)
-                                        print(Art)
+                               #Art = text2art(v2.name)
+                               name_list.append(v2.name)
+
+                       clean_name = removeCommonWords(name_list)
+                       stringArt = '  '.join(clean_name)
+                       print(text2art(stringArt))
 
                        us_team.print_kpis()
 
@@ -94,8 +117,13 @@ async def main(p_month, p_year):
                         await noida_team.calculate_kpis()
                         print('noida team sprints')
                         for v3 in noida_team.velocity_reports:
-                                        Art2 = text2art(v3.name)
-                                        print(Art2)
+                                #Art2 = text2art(v3.name)
+                               name_list2.append(v3.name)
+
+                        clean_name2 = removeCommonWords(name_list2)
+                        stringArt2 = '  '.join(clean_name2)
+                        print(text2art(stringArt2))
+
 
                         noida_team.print_kpis()
 
@@ -103,4 +131,4 @@ async def main(p_month, p_year):
 
 if __name__ == '__main__':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-        asyncio.run(main(3, 2023))
+        asyncio.run(main(4, 2023))
