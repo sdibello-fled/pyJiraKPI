@@ -183,7 +183,7 @@ class kpi_month:
     async def acquire_group_data(self):
         self.create_id_list()
         self.Escape_Velocity = await kpi_query.get_escape_velocity(self.project, self.start_date, self.end_date, True)
-        self.Number_Stories_Gherkin_Format = await kpi_query.get_gherkin_format(self.project, self.sprint_id_list, self.debug)
+        self.Number_Stories_Gherkin_Format = await kpi_query.get_gherkin_format(self.project, self.sprint_id_list, True)
         self.Number_of_Stories = await kpi_query.get_all_stories(self.project, self.sprint_id_list, self.debug)
         self.Gherkin_Story_Rate = self.Number_Stories_Gherkin_Format / self.Number_of_Stories
         self.TotalBugCount = await kpi_query.get_total_bug_count(self.project, self.debug)
