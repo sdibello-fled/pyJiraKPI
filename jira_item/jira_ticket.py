@@ -19,7 +19,10 @@ class jira_ticket_store:
     createdDate = ""
     severity = ""
     raw = ""
+    storyPoints = ""
     debugFlag = False
+    sprintID = ""
+    sprintName = ""
 
     def __init__(self, debugFlag): 
         # constructor
@@ -55,6 +58,51 @@ class jira_ticket_store:
                     print( f'{self.id}, Severity -> {value}')
         self.severity = value
         return value
+    
+    def parse_item_last_sprint(self):
+        name = ""
+        id = ""
+        if 'customfield_10019' in self.raw['fields']:
+            if self.raw['fields']['customfield_10019'] != None:
+                for sprint in self.raw['fields']['customfield_10019']: 
+                    if sprint['id'] != None:
+                        id = str(sprint['id'])
+                    if sprint['name'] != None:
+                        name = sprint['name']
+        else:
+            name = 'Sprintless'
+            id = 0000
+
+        self.sprintID = id
+        self.sprintName = name
+        return id, name
+
+
+    def parse_item_sprint(self):
+        name = ""
+        id = ""
+        if 'customfield_10019' in self.raw['fields']:
+            if self.raw['fields']['customfield_10019'] != None:
+                for sprint in self.raw['fields']['customfield_10019']: 
+                    if sprint['id'] != None:
+                        sid = str(sprint['id'])
+                        id = id  + sid 
+                    if sprint['name'] != None:
+                        name = name + sprint['name']
+                
+        self.sprintID = id
+        self.sprintName = name
+        return id, name
+
+    def parse_item_story_points(self):
+        value = None
+        if 'customfield_10021' in self.raw['fields']:
+            if self.raw['fields']['customfield_10021'] != None:
+                value = self.raw['fields']['customfield_10021']
+                if self.debugFlag == True:
+                    print( f'{self.id}, Story Points -> {value}')
+        self.storyPoints = value
+        return value
 
     def parse_item_parent_key(self):
         value = "Null"
@@ -78,6 +126,23 @@ def parse_jira_api_response(data, debugFlag):
     
     return items
 
+
+def sum_points(data):
+    count = 0
+    empty = 0
+    full = 0
+
+    for ticket in data:
+        value = 0
+        if 'customfield_10021' in ticket['fields']:
+            if ticket['fields']['customfield_10021'] != None:
+                value = ticket['fields']['customfield_10021']
+                full = full + 1
+        if value == 0:
+            empty = empty + 1
+        count = count + value
+    return count, full, empty
+
 # returns a dictionary of the "type" of the issue, and the count to how many of that type there where.
 def count_by_type(data):
     count = 0
@@ -91,7 +156,6 @@ def count_by_type(data):
             else:
                 memory_list[value] = 1
     return memory_list
-
 
 
 # gives you back a tuple with the count of the priority of all the tickes in data

@@ -39,6 +39,38 @@ async def get_all_stories(project, sprint_id_array, debug = False):
         jql = f'project = "{project}" AND Sprint in  ({list_of_ids}) AND  type = "Story" and (summary !~ "\\[Defect\\]" or summary !~ "\\[QA\\]" or summary !~ "\\[Stage\\]")'
         return await run_generic_jql_count(jql, debug)
 
+async def get_monthly_tickets_by_worklog(project, user, month_start_offset, month_count, debug):
+    if month_count is None:
+        jql = f'project = {project} AND ( assignee was in ("{user}") OR status changed by "{user}" OR  reporter was in ("{user}"))  AND statusCategory = Done AND ( statusCategoryChangedDate >= startOfMonth({month_start_offset}) OR worklogDate >= startOfMonth({month_start_offset}) )'
+    else:
+        month_end = month_start_offset + month_count
+        jql = f'project = {project} AND ( assignee was in ("{user}") OR status changed by "{user}" OR  reporter was in ("{user}"))  AND statusCategory = Done AND statusCategoryChangedDate >= startOfMonth({month_start_offset}) and statusCategoryChangedDate <= endOfMonth({month_end})'
+        
+    if debug:
+        print(f'get-get_monthly_tickets_by_worklog jql - {jql}')
+    return await combinational_paging_manager_generic_jql(jql, False)
+
+async def get_mutiple_keys(key_list, debug):
+    if len(key_list) == 0:
+        return None
+    key_string = ','.join(key_list)
+    jql = f'key in ({key_string})'
+
+    if debug:
+        print(f'get-get_mutiple_keys jql - {jql}')
+    return await combinational_paging_manager_generic_jql(jql, debug)
+
+async def get_yearly_tickets_by_worklog(project, user, year_start_offset, year_count, debug):
+    if year_count is None:
+        jql = f'project = "{project}" and worklogAuthor = {user} AND worklogDate >= startOfYear({year_start_offset}) and type not in (Sub-Task)'
+    else:
+        year_end = year_start_offset + year_count
+        jql = f'project = "{project}" and worklogAuthor = {user} AND worklogDate >= startOfYear({year_start_offset}) AND worklogDate <= endOfYear({year_end}) and type not in (Sub-Task)'
+        
+    #if debug:
+    #    print(f'get-get_monthly_tickets_by_worklog jql - {jql}')
+    return await combinational_paging_manager_generic_jql(jql, debug)
+
 async def get_all_soc2_stories(project, start_date, end_date, debug):
     jql = f'project = "{project}" and type not in (test, feature, Sub-task)  and statusCategory = Done and status != Canceled and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" order by key'
     if debug:
@@ -127,6 +159,19 @@ async def run_specific_url_count(url, debug = False):
      
     return response["total"]        
 
+async def run_issue_by_key(key, debug = False):
+    auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
+    url = f'https://frontlinetechnologies.atlassian.net/rest/api/3/issue/{key}'
+
+    if debug:
+        print(url)
+    
+    async with aiohttp.ClientSession(auth=auth) as session:
+        raw = await session.get(url.replace('\\','\\\\'))
+        response = await raw.text()
+        response = json.loads(response)
+    
+    return response      
 
 async def run_generic_jql_count(jql, debug = False):
     auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
