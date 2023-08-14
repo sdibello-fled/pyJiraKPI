@@ -3,6 +3,7 @@ from operator import delitem
 from dotenv import load_dotenv
 from jira_item import jira_ticket
 from kpi import kpi_query 
+from jira_api import jira_user
 import jira_item
 import csv
 
@@ -50,26 +51,22 @@ class query_user_summary:
         
 async def main():
         load_dotenv()
-        debugFlag = False
-        fc_user = {('Craig', '5db09bc20343b80c307a63d5'), 
-                   ('Jared', '557058:319a2b5d-0cd0-48aa-bd12-14501d0cb896'),
-                   ('Nick', '5c17bb609f443a65fecae3f1'), 
-                   ('Paul', '632ceee2b2e3c5ad0fa2da52'),
-                   ('Stephen', '557058:c1e2242a-4e62-4054-a2cb-91f416b60317'),
-                   ('Ruchir', '5f528fb732360700383754ab'),
-                    ('Salman', '5db0aaee0e6b1e0c3559a147') }
-        ## Craig, Jared, Nick, Paul
+        project = 'FC'
+        users = await jira_user.list_of_user_by_role("FC", 10400)
+
 
         print ("Start")
-        for user in fc_user:
-            u = query_user_summary(user[0], user[1])
+        for user in users:
+            #u = query_user_summary(user[0], user[1])
             data = []
             details = []
             memory_list = dict()
             count_list = dict()
             totalStoryPoints = 0
-            projectName = 'FC'
-            data = await kpi_query.get_monthly_tickets_by_worklog(projectName, u.userKey, -3, None, False)
+            storyPoints = 0
+            fullCount = 0
+            emptyCount = 0
+            data = await kpi_query.get_monthly_tickets_by_worklog(project, user["actorUser"]["accountId"], -3, None, False)
 
             # pull the list with logged work       
             for issue in data['issues']:
@@ -91,7 +88,7 @@ async def main():
 
                     totalStoryPoints = totalStoryPoints + detail.storyPoints
 
-            print( '{0}'.format(user[0]))
+            print( '{0}'.format(user["displayName"]))
             print( 'total tickets worked on {0}'.format(len(data['issues'])))
             print( 'total story points worked on {0}'.format(totalStoryPoints))
             for sprint_stats in memory_list:
