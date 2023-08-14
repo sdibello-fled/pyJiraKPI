@@ -4,7 +4,8 @@ import asyncio
 import datetime as dt
 from kpi import kpi_month
 from dotenv import load_dotenv
-from jira_velocity.velocity_report import *
+from jira_api.velocity_report import jira_velocity_report
+from jira_api import sprint_velocity_store
 from art import *
 
 def removeCommonWords(name_list):
@@ -48,21 +49,9 @@ async def main(p_month, p_year):
         mon = p_month
         debugFlag = False
         trackedProjects = []
-        trackedProjects.append({
-                'project':'HCMAT',
-                'view':'588',
-                'teams':2
-        })
-        trackedProjects.append({
-                'project':'FC',
-                'view':'464',
-                'teams':2
-        })
-        trackedProjects.append({
-                'project':'MOB',
-                'view':'509',
-                'teams':1
-        })
+        trackedProjects.append({ 'project':'HCMAT', 'view':'588', 'teams':2 })
+        trackedProjects.append({ 'project':'FC', 'view':'464', 'teams':2 })
+        trackedProjects.append({ 'project':'MOB', 'view':'509', 'teams':1 })
 
         sprint_black_list = [3152]
         #TODO
@@ -75,7 +64,7 @@ async def main(p_month, p_year):
                #loading all the velocity reports
                all_sprints_month = kpi_month.kpi_month(proj['project'], year, mon, proj['teams'], debugFlag)
                for id in sprint_id_list:
-                   veloReport = jira_velocity_report(debugFlag)
+                   veloReport = jira_velocity_report.jira_velocity_report(debugFlag)
                    raw_velocity = await veloReport.get_sprint_velocity_report(os.environ.get('JIRA_USER'), os.environ.get('JIRA_API_KEY'), id, proj['view'])
                    velocity = await veloReport.velocity_report_parse(raw_velocity)
                    #await printVelocity(velocity)
@@ -131,4 +120,4 @@ async def main(p_month, p_year):
 
 if __name__ == '__main__':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-        asyncio.run(main(6, 2023))
+        asyncio.run(main(7, 2023))
