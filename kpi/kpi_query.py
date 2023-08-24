@@ -39,6 +39,21 @@ async def get_all_stories(project, sprint_id_array, debug = False):
         jql = f'project = "{project}" AND Sprint in  ({list_of_ids}) AND  type = "Story" and (summary !~ "\\[Defect\\]" or summary !~ "\\[QA\\]" or summary !~ "\\[Stage\\]")'
         return await run_generic_jql_count(jql, debug)
 
+async def get_monthly_user_udpated(project, user, start_date, end_date, debug):
+    # issuekey in updatedBy(jgeer, "2023/06/19", "2023/06/30") 
+    jql = f'project = {project} AND issuekey in updatedBy({user}, "{start_date}", "{end_date}")'
+
+    if debug:
+        print(f'get-get_monthly_tickets_by_worklog jql - {jql}')
+
+    try:
+        data = await combinational_paging_manager_generic_jql(jql, False)
+    except:
+        print ("failed {0}".format(user))
+        data = None
+
+    return data 
+
 async def get_monthly_tickets_by_worklog(project, user, month_start_offset, month_count, debug):
     if month_count is None:
         jql = f'project = {project} AND ( assignee was in ("{user}") OR status changed by "{user}" OR  reporter was in ("{user}"))  AND statusCategory = Done AND ( statusCategoryChangedDate >= startOfMonth({month_start_offset}) OR worklogDate >= startOfMonth({month_start_offset}) )'
@@ -210,6 +225,12 @@ async def paging_manager_generic_jql(jql, debug = False, maxresults=100, page=0)
 async def combinational_paging_manager_generic_jql(jql, debug = False, maxresults=100, page=0):
     all_issues = []
     first_response = await run_generic_jql(jql, debug, maxresults, page)
+
+    # did the query run
+    if "errorMessages" in first_response:
+        if first_response['errorMessages'] != None:
+            return None
+
     totalPossible = first_response["total"]
     resultCount = first_response["maxResults"]
     all_issues.extend(first_response['issues'])
