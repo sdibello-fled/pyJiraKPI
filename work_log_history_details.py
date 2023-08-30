@@ -53,7 +53,7 @@ class query_user_summary:
 async def main():
         load_dotenv()
         project = 'FC'
-        #filter_whitelist = {""}
+        filter_whitelist = {}
         filter_blacklist = {}
         users = await jira_user.list_of_user_by_role("FC", 10400)
 
