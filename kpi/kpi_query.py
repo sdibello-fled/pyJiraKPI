@@ -4,8 +4,9 @@ import math
 import os
 
 #get the count of bugs.
+#added "clones" check, as noida was cloning items multiple times to keep things up to date
 async def get_escape_velocity(project, start_date, end_date, debug = False):
-        jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type = "bug" and status != Canceled '
+        jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type = "bug" and status != Canceled  and  issueLinkType not in ("Clones")'
         return await run_generic_jql_count(jql, debug)
 
 #get a list of all tickets that are tagged with "Cypress"

@@ -54,7 +54,7 @@ async def main(p_month, p_year):
         trackedProjects.append({ 'project':'MOB', 'view':'509', 'teams':1 })
 
         sprint_black_list = [3152]
-        #TODO
+        #TODO - haven't had to use this yet.
         #sprints_white_list = []
         for proj in trackedProjects:
                name_list = []
@@ -64,7 +64,7 @@ async def main(p_month, p_year):
                #loading all the velocity reports
                all_sprints_month = kpi_month.kpi_month(proj['project'], year, mon, proj['teams'], debugFlag)
                for id in sprint_id_list:
-                   veloReport = jira_velocity_report.jira_velocity_report(debugFlag)
+                   veloReport = jira_velocity_report(debugFlag)
                    raw_velocity = await veloReport.get_sprint_velocity_report(os.environ.get('JIRA_USER'), os.environ.get('JIRA_API_KEY'), id, proj['view'])
                    velocity = await veloReport.velocity_report_parse(raw_velocity)
                    #await printVelocity(velocity)

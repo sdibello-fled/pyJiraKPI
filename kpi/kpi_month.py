@@ -226,14 +226,13 @@ class kpi_month:
                 self.monthly_count_issueKeysAddedDuringSprint =+ len(vel.issueKeysAddedDuringSprint)
                 self.abilityToEstimateValue.append(vel.kpi_abilityToEstimate)
         
-        # Mobile doesn't have a US / Noida variant
-        if self.project == 'MOB':
+        #Mobile doesn't have a US / Noida team combination
+        if self.team_count > 1:
             self.Velocity = self.monthly_completedIssuesEstimateSum / len(self.velocity_reports)
         else:
             self.Velocity = self.monthly_completedIssuesEstimateSum / (len(self.velocity_reports)/self.team_count)
 
         self.overall_velocity =+ self.Velocity
-        #Todo - find a better way to manage the team count
         
         self.calculate_first_time_right()
         self.calculate_sprint_churn()
