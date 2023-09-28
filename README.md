@@ -65,6 +65,7 @@
         ```
         pip install aiohttp
         pip install asyncio
+        pip install openpyxl
         ```
 5. Create a Jira API Token
    . Click your avatar in the top right hand corner of Jira, select  Account Settings > Security > "Create and Manage API Tokens"

@@ -16,14 +16,15 @@ class count_by_severity:
 class kpi_month:
     overall_velocity = 0
 
-    def __init__(self, project, year, month, teams, debug):
-        self.project = project
+    def __init__(self, project, year, month, teams, team_desciptor, debug):
+        self.project=project
         self.year=year
         self.month=month
         self.debug = debug
         self.team_count = teams
         self.sprint_id_list = []
         self.abilityToEstimateValue = []
+        self.team_descriptor = team_desciptor
 
         #kpis from spreadsheet
         self.velocity_reports = []
@@ -35,12 +36,12 @@ class kpi_month:
         self.Number_of_Stories = 0
         self.Security_Focus = 0
         self.Sprint_Churn = 0
-        self.Sprint_Completion_Rate = 0
+        self.Sprint_Completion_Rate = 0 
         self.Sprint_Readiness = 0
-        self.Sprint_Readiness_Ratio = 0
+        self.Sprint_Readiness_Ratio =0
         self.Story_Completion_Rate = 0
         self.Tech_Debt_Paydown = 0
-        self.Tech_Debt_Paydown_Ratio = 0
+        self.Tech_Debt_Paydown_Ratio =0 
         self.Test_Automation = 0
         self.Test_Automation_Tickets = []
         self.Velocity = 0
