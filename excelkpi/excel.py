@@ -1,10 +1,12 @@
 import openpyxl
+import traceback
+import sys
 from openpyxl.worksheet.table import Table, TableStyleInfo, TableColumn
 from kpi import kpi_month
+from datetime import datetime
 
 
 class excel_kpi:
-    Headers = ['Sprint Completeion Rate', 'Escape Velcoity Rate', 'Requirements in Gherkin', 'Sprint Readiness', 'Sprint Churn', 'Tech Debt Paydown']
     currentWorkbook = None 
     ws = None
 
@@ -16,7 +18,7 @@ class excel_kpi:
         self.ws = None
         self.tab = None
         self.filename = excel_path
-        self.headers = ['SprintCompRate', 'EscVelRate', 'ReqInGherkin', 'SprintReadiness', 'SprintChurn', 'TechDebtPaydown']
+        self.headers = ["DataDate","DateExe","SprintCompRate", "EscVelRate", "ReqInGherkin", "SprintReadiness", "SprintChurn", "TechDebtPaydown"]
         if len(excel_path) <= 0:
             raise print("file path can't be 0")
         try:
@@ -34,19 +36,26 @@ class excel_kpi:
 
     def set_table(self, project):
         try:
-            table = self.ws.tables[self.table_kpi_name]
+            #todo - don't trust this  - search for it via
+            self.tab = self.ws.tables[self.table_kpi_name]
         except:
-            table = Table(displayName='KPIs')
-            for column, value in zip(table.tableColumns, self.headers):
-                column.name = value
+            #style = TableStyleInfo(name="TableStyleMedium9", showRowStripes=True)
+            table = Table(ref='A1:H1',displayName=self.table_kpi_name,name=self.table_kpi_name)
+            count = 1
+            for header in self.headers:
+                col = TableColumn(id=count, uniqueName=header, name=header)
+                count = count+1
+                table.tableColumns.append(col)
             self.tab = table
+            self.ws.add_table(table)
+            self.save_file()
         return True
 
     def save_file(self):
         try:
             self.currentWorkbook.save(self.filename)
-        except:
-            print("Fails to save file")
+        except Exception:
+            print(traceback.format_exc())
             return False
         return True
 
@@ -57,13 +66,14 @@ class excel_kpi:
         else:
             sheet_name = kpi.project
         self.set_sheet(sheet_name)
+        data_date = str(kpi.year) + "." + str(kpi.month)
+        curr_date = datetime.today().strftime('%Y.%m')
 
-        self.ws.append([kpi.Sprint_Completion_Rate, kpi.Escape_Velocity_Rate, kpi.Gherkin_Story_Rate, kpi.Sprint_Readiness_Ratio, kpi.Sprint_Churn, kpi.Tech_Debt_Paydown_Ratio])
-        return
+        self.set_table(kpi.project)
+        self.tab = self.ws.tables[self.table_kpi_name]
 
-
-    def add_row(self):
-        #adds a row, or moves ot the next row       
+        self.ws.append([data_date, curr_date, kpi.Sprint_Completion_Rate, kpi.Escape_Velocity_Rate, kpi.Gherkin_Story_Rate, kpi.Sprint_Readiness_Ratio, kpi.Sprint_Churn, kpi.Tech_Debt_Paydown_Ratio])
+        
         return
 
     def write_cols(self):
