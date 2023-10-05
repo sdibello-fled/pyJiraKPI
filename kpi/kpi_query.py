@@ -83,8 +83,6 @@ async def get_yearly_tickets_by_worklog(project, user, year_start_offset, year_c
         year_end = year_start_offset + year_count
         jql = f'project = "{project}" and worklogAuthor = {user} AND worklogDate >= startOfYear({year_start_offset}) AND worklogDate <= endOfYear({year_end}) and type not in (Sub-Task)'
         
-    #if debug:
-    #    print(f'get-get_monthly_tickets_by_worklog jql - {jql}')
     return await combinational_paging_manager_generic_jql(jql, debug)
 
 async def get_all_soc2_stories(project, start_date, end_date, debug):
@@ -159,8 +157,6 @@ async def pull_user_touched_tickets(debug, project, user_guid, year_offset = 0):
         return await combinational_paging_manager_generic_jql(jql_limited, debug)
     else:
         return await combinational_paging_manager_generic_jql(jql_unlimited, debug)
-
-
 
 async def run_specific_url_count(url, debug = False):
     auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))

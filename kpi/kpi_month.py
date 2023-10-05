@@ -6,6 +6,7 @@ import calendar
 from . import kpi_query 
 import numpy as np  
 
+# Utility 
 class count_by_severity:
     def __init__(self):
         self.low = 0
@@ -97,10 +98,12 @@ class kpi_month:
     def calculate_sprint_completion_rate(self):
         self.Sprint_Completion_Rate = self.monthly_completedIssuesEstimateSum / self.monthly_completedIssuesInitialEstimateSum 
 
+    # gets a complete list of all stories in the backlog with story points - as they are "ready"
     async def calculate_sprint_readiness(self):
         data = await kpi_query.get_all_backlog_stories(self.project, self.debug)
-        self.Sprint_Readiness += self.total_story_points(data['issues'])
+        self.Sprint_Readiness += self.total_story_points(data['issues']) / self.Velocity
 
+    # get the list of all the support tickets completed, returns tupal (total count, P1 count, P2 count, P3 count, P4 count)
     async def calculate_completed_support_tickets(self):
         counts = []
         total_overallCount = 0
@@ -120,7 +123,9 @@ class kpi_month:
         tupCounts = (total_overallCount, total_highestCount, total_highCount, total_mediumCount, total_lowCount)
         return tupCounts
 
-
+    # get the list of all the support tickets created, returns tupal (total count, P1 count, P2 count, P3 count, P4 count)
+    # basically a copy and paste from above 
+    #TODO - refactor this with calculate_completed_support_tickets
     async def calculate_created_support_tickets(self):
         counts = []
         total_overallCount = 0
@@ -140,7 +145,7 @@ class kpi_month:
         tupCounts = (total_overallCount, total_highestCount, total_highCount, total_mediumCount, total_lowCount)
         return tupCounts
         
-
+    #API call save - instead of doing these as individual calls, just parse the json of a set of records and calculate.
     def parse_out_all_bugs(self, data):
         overallCount = 0
         highestCount = 0

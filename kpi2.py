@@ -8,6 +8,7 @@ from jira_api.velocity_report import jira_velocity_report
 from jira_api import sprint_velocity_store
 from art import *
 
+### Remove the words common to both on the name list - so i just print out the differences.  
 def removeCommonWords(name_list):
         com=[]
         removed = ""
@@ -67,12 +68,11 @@ async def main(p_month, p_year):
                    veloReport = jira_velocity_report(debugFlag)
                    raw_velocity = await veloReport.get_sprint_velocity_report(os.environ.get('JIRA_USER'), os.environ.get('JIRA_API_KEY'), id, proj['view'])
                    velocity = await veloReport.velocity_report_parse(raw_velocity)
-                   #await printVelocity(velocity)
                    all_sprints_month.velocity_reports.append(velocity)
 
                # filter the velocity reports
                us_team = kpi_month.kpi_month(proj['project'], year, mon, proj['teams'], "", debugFlag)
-               noida_team = kpi_month.kpi_month(proj['project'], year, mon, proj['teams'], "GL" debugFlag)
+               noida_team = kpi_month.kpi_month(proj['project'], year, mon, proj['teams'], "GL", debugFlag)
                for v1 in all_sprints_month.velocity_reports:
                         if 'US ' in v1.name: 
                                us_team.velocity_reports.append(v1)
@@ -92,7 +92,6 @@ async def main(p_month, p_year):
                        noida_team.copy_group_data(us_team)
                        print('us team sprints')
                        for v2 in us_team.velocity_reports:
-                               #Art = text2art(v2.name)
                                name_list.append(v2.name)
 
                        clean_name = removeCommonWords(name_list)
@@ -106,7 +105,6 @@ async def main(p_month, p_year):
                         await noida_team.calculate_kpis()
                         print('noida team sprints')
                         for v3 in noida_team.velocity_reports:
-                                #Art2 = text2art(v3.name)
                                name_list2.append(v3.name)
 
                         clean_name2 = removeCommonWords(name_list2)
@@ -120,4 +118,4 @@ async def main(p_month, p_year):
 
 if __name__ == '__main__':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-        asyncio.run(main(7, 2023))
+        asyncio.run(main(9, 2023))
