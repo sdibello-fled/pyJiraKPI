@@ -1,6 +1,3 @@
-from tkinter import N
-
-from numpy import isin
 
 
 class jira_ticket_store:

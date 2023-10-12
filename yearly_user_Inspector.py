@@ -8,6 +8,7 @@ from collections import namedtuple
 
 jira_prisev = namedtuple('JiraKey', ['project', 'severity', 'priority'])
 
+# this will list all tickets touched by a user 
 
 
 def process(data):
@@ -43,7 +44,8 @@ def project_rollup(project):
     return dict, item_list
 
 # Jared - 557058:319a2b5d-0cd0-48aa-bd12-14501d0cb896
-# Elmandorf - 557058:c1e2242a-4e62-4054-a2cb-91f416b60317
+# This lists all the tickets touched by a user in a year. 
+
 
 async def main():       
     load_dotenv()

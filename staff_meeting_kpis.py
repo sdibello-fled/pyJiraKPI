@@ -9,6 +9,8 @@ from kpi.kpi_query import *
 from art import *
 import jira_item
 
+### this was for the Siva staff meeting, to allow me to collect data and update the slide.  This use has fallen off.
+
 class kpi_bug_status_store:
     start_date = ""
     end_date = ""

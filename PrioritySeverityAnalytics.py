@@ -1,13 +1,12 @@
-import os
-import json
-import aiohttp
 import asyncio
-from datetime import timedelta, date, datetime
 from dotenv import load_dotenv
 from jira_item import jira_ticket
 from kpi.kpi_query import *
 from collections import namedtuple
-import jira_item
+
+
+## Jira had no way to sum tickets by priority and severity.  So here we are.
+## Siva pinged this as a short term ask
 
 jira_prisev = namedtuple('JiraKey', ['project', 'severity', 'priority'])
 

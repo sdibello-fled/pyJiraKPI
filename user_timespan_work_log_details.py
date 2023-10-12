@@ -50,7 +50,7 @@ class query_user_summary:
         #for spi in self.sus:
              
         
-async def main():
+async def main(startdate, enddate):
         load_dotenv()
         project = 'FC'
         filter_whitelist = {}
@@ -77,7 +77,7 @@ async def main():
             if len(filter_whitelist) > 0:
                 if name_key not in filter_whitelist:
                      continue
-            data = await kpi_query.get_monthly_user_udpated(project, name_key, '2023/06/19', '2023/06/30', False)
+            data = await kpi_query.get_monthly_user_udpated(project, name_key, startdate, enddate, False)
 
             # pull the list with logged work
             if data:
@@ -113,16 +113,18 @@ async def main():
                                 else: 
                                     memory_list["NoSprint"] = detail.storyPoints
                              
- 
-                print( '{0}'.format(user["displayName"]))
-                print( 'total tickets worked on {0}'.format(len(data['issues'])))
-                print( 'total story points worked on {0}'.format(totalStoryPoints))
-                print( 'all non sprint items {0}'.format(noSprintList))
+                # only print out people who did things
+                if len(data['issues'])>0:
+                    print( '===================={0}===================='.format(user["displayName"]))
+                    print( 'total tickets worked on {0}'.format(len(data['issues'])))
+                    print( 'total story points worked on {0}'.format(totalStoryPoints))
+                    print( 'all non sprint items {0}'.format(noSprintList))
+                
             for sprint_stats in memory_list:
-                 print(">> {0} - {1} SP / {2} #".format(sprint_stats, memory_list[sprint_stats], count_list[sprint_stats] ))
+                 print(">> {0} - {1} SP - # {2} ".format(sprint_stats, memory_list[sprint_stats], count_list[sprint_stats] ))
 
 
 if __name__ == '__main__':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-        asyncio.run(main())
+        asyncio.run(main('2023/06/19', '2023/06/30'))
 

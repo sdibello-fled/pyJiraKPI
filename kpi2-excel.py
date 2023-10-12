@@ -9,6 +9,9 @@ from jira_api.velocity_report import jira_velocity_report
 from jira_api import sprint_velocity_store
 from art import *
 
+## There is an ask to create averaged KPIs for the staff meeting.  I was thinking about capturing all the important KPIs in a local spreadsheet and having it do the work.
+
+
 def removeCommonWords(name_list):
         com=[]
         removed = ""
@@ -103,9 +106,6 @@ async def main(p_month, p_year):
                         xls.save_file()
 
 
-
-
-
 if __name__ == '__main__':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-        asyncio.run(main(4, 2023))
+        asyncio.run(main(1, 2023))

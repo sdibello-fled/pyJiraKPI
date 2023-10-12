@@ -6,6 +6,7 @@ from kpi import kpi_query
 import jira_item
 import csv
 
+### This is to collect the SOC to changes in jira and produce a  csv to send.
 
 async def main():
         load_dotenv()
