@@ -15,11 +15,6 @@ class jira_analytic_year_support:
     createdDate = ""
     time_open_seconds = ""
 
-    def __init__(self, debugFlag): 
-        # constructor
-        debugFlag = debugFlag
-
-
 async def main():
         load_dotenv()      
         trackedProjects = []

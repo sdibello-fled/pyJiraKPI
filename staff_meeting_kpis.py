@@ -30,7 +30,6 @@ class kpi_bug_status_store:
     sprint_white_list = []
     sprint_black_list = []
     tickets = []
-    debug = False
 
 
 ### massive call here, use carefully
@@ -70,7 +69,7 @@ async def bug_count(store):
         ## get a list of all bugs for a project that are no closed.
         auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
         jql = f'project="{store.project}" and statusCategory not in ("Done") and type in ("Bug")'
-        return await run_generic_jql(jql, False, 100, 0)
+        return await run_generic_jql(jql, 100, 0)
            
 # moving away from sprints - as support is done out of sprints at times.
 # not used
@@ -79,7 +78,7 @@ async def get_all_tickets_in_sprints(project, sprint_id_array):
         stringlist = map(str, sprint_id_array)
         listi = ",".join(stringlist)
         jql = f'project = "{project}" AND Sprint in ({listi}) and issuetype = bug'
-        return await paging_manager_generic_jql(jql, True, 100, 0)
+        return await paging_manager_generic_jql(jql, 100, 0)
 
 # moving away from sprints - as support is done out of sprints at times.
 # not used
@@ -88,7 +87,7 @@ async def get_requests_tickets_not_done_in_sprints(project, sprint_id_array):
         stringlist = map(str, sprint_id_array)
         listi = ",".join(stringlist)
         jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Request", "Bug") and statusCategory != Done'
-        return await paging_manager_generic_jql(jql, False, 100, 0)
+        return await paging_manager_generic_jql(jql, 100, 0)
 
 # added a function that returns all of the items, then just counts the priority as a group because paging manager was added
 # not used
@@ -97,13 +96,13 @@ async def get_priority_tickets_in_sprints(project, sprint_id_array, priority):
         stringlist = map(str, sprint_id_array)
         listi = ",".join(stringlist)
         jql = f'project = "{project}" AND Sprint in ({listi}) AND issuetype in ("Support Request", "Bug") AND priority = "{priority}"'
-        return await run_generic_jql(jql, False, 100, 0)
+        return await run_generic_jql(jql, 100, 0)
 
 
 async def get_priority_tickets_not_done(project):
         ## get a list of all sprints
         jql = f'project = "{project}" and issuetype in ("Support Request", "Bug") and statusCategory not in ("To Do", Done)'
-        return await combinational_paging_manager_generic_jql(jql, False, 100, 0)
+        return await combinational_paging_manager_generic_jql(jql, 100, 0)
 
 
 async def get_request_and_bug_tickets_done_in_sprints(project, sprint_id_array):
@@ -111,11 +110,11 @@ async def get_request_and_bug_tickets_done_in_sprints(project, sprint_id_array):
         stringlist = map(str, sprint_id_array)
         listi = ",".join(stringlist)
         jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Request", "Bug") and statusCategory = "Done"'
-        return await paging_manager_generic_jql(jql, False, 100, 0)
+        return await paging_manager_generic_jql(jql, 100, 0)
 
 async def get_request_and_bug_tickets_done_in_days(project, daysBack):
         jql = f'project = {project} and statusCategory = Done and type in ("Support Request", Bug ) and statusCategoryChangedDate > "-{daysBack}d"'
-        return await combinational_paging_manager_generic_jql(jql, False, 100, 0)
+        return await combinational_paging_manager_generic_jql(jql, 100, 0)
 
 # just gets the count of bugs and support requests in the set of data passed
 def count_all_bugs_and_requests(data):
@@ -174,7 +173,7 @@ async def process(data):
         #last 1 - 14 day sprint - is really last five. ( what i've done in the last sprint ( last 1 ) and the 2 monthes before that ( last 4 ) - 1 + 4 is five.)
         last_one_result =  await get_request_and_bug_tickets_done_in_days(data.project, "14")
         data.total_issues_resolved_last1, data.last_one_defects, data.last_one_requests = count_all_bugs_and_requests(last_one_result)
-        last_P1_count, last_P2_count, last_P3_count, last_P4_count = jira_ticket.count_priority(last_one_result, False)
+        last_P1_count, last_P2_count, last_P3_count, last_P4_count = jira_ticket.count_priority(last_one_result)
 
         ## Don't need to page here, just need the total from the first call.
         total_bug = await bug_count(data)
@@ -183,7 +182,7 @@ async def process(data):
 
         # issues that are not complete here.
         total_bug_notdone = await get_priority_tickets_not_done(data.project) 
-        undone_P1_count, undone_P2_count, undone_P3_count, undone_P4_count = jira_ticket.count_priority(total_bug_notdone, False)
+        undone_P1_count, undone_P2_count, undone_P3_count, undone_P4_count = jira_ticket.count_priority(total_bug_notdone)
 
         print(f'resolved {data.project} tickets on the last four sprints {data.total_issues_resolved_last4} - requests = {data.total_requests_resolved_last4} - bugs - {data.total_bugs_resolved_last4} ')
         print(f'resolved {data.project} tickets on the last sprint {data.total_issues_resolved_last1} (defects - {data.last_one_defects}/ requests - {data.last_one_requests})' )
@@ -197,7 +196,6 @@ async def main():
 
         # set to how many overall team do work, needed to calculate last four sprints
         data.teams = 2
-        data.debug = False
         # dates reversed, start date is today, or the start date, end date is going back in time.                  
         now = datetime.today()
         enddate = now + timedelta(days=-70)

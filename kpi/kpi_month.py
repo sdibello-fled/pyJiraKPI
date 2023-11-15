@@ -6,7 +6,7 @@ import calendar
 from functools import wraps
 from . import kpi_query 
 import numpy as np  
-from utils.wrappers import debug
+from utils.wrappers import simpleDebug
 
 # Utility 
 class count_by_severity:
@@ -19,11 +19,10 @@ class count_by_severity:
 class kpi_month:
     overall_velocity = 0
 
-    def __init__(self, project, year, month, teams, team_desciptor, debug):
+    def __init__(self, project, year, month, teams, team_desciptor,):
         self.project=project
         self.year=year
         self.month=month
-        self.debug = debug
         self.team_count = teams
         self.sprint_id_list = []
         self.abilityToEstimateValue = []
@@ -31,7 +30,6 @@ class kpi_month:
 
         #kpis from spreadsheet
         self.velocity_reports = []
-        self.debug = debug
         self.Escape_Velocity = 0
         self.Escape_Velocity_Rate = 0
         self.First_Time_Right = 0
@@ -102,7 +100,7 @@ class kpi_month:
 
     # gets a complete list of all stories in the backlog with story points - as they are "ready"
     async def calculate_sprint_readiness(self):
-        data = await kpi_query.get_all_backlog_stories(self.project, self.debug)
+        data = await kpi_query.get_all_backlog_stories(self.project)
         self.Sprint_Readiness += self.total_story_points(data['issues']) / self.Velocity
 
     # get the list of all the support tickets completed, returns tupal (total count, P1 count, P2 count, P3 count, P4 count)
@@ -113,7 +111,7 @@ class kpi_month:
         total_highCount = 0
         total_mediumCount = 0
         total_lowCount = 0
-        data = await kpi_query.get_completed_support_defects(self.project, self.start_date, self.end_date, self.debug )
+        data = await kpi_query.get_completed_support_defects(self.project, self.start_date, self.end_date )
         counts.append(self.parse_out_all_bugs(data))
         for count in counts:
             total_overallCount =+ count[0]
@@ -135,7 +133,7 @@ class kpi_month:
         total_highCount = 0
         total_mediumCount = 0
         total_lowCount = 0
-        data = await kpi_query.get_created_support_defects(self.project, self.start_date, self.end_date, self.debug )
+        data = await kpi_query.get_created_support_defects(self.project, self.start_date, self.end_date )
         counts.append(self.parse_out_all_bugs(data))
         for count in counts:
             total_overallCount =+ count[0]
@@ -171,7 +169,7 @@ class kpi_month:
         return tuple1
 
     async def calculate_tech_debt(self):
-        data = await kpi_query.get_all_tech_debt(self.project, self.sprint_id_list, self.debug)
+        data = await kpi_query.get_all_tech_debt(self.project, self.sprint_id_list)
         self.Tech_Debt_Paydown += self.total_story_points(data['issues'])
     
     def calculate_sprint_readiness_ratio(self):
@@ -190,13 +188,13 @@ class kpi_month:
 
     async def acquire_group_data(self):
         self.create_id_list()
-        self.Escape_Velocity = await kpi_query.get_escape_velocity(self.project, self.start_date, self.end_date, True)
-        self.Number_Stories_Gherkin_Format = await kpi_query.get_gherkin_format(self.project, self.sprint_id_list, True)
-        self.Number_of_Stories = await kpi_query.get_all_stories(self.project, self.sprint_id_list, self.debug)
+        self.Escape_Velocity = await kpi_query.get_escape_velocity(self.project, self.start_date, self.end_date)
+        self.Number_Stories_Gherkin_Format = await kpi_query.get_gherkin_format(self.project, self.sprint_id_list)
+        self.Number_of_Stories = await kpi_query.get_all_stories(self.project, self.sprint_id_list)
         self.Gherkin_Story_Rate = self.Number_Stories_Gherkin_Format / self.Number_of_Stories
-        self.TotalBugCount = await kpi_query.get_total_bug_count(self.project, self.debug)
-        self.Total_Count_Stories_Worked_On = await kpi_query.get_escape_velocity_comparitor(self.project, self.start_date, self.end_date, self.debug)    
-        self.Test_Automation_Tickets = await kpi_query.get_automation_tickets(self.project, self.start_date, self.end_date, self.debug)   
+        self.TotalBugCount = await kpi_query.get_total_bug_count(self.project)
+        self.Total_Count_Stories_Worked_On = await kpi_query.get_escape_velocity_comparitor(self.project, self.start_date, self.end_date)    
+        self.Test_Automation_Tickets = await kpi_query.get_automation_tickets(self.project, self.start_date, self.end_date)   
         self.Escape_Velocity_Rate = self.Escape_Velocity / self.Total_Count_Stories_Worked_On
 
     def copy_group_data(self, other):
@@ -213,6 +211,7 @@ class kpi_month:
     async def acquire_pre_data(self):
         self.create_id_list()
 
+    @simpleDebug
     async def calculate_kpis(self):
         #acquire any missing data
         #sum up the values from the velocity reports
@@ -305,7 +304,6 @@ class kpi_month:
 
 #end of class..
 
-@debug
 async def get_sprint_ids_by_month(project, year, month, black_list):
         jsondata = await get_sprint_list(project)
         sprints = jsondata['sprints']

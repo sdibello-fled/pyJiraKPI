@@ -33,7 +33,6 @@ async def main(p_month, p_year):
 
         year = p_year
         mon = p_month
-        debugFlag = False
         trackedProjects = []
         trackedProjects.append({ 'project':'HCMAT', 'view':'588', 'teams':2 })
         trackedProjects.append({ 'project':'FC', 'view':'464', 'teams':2 })
@@ -49,17 +48,17 @@ async def main(p_month, p_year):
                 sprint_id_list = await kpi_month.get_sprint_ids_by_month(proj['project'], year, mon, sprint_black_list) 
 
                 #loading all the velocity reports
-                all_sprints_month = kpi_month.kpi_month(proj['project'], year, mon, proj['teams'], None, debugFlag)
+                all_sprints_month = kpi_month.kpi_month(proj['project'], year, mon, proj['teams'], None)
                 for id in sprint_id_list:
-                   veloReport = jira_velocity_report(debugFlag)
+                   veloReport = jira_velocity_report()
                    raw_velocity = await veloReport.get_sprint_velocity_report(os.environ.get('JIRA_USER'), os.environ.get('JIRA_API_KEY'), id, proj['view'])
                    velocity = await veloReport.velocity_report_parse(raw_velocity)
                    #await printVelocity(velocity)
                    all_sprints_month.velocity_reports.append(velocity)
 
                 # filter the velocity reports
-                us_team = kpi_month.kpi_month(proj['project'], year, mon, proj['teams'], "",  debugFlag)
-                noida_team = kpi_month.kpi_month(proj['project'], year, mon, proj['teams'], "GL", debugFlag)
+                us_team = kpi_month.kpi_month(proj['project'], year, mon, proj['teams'], "")
+                noida_team = kpi_month.kpi_month(proj['project'], year, mon, proj['teams'], "GL")
                 for v1 in all_sprints_month.velocity_reports:
                         if 'US ' in v1.name: 
                                us_team.velocity_reports.append(v1)

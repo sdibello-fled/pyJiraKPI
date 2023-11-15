@@ -39,13 +39,7 @@ class jira_velocity_report:
     isoEndDate = ""
     isoCompleteDate = ""
     daysRemaining = 0
-    debugFlag = False
-
-    def __init__(self, debugFlag): 
-        # constructor
-        debugFlag = debugFlag
-        
-
+      
     def calculate(self):
         #ability to estimate - beginning value / ending value.
         for issue in self.completedIssues:
@@ -64,12 +58,9 @@ class jira_velocity_report:
         self.kpi_abilityToEstimate = np.sum(self.abilityToEstimateValues) / len(self.abilityToEstimateValues)
 
 
-
     async def get_sprint_velocity_report(self, jira_user, jira_api_key, id, view):        
             auth = aiohttp.BasicAuth(login = jira_user, password = jira_api_key)
             url = f'https://frontlinetechnologies.atlassian.net/rest/greenhopper/1.0/rapid/charts/sprintreport?rapidViewId={view}&sprintId={id}'
-            if (self.debugFlag == True):
-                print(url)
             async with aiohttp.ClientSession(auth=auth) as session:
                     raw = await session.get(url)
                     response = await raw.text()

@@ -20,7 +20,6 @@ class kpi_bug_status_store:
     total_bugs_resolved_last4 = 0
     total_bugs_resolved_last1 = 0
     total_bugs_unresolved = 0
-    debug = False
 
 
 ### massive call here, use carefully
@@ -178,7 +177,6 @@ async def main():
 
         # set to how many overall team do work, needed to calculate last four sprints
         data.teams = 2
-        data.debug = False
         # dates reversed, start date is today, or the start date, end date is going back in time.                  
         now = datetime.today()
         enddate = now + timedelta(days=-70)

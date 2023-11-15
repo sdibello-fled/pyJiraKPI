@@ -17,13 +17,8 @@ class jira_ticket_store:
     severity = ""
     raw = ""
     storyPoints = ""
-    debugFlag = False
     sprintID = ""
     sprintName = ""
-
-    def __init__(self, debugFlag): 
-        # constructor
-        self.debugFlag = debugFlag
 
     def set_raw(self, data):
         self.raw = data
@@ -39,8 +34,6 @@ class jira_ticket_store:
 
         if self.raw['fields']['priority'] != None:
             value = str(self.raw['fields']['priority']['name'])
-            if self.debugFlag == True:
-                print( f'{self.id}, Priority -> {value}')
             self.priority = value            
 
         return value
@@ -51,8 +44,6 @@ class jira_ticket_store:
             if self.raw['fields']['customfield_13760'] != None:
                 if self.raw['fields']['customfield_13760']['value'] != None:
                     value = self.raw['fields']['customfield_13760']['value']
-                if self.debugFlag == True:
-                    print( f'{self.id}, Severity -> {value}')
         self.severity = value
         return value
     
@@ -96,8 +87,6 @@ class jira_ticket_store:
         if 'customfield_10021' in self.raw['fields']:
             if self.raw['fields']['customfield_10021'] != None:
                 value = self.raw['fields']['customfield_10021']
-                if self.debugFlag == True:
-                    print( f'{self.id}, Story Points -> {value}')
         self.storyPoints = value
         return value
 
@@ -106,19 +95,17 @@ class jira_ticket_store:
         if 'parent' in self.raw['fields']:
             if self.raw['fields']['parent']['key'] != None:
                 value = self.raw['fields']['parent']['key']
-            if self.debugFlag == True:
-                print( f'{self.id}, pareny -> {value}')
         self.parent_key = value
         return value
 
 
 
 # helper function to help parse out the api response.
-def parse_jira_api_response(data, debugFlag):
-    items = jira_ticket_store(debugFlag)
+def parse_jira_api_response(data):
+    items = jira_ticket_store()
     items = []
     for item in data:
-        ticket = parse_issue_type(item, debugFlag)
+        ticket = parse_issue_type(item)
         items.append(ticket)
     
     return items
@@ -156,7 +143,7 @@ def count_by_type(data):
 
 
 # gives you back a tuple with the count of the priority of all the tickes in data
-def count_priority(data, debugFlag):
+def count_priority(data):
     highest = 0
     high = 0
     medium = 0
@@ -172,8 +159,6 @@ def count_priority(data, debugFlag):
         if ticket['fields']['priority'] != None:
             value = str(ticket['fields']['priority']['name'])
             id = ticket['key']
-            if debugFlag == True:
-                print( f'{id}, -> {value}')
             if value in  memory_list:
                 memory_list[value] = int(memory_list[value]) + 1
             else:
@@ -199,22 +184,19 @@ def count_priority(data, debugFlag):
     else:
         low = 0
     
-    if debugFlag == True:
-        print(f'{highest} - {high} - {medium} - {low}')
-
     return highest, high, medium, low
 
-def parse_only_date_information(response, debugFlag):
+def parse_only_date_information(response):
     issuetype = ""
-    jira = jira_ticket_store(debugFlag)
+    jira = jira_ticket_store()
     jira.key = response['key']
     jira.lastUpdated = response['fields']['updated']
     jira.createdDate = response['fields']['created']
     return jira    
 
-def parse_issue_type(response, debugFlag):
+def parse_issue_type(response):
     issuetype = ""
-    jira = jira_ticket_store(debugFlag)
+    jira = jira_ticket_store()
     jira.key = response['key']
     jira.issuetype = response['fields']['issuetype']['name']
     jira.priority = response['fields']['priority']['name']

@@ -19,14 +19,14 @@ async def main():
             storyPoints = 0
             fullCount = 0
             emptyCount = 0
-            data = await kpi_query.get_monthly_tickets_by_worklog(project, user["actorUser"]["accountId"], -6, None, False)
+            data = await kpi_query.get_monthly_tickets_by_worklog(project, user["actorUser"]["accountId"], -6, None)
             # pull the list with logged work        
             for issue in data['issues']:
                 key = issue['key'] 
                 issues.append(key)
             
             # get all the work in one statement 
-            tickets_worked_on = await kpi_query.get_mutiple_keys(issues, False)
+            tickets_worked_on = await kpi_query.get_mutiple_keys(issues)
 
             # get the story points worked on.
             if tickets_worked_on != None:

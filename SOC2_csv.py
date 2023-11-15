@@ -12,7 +12,6 @@ async def main():
         load_dotenv()
         year = 2022
         mon = 3
-        debugFlag = False
         trackedProjects = []
         issues = []
         tickets = []
@@ -28,12 +27,12 @@ async def main():
             data = []
             issues = []
             projectName = proj['project']
-            data = await kpi_query.get_all_soc2_stories(projectName, '2023-03-01', '2023-03-31', False)
+            data = await kpi_query.get_all_soc2_stories(projectName, '2023-03-01', '2023-03-31')
             # go through the list of responeses ( need to pull issues from each one.)
             print ("Data Acquired")
 
             for issue in data['issues']:
-                tickets.append(jira_ticket.parse_issue_type(issue, False))
+                tickets.append(jira_ticket.parse_issue_type(issue))
         
             rows = []
             row = ['Ticket Key', 'Issue Type', 'Priority', 'Summary',  'Ticket Id', 'Status', 'last updated', 'created', 'assignee']

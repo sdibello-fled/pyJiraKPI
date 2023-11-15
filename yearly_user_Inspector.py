@@ -16,7 +16,7 @@ def process(data):
     ticket_list = []
     #for response in data:
     for i in data['issues']:
-        ticket = jira_ticket.jira_ticket_store(False)
+        ticket = jira_ticket.jira_ticket_store()
         key = ticket.set_raw (i)
         #priority = ticket.parse_item_priority()
         #severity = ticket.parse_item_severity()
@@ -49,8 +49,7 @@ def project_rollup(project):
 
 async def main():       
     load_dotenv()
-    debug = False
-    data = await pull_user_touched_tickets(debug, 'FC', '557058:c1e2242a-4e62-4054-a2cb-91f416b60317', -1 )
+    data = await pull_user_touched_tickets('FC', '557058:c1e2242a-4e62-4054-a2cb-91f416b60317', -1 )
     process(data)
 
 
