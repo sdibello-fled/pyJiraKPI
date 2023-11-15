@@ -3,8 +3,10 @@ import aiohttp
 import os
 import datetime as dt
 import calendar
+from functools import wraps
 from . import kpi_query 
 import numpy as np  
+from utils.wrappers import debug
 
 # Utility 
 class count_by_severity:
@@ -303,6 +305,7 @@ class kpi_month:
 
 #end of class..
 
+@debug
 async def get_sprint_ids_by_month(project, year, month, black_list):
         jsondata = await get_sprint_list(project)
         sprints = jsondata['sprints']

@@ -118,4 +118,4 @@ async def main(p_month, p_year):
 
 if __name__ == '__main__':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-        asyncio.run(main(9, 2023))
+        asyncio.run(main(10, 2023))
