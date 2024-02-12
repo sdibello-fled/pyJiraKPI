@@ -9,7 +9,9 @@ from utils.wrappers import simpleDebug
 #added "clones" check, as noida was cloning items multiple times to keep things up to date
 @simpleDebug
 async def get_escape_velocity(project, start_date, end_date):
-        jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type = "bug" and status != Canceled  and  issueLinkType not in ("Clones")'
+        ##jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type = "bug" and status != Canceled  and  issueLinkType not in ("Clones")'
+        jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type = "bug" and status != Canceled'
+        print(jql)
         return await run_generic_jql_count(jql)
 
 #get a list of all tickets that are tagged with "Cypress"
@@ -20,7 +22,7 @@ async def get_automation_tickets(project, start_date, end_date):
 
 #get the count of all items touched.
 async def get_escape_velocity_comparitor(project, start_date, end_date):
-        jql = f'project="{project}" and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" and statusCategory in ("In Progress", "Done") and type Not in (Sub-task, Test, Feature)'
+        jql = f'project="{project}" and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" and statusCategory in ("In Progress", "Done") and type Not in (Sub-task, Test, Epic)'
         return await run_generic_jql_count(jql)
 
 async def get_gherkin_format(project, sprint_id_array):
