@@ -49,9 +49,9 @@ async def main(p_month, p_year):
         year = p_year
         mon = p_month
         trackedProjects = []
-        ##trackedProjects.append({ 'project':'HCMAT', 'view':'588', 'teams':2 })
-        trackedProjects.append({ 'project':'FC', 'view':'464', 'teams':2 })
-        ##trackedProjects.append({ 'project':'MOB', 'view':'509', 'teams':1 })
+        trackedProjects.append({ 'project':'HCMAT', 'view':'588', 'teams':2 })
+        # trackedProjects.append({ 'project':'FC', 'view':'464', 'teams':2 })
+        # trackedProjects.append({ 'project':'MOB', 'view':'509', 'teams':1 })
 
         sprint_black_list = [3152]
         #TODO - haven't had to use this yet.
@@ -117,4 +117,4 @@ async def main(p_month, p_year):
 
 if __name__ == '__main__':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-        asyncio.run(main(5, 2023))
+        asyncio.run(main(1, 2024))

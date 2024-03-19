@@ -10,8 +10,6 @@ import csv
 
 async def main():
         load_dotenv()
-        year = 2022
-        mon = 3
         trackedProjects = []
         issues = []
         tickets = []
@@ -21,13 +19,14 @@ async def main():
         trackedProjects.append(hcmat)
         trackedProjects.append(fc)
         trackedProjects.append(mob)
+        
 
         print ("Start")
         for proj in trackedProjects:
             data = []
             issues = []
             projectName = proj['project']
-            data = await kpi_query.get_all_soc2_stories(projectName, '2023-03-01', '2023-03-31')
+            data = await kpi_query.get_all_soc2_stories(projectName, '2023-06-01', '2024-02-29')
             # go through the list of responeses ( need to pull issues from each one.)
             print ("Data Acquired")
 
@@ -38,7 +37,7 @@ async def main():
             row = ['Ticket Key', 'Issue Type', 'Priority', 'Summary',  'Ticket Id', 'Status', 'last updated', 'created', 'assignee']
             rows.append(row)
             for ticket in tickets:
-                row = [str(ticket.key), str(ticket.issuetype), str(ticket.priority), str(ticket.summary).replace(",", ""), str(ticket.id), str(ticket.status), str(ticket.lastUpdated), str(ticket.createdDate), str(ticket.assignee)]
+                row = [str(ticket.key).replace(u'\u200b', ''), str(ticket.issuetype).replace(u'\u200b', ''), str(ticket.priority).replace(u'\u200b', ''), str(ticket.summary).replace(",", "").replace(u'\u200b', ''), str(ticket.id).replace(u'\u200b', ''), str(ticket.status).replace(u'\u200b', ''), str(ticket.lastUpdated).replace(u'\u200b', ''), str(ticket.createdDate).replace(u'\u200b', ''), str(ticket.assignee).replace(u'\u200b', '')]
                 rows.append(row)
 
             with open (f'soc2-{projectName}.csv', 'w', newline='') as csvfile:
