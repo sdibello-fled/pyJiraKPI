@@ -83,6 +83,7 @@ async def get_yearly_tickets_by_worklog(project, user, year_start_offset, year_c
 
 async def get_all_soc2_stories(project, start_date, end_date):
     jql = f'project = "{project}" and type not in (test, feature, Sub-task)  and statusCategory = Done and status != Canceled and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" order by key'
+    print(jql)
     return await combinational_paging_manager_generic_jql(jql)
 
 async def get_all_backlog_stories(project):

@@ -49,8 +49,8 @@ async def main(p_month, p_year):
         year = p_year
         mon = p_month
         trackedProjects = []
-        trackedProjects.append({ 'project':'HCMAT', 'view':'588', 'teams':2 })
-        # trackedProjects.append({ 'project':'FC', 'view':'464', 'teams':2 })
+        # trackedProjects.append({ 'project':'HCMAT', 'view':'588', 'teams':2 })
+        trackedProjects.append({ 'project':'FC', 'view':'464', 'teams':2 })
         # trackedProjects.append({ 'project':'MOB', 'view':'509', 'teams':1 })
 
         sprint_black_list = [3152]
