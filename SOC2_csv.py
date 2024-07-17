@@ -26,7 +26,7 @@ async def main():
             data = []
             issues = []
             projectName = proj['project']
-            data = await kpi_query.get_all_soc2_stories(projectName, '2023-06-01', '2024-02-29')
+            data = await kpi_query.get_all_soc2_stories(projectName, '2023-06-01', '2024-06-01')
             # go through the list of responeses ( need to pull issues from each one.)
             print ("Data Acquired")
 

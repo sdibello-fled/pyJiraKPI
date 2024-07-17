@@ -77,7 +77,7 @@ async def main(startdate, enddate):
             if len(filter_whitelist) > 0:
                 if name_key not in filter_whitelist:
                      continue
-            data = await kpi_query.get_monthly_user_udpated(project, name_key, startdate, enddate, False)
+            data = await kpi_query.get_dtwindow_user_udpated(project, name_key, startdate, enddate, False)
 
             # pull the list with logged work
             if data:

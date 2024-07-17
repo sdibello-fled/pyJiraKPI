@@ -45,7 +45,8 @@ async def get_all_stories(project, sprint_id_array):
         jql = f'project = "{project}" AND Sprint in  ({list_of_ids}) AND  type = "Story" and (summary !~ "\\[Defect\\]" or summary !~ "\\[QA\\]" or summary !~ "\\[Stage\\]")'
         return await run_generic_jql_count(jql)
 
-async def get_monthly_user_udpated(project, user, start_date, end_date):
+# gvien a month
+async def get_dtwindow_user_udpated(project, user, start_date, end_date):
     # issuekey in updatedBy(jgeer, "2023/06/19", "2023/06/30") 
     jql = f'project = {project} AND issuekey in updatedBy({user}, "{start_date}", "{end_date}")'
     try:
@@ -56,13 +57,24 @@ async def get_monthly_user_udpated(project, user, start_date, end_date):
 
     return data 
 
-async def get_monthly_tickets_by_worklog(project, user, month_start_offset, month_count):
+async def get_monthly_tickets_by_selection(project, user, month_start_offset, month_count):
     if month_count is None:
-        jql = f'project = {project} AND ( assignee was in ("{user}") OR status changed by "{user}" OR  reporter was in ("{user}"))  AND statusCategory = Done AND ( statusCategoryChangedDate >= startOfMonth({month_start_offset}) OR worklogDate >= startOfMonth({month_start_offset}) )'
+        #jql = f'project = {project} AND ( assignee was in ("{user}") OR status changed by "{user}" OR  reporter was in ("{user}"))  AND statusCategory = Done AND ( statusCategoryChangedDate >= startOfMonth({month_start_offset})  )'
+        jql = f'project = {project} AND assignee was in ("{user}")  AND statusCategory = Done AND ( statusCategoryChangedDate >= startOfMonth({month_start_offset})  )'
     else:
         month_end = month_start_offset + month_count
         jql = f'project = {project} AND ( assignee was in ("{user}") OR status changed by "{user}" OR  reporter was in ("{user}"))  AND statusCategory = Done AND statusCategoryChangedDate >= startOfMonth({month_start_offset}) and statusCategoryChangedDate <= endOfMonth({month_end})'
         
+    print(jql)
+    return await combinational_paging_manager_generic_jql(jql)
+
+async def get_monthly_tickets_by_updatedBy(project, user, start_date, end_date):
+    if end_date is None:
+        jql = f'project = {project} AND issuekey in updatedBy({user}, "{start_date}")'
+    else:
+        jql = f'project = {project} AND issuekey in updatedBy({user}, "{start_date}", "{end_date}")'
+        
+    print(jql)
     return await combinational_paging_manager_generic_jql(jql)
 
 async def get_mutiple_keys(key_list):
@@ -70,6 +82,15 @@ async def get_mutiple_keys(key_list):
         return None
     key_string = ','.join(key_list)
     jql = f'key in ({key_string})'
+    return await combinational_paging_manager_generic_jql(jql)
+
+async def get_monthly_tickets_by_worklog(project, user, month_start_offset, month_count):
+    if month_count is None:
+        jql = f'project = "{project}" and worklogAuthor = {user} AND worklogDate >= startOfMonth({month_start_offset}) and type not in (Sub-Task)'
+    else:
+        year_end = month_start_offset + month_count
+        jql = f'project = "{project}" and worklogAuthor = {user} AND worklogDate >= startOfMonth({month_start_offset}) AND worklogDate <= endOfMonth({month_count}) and type not in (Sub-Task)'
+        
     return await combinational_paging_manager_generic_jql(jql)
 
 async def get_yearly_tickets_by_worklog(project, user, year_start_offset, year_count):
