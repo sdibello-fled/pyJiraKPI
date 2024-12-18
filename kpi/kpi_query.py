@@ -184,6 +184,17 @@ async def run_specific_url_count(url):
      
     return response["total"]        
 
+async def run_issue_by_key_expanded(key: str, expand: str):
+    auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
+    url = f'https://frontlinetechnologies.atlassian.net/rest/api/3/issue/{key}?expand={expand}'
+  
+    async with aiohttp.ClientSession(auth=auth) as session:
+        raw = await session.get(url.replace('\\','\\\\'))
+        response = await raw.text()
+        response = json.loads(response)
+    
+    return response
+
 async def run_issue_by_key(key):
     auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
     url = f'https://frontlinetechnologies.atlassian.net/rest/api/3/issue/{key}'
