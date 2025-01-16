@@ -94,10 +94,12 @@ async def main(jql: str, filename: str) -> None:
 if __name__ == '__main__':
     ## eveything created by Zendesk
     ##jql = 'Project = HCMAT and creator = 557058:a01b4872-0086-4bc3-903e-23f26637afa2 and createdDate >= endOfMonth(-3)'   
-    
+    jql = 'Project = HCMAT and type in (Bug, "Support Request", "Support Defect") and statusCategory != Done'
+
+
     ## everything created by Zendesk or has a Zendesk ticket count greater than 0 from the last 3 or so months.
-    jql = 'Project = HCMAT and creator = 557058:a01b4872-0086-4bc3-903e-23f26637afa2 or "Zendesk Ticket Count[Number]" > 0 and createdDate >= startOfMonth(-3)'
+    ##jql = 'Project = HCMAT and creator = 557058:a01b4872-0086-4bc3-903e-23f26637afa2 or "Zendesk Ticket Count[Number]" > 0 and createdDate >= startOfMonth(-3)'
     ##jql = 'key = "HCMAT-63032"'
-    file = 'C:\\data\\PyData1.xlsx'
+    file = 'C:\\data\\2025Goals.xlsx'
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     asyncio.run(main(jql, file))

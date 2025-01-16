@@ -12,6 +12,8 @@ from art import *
 def removeCommonWords(name_list):
         com=[]
         removed = ""
+        if len(name_list) < 2:
+                return removed, '', ''
         sent1=list(name_list[0].split())
         sent2=list(name_list[1].split())
         sent_org=list(name_list[0].split())
@@ -117,5 +119,5 @@ async def main(p_month, p_year):
 
 if __name__ == '__main__':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-        asyncio.run(main(11, 2024))
+        asyncio.run(main(12, 2024))
 
