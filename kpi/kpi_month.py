@@ -31,6 +31,7 @@ class kpi_month:
         #kpis from spreadsheet
         self.velocity_reports = []
         self.Escape_Velocity = 0
+        self.Escape_Velocity_HCMCS = 0
         self.Escape_Velocity_Rate = 0
         self.First_Time_Right = 0
 
@@ -189,24 +190,26 @@ class kpi_month:
     async def acquire_group_data(self):
         self.create_id_list()
         self.Escape_Velocity = await kpi_query.get_escape_velocity(self.project, self.start_date, self.end_date)
-        self.Number_Stories_Gherkin_Format = await kpi_query.get_gherkin_format(self.project, self.sprint_id_list)
-        self.Number_of_Stories = await kpi_query.get_all_stories(self.project, self.sprint_id_list)
-        self.Gherkin_Story_Rate = self.Number_Stories_Gherkin_Format / self.Number_of_Stories
+        self.Escape_Velocity_HCMCS = await kpi_query.get_escape_velocity_HCMCS(self.start_date, self.end_date)
+        ##self.Number_Stories_Gherkin_Format = await kpi_query.get_gherkin_format(self.project, self.sprint_id_list)
+        ##self.Number_of_Stories = await kpi_query.get_all_stories(self.project, self.sprint_id_list)
+        ##self.Gherkin_Story_Rate = self.Number_Stories_Gherkin_Format / self.Number_of_Stories
         self.TotalBugCount = await kpi_query.get_total_bug_count(self.project)
         self.Total_Count_Stories_Worked_On = await kpi_query.get_escape_velocity_comparitor(self.project, self.start_date, self.end_date)    
-        self.Test_Automation_Tickets = await kpi_query.get_automation_tickets(self.project, self.start_date, self.end_date)   
+        ##self.Test_Automation_Tickets = await kpi_query.get_automation_tickets(self.project, self.start_date, self.end_date)   
         self.Escape_Velocity_Rate = self.Escape_Velocity / self.Total_Count_Stories_Worked_On
 
     def copy_group_data(self, other):
         self.Escape_Velocity = other.Escape_Velocity
-        self.Number_Stories_Gherkin_Format = other.Number_Stories_Gherkin_Format 
-        self.Number_of_Stories = other.Number_of_Stories
-        self.Gherkin_Story_Rate = other.Gherkin_Story_Rate
+        self.Escape_Velocity_HCMCS = other.Escape_Velocity_HCMCS 
+        #self.Number_Stories_Gherkin_Format = other.Number_Stories_Gherkin_Format 
+        #self.Number_of_Stories = other.Number_of_Stories
+        #self.Gherkin_Story_Rate = other.Gherkin_Story_Rate
         self.TotalBugCount = other.TotalBugCount
         self.Total_Count_Stories_Worked_On = other.Total_Count_Stories_Worked_On
         self.Escape_Velocity_Rate = other.Escape_Velocity_Rate 
-        self.Test_Automation = other.Test_Automation
-        self.Test_Automation_Tickets = other.Test_Automation_Tickets
+        #self.Test_Automation = other.Test_Automation
+        #self.Test_Automation_Tickets = other.Test_Automation_Tickets
         
     async def acquire_pre_data(self):
         self.create_id_list()
@@ -217,20 +220,20 @@ class kpi_month:
         #sum up the values from the velocity reports
         await self.acquire_pre_data()
         for vel in self.velocity_reports:
-                self.monthly_completedIssuesInitialEstimateSum =+ vel.completedIssuesInitialEstimateSum
-                self.monthly_completedIssuesEstimateSum =+ vel.completedIssuesEstimateSum
-                self.monthly_issuesNotCompletedInitialEstimateSum =+ vel.issuesNotCompletedInitialEstimateSum
-                self.monthly_issuesNotCompletedEstimateSum =+ vel.issuesNotCompletedEstimateSum
-                self.monthly_allIssuesEstimateSum =+ vel.allIssuesEstimateSum 
-                self.monthly_puntedIssuesInitialEstimateSum =+ vel.puntedIssuesInitialEstimateSum
-                self.monthly_puntedIssuesEstimateSum =+ vel.puntedIssuesEstimateSum
-                self.monthly_issuesCompletedInAnotherSprintInitialEstimateSum =+ vel.issuesCompletedInAnotherSprintInitialEstimateSum
-                self.monthly_issuesCompletedInAnotherSprintEstimateSum =+ vel.issuesCompletedInAnotherSprintEstimateSum
-                self.monthly_count_completedIssues =+ len(vel.completedIssues)
-                self.monthly_count_issuesNotCompletedInCurrentSprint =+ len(vel.issuesNotCompletedInCurrentSprint)
-                self.monthly_count_puntedIssues =+ len(vel.puntedIssues)
-                self.monthly_count_issuesCompletedInAnotherSprint =+ len(vel.issuesCompletedInAnotherSprint)
-                self.monthly_count_issueKeysAddedDuringSprint =+ len(vel.issueKeysAddedDuringSprint)
+                self.monthly_completedIssuesInitialEstimateSum += vel.completedIssuesInitialEstimateSum
+                self.monthly_completedIssuesEstimateSum += vel.completedIssuesEstimateSum
+                self.monthly_issuesNotCompletedInitialEstimateSum += vel.issuesNotCompletedInitialEstimateSum
+                self.monthly_issuesNotCompletedEstimateSum += vel.issuesNotCompletedEstimateSum
+                self.monthly_allIssuesEstimateSum += vel.allIssuesEstimateSum 
+                self.monthly_puntedIssuesInitialEstimateSum += vel.puntedIssuesInitialEstimateSum
+                self.monthly_puntedIssuesEstimateSum += vel.puntedIssuesEstimateSum
+                self.monthly_issuesCompletedInAnotherSprintInitialEstimateSum += vel.issuesCompletedInAnotherSprintInitialEstimateSum
+                self.monthly_issuesCompletedInAnotherSprintEstimateSum += vel.issuesCompletedInAnotherSprintEstimateSum
+                self.monthly_count_completedIssues += len(vel.completedIssues)
+                self.monthly_count_issuesNotCompletedInCurrentSprint += len(vel.issuesNotCompletedInCurrentSprint)
+                self.monthly_count_puntedIssues += len(vel.puntedIssues)
+                self.monthly_count_issuesCompletedInAnotherSprint += len(vel.issuesCompletedInAnotherSprint)
+                self.monthly_count_issueKeysAddedDuringSprint += len(vel.issueKeysAddedDuringSprint)
                 self.abilityToEstimateValue.append(vel.kpi_abilityToEstimate)
         
         #Mobile doesn't have a US / Noida team combination
@@ -239,15 +242,15 @@ class kpi_month:
         else:
             self.Velocity = self.monthly_completedIssuesEstimateSum / (len(self.velocity_reports)/self.team_count)
 
-        self.overall_velocity =+ self.Velocity
+        self.overall_velocity += self.Velocity
         
-        self.calculate_first_time_right()
+        #self.calculate_first_time_right()
         self.calculate_sprint_churn()
-        await self.calculate_sprint_readiness()
-        await self.calculate_tech_debt()
+        #await self.calculate_sprint_readiness()
+        #await self.calculate_tech_debt()
         self.calculate_sprint_completion_rate()
         self.calculate_sprint_readiness_ratio()
-        self.calculate_tech_debt_ratio()
+        #self.calculate_tech_debt_ratio()
         self.calculate_automation()
         self.monthly_calc_abilityToEstimate = np.average(self.abilityToEstimateValue)
         self.CreatedSupportTicketsDuringSprints = await self.calculate_created_support_tickets()
@@ -277,23 +280,23 @@ class kpi_month:
         print("....")
         print(f"Team Velocity = {self.Velocity}")
         #print("Escape_Velocity = " + str(self.Escape_Velocity))
-        print(f"Escape_Velocity Rate = {self.Escape_Velocity_Rate:.4f} ({self.Escape_Velocity} / {self.Total_Count_Stories_Worked_On})")
-        print(f"First Time Right Percent = {self.First_Time_Right:.4f} ({self.monthly_completedIssuesInitialEstimateSum:.2f}/{self.monthly_completedIssuesEstimateSum:.2f})")
+        print(f"Escape_Velocity Rate = {self.Escape_Velocity_Rate:.4f} (({self.Escape_Velocity}+{self.Escape_Velocity_HCMCS}) / {self.Total_Count_Stories_Worked_On})")
+        #print(f"First Time Right Percent = {self.First_Time_Right:.4f} ({self.monthly_completedIssuesInitialEstimateSum:.2f}/{self.monthly_completedIssuesEstimateSum:.2f})")
         #print("Meetings Overhead = " )
-        print(f"# in Gherkin Format = {self.Number_Stories_Gherkin_Format}")
-        print(f"Number of Stories (minus regression) = {self.Number_of_Stories}")
-        print(f"Gherkin Format KPI = {self.Gherkin_Story_Rate:.4f}")
+        #print(f"# in Gherkin Format = {self.Number_Stories_Gherkin_Format}")
+        #print(f"Number of Stories (minus regression) = {self.Number_of_Stories}")
+        #print(f"Gherkin Format KPI = {self.Gherkin_Story_Rate:.4f}")
         #print("Release Delivery = " )
         #print("Release on Time = " )
         print(f"Sprint Churn = {self.Sprint_Churn:.4f}")
         print(f"Sprint Completion Rate = {self.Sprint_Completion_Rate:.4f}  ({self.monthly_completedIssuesEstimateSum:.2f} / {self.monthly_completedIssuesInitialEstimateSum:.2f}")
-        print(f"Spread Readiness = {self.Sprint_Readiness}")
-        print(f"Spread Readiness Ratio = {self.Sprint_Readiness_Ratio:.4f}")
-        print(f"Tech Debt Paydown (SP) = {self.Tech_Debt_Paydown}")
-        print(f"Tech Debt Paydown Ratio = {self.Tech_Debt_Paydown_Ratio}")
+        #print(f"Spread Readiness = {self.Sprint_Readiness}")
+        #print(f"Spread Readiness Ratio = {self.Sprint_Readiness_Ratio:.4f}")
+        #print(f"Tech Debt Paydown (SP) = {self.Tech_Debt_Paydown}")
+        #print(f"Tech Debt Paydown Ratio = {self.Tech_Debt_Paydown_Ratio}")
         print(f"Ability To Estimate = {self.monthly_calc_abilityToEstimate:.4f}" )
         #print("Testability = " )
-        print("Automation Tickets = " + str(self.Test_Automation))
+        #print("Automation Tickets = " + str(self.Test_Automation))
         print("Total Bug Count = " + str(self.TotalBugCount))
         print(f"Created Support Tickets = total={self.CreatedSupportTicketsDuringSprints[0]}   ->  {self.CreatedSupportTicketsDuringSprints[1]}:{self.CreatedSupportTicketsDuringSprints[2]}:{self.CreatedSupportTicketsDuringSprints[3]}:{self.CreatedSupportTicketsDuringSprints[4]}")
         print(f"Completed Support Tickets = total={self.CompletedSupportTicketsDuringSprints[0]}   ->  {self.CompletedSupportTicketsDuringSprints[1]}:{self.CompletedSupportTicketsDuringSprints[2]}:{self.CompletedSupportTicketsDuringSprints[3]}:{self.CompletedSupportTicketsDuringSprints[4]}") 

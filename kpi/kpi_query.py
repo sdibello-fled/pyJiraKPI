@@ -14,6 +14,13 @@ async def get_escape_velocity(project, start_date, end_date):
         print(jql)
         return await run_generic_jql_count(jql)
 
+async def get_escape_velocity_HCMCS(start_date, end_date):
+        ##jql = f'project=HCM and createdDate >= "{start_date}" and createdDate < "{end_date}" and type = "bug" and status != Canceled  and  issueLinkType not in ("Clones")'
+        jql = f'project = HCMCS AND type = "Support Defect" AND "Zendesk Brand[Short text]" ~ "Frontline Absence Management"  and createdDate >= "{start_date}" and createdDate < "{end_date}"'
+        ##jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type = "bug" and status != Canceled'
+        print(jql)
+        return await run_generic_jql_count(jql)
+
 #get a list of all tickets that are tagged with "Cypress"
 async def get_automation_tickets(project, start_date, end_date):
         jql = f'project = "{project}" AND summary ~ cypress AND issuetype = Story and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" and statusCategory in ("Done") '
