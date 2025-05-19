@@ -253,8 +253,8 @@ class kpi_month:
         #self.calculate_tech_debt_ratio()
         self.calculate_automation()
         self.monthly_calc_abilityToEstimate = np.average(self.abilityToEstimateValue)
-        self.CreatedSupportTicketsDuringSprints = await self.calculate_created_support_tickets()
-        self.CompletedSupportTicketsDuringSprints = await self.calculate_completed_support_tickets()
+        #self.CreatedSupportTicketsDuringSprints = await self.calculate_created_support_tickets()
+        #self.CompletedSupportTicketsDuringSprints = await self.calculate_completed_support_tickets()
 
 
     def print_kpis(self):
