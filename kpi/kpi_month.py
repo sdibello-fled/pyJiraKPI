@@ -107,21 +107,21 @@ class kpi_month:
     # get the list of all the support tickets completed, returns tupal (total count, P1 count, P2 count, P3 count, P4 count)
     async def calculate_completed_support_tickets(self):
         counts = []
-        total_overallCount = 0
-        total_highestCount = 0
-        total_highCount = 0
-        total_mediumCount = 0
-        total_lowCount = 0
+        total_overall_count = 0
+        total_highest_count = 0
+        total_high_count = 0
+        total_medium_count = 0
+        total_low_count = 0
         data = await kpi_query.get_completed_support_defects(self.project, self.start_date, self.end_date )
         counts.append(self.parse_out_all_bugs(data))
         for count in counts:
-            total_overallCount =+ count[0]
-            total_highestCount =+ count[1]
-            total_highCount =+ count[2]
-            total_mediumCount =+ count[3]
-            total_lowCount =+ count[4]
+            total_overall_count += count[0]
+            total_highest_count += count[1]
+            total_high_count += count[2]
+            total_medium_count += count[3]
+            total_low_count += count[4]
 
-        tupCounts = (total_overallCount, total_highestCount, total_highCount, total_mediumCount, total_lowCount)
+        tupCounts = (total_overall_count, total_highest_count, total_high_count, total_medium_count, total_low_count)
         return tupCounts
 
     # get the list of all the support tickets created, returns tupal (total count, P1 count, P2 count, P3 count, P4 count)
@@ -129,44 +129,44 @@ class kpi_month:
     #TODO - refactor this with calculate_completed_support_tickets
     async def calculate_created_support_tickets(self):
         counts = []
-        total_overallCount = 0
-        total_highestCount = 0
-        total_highCount = 0
-        total_mediumCount = 0
-        total_lowCount = 0
+        total_overall_count = 0
+        total_highest_count = 0
+        total_high_count = 0
+        total_medium_count = 0
+        total_low_count = 0
         data = await kpi_query.get_created_support_defects(self.project, self.start_date, self.end_date )
         counts.append(self.parse_out_all_bugs(data))
         for count in counts:
-            total_overallCount =+ count[0]
-            total_highestCount =+ count[1]
-            total_highCount =+ count[2]
-            total_mediumCount =+ count[3]
-            total_lowCount =+ count[4]
+            total_overall_count += count[0]
+            total_highest_count += count[1]
+            total_high_count += count[2]
+            total_medium_count += count[3]
+            total_low_count += count[4]
 
-        tupCounts = (total_overallCount, total_highestCount, total_highCount, total_mediumCount, total_lowCount)
+        tupCounts = (total_overall_count, total_highest_count, total_high_count, total_medium_count, total_low_count)
         return tupCounts
         
     #API call save - instead of doing these as individual calls, just parse the json of a set of records and calculate.
     def parse_out_all_bugs(self, data):
-        overallCount = 0
-        highestCount = 0
-        highCount = 0
-        mediumCount = 0
-        lowCount = 0
+        overall_count = 0
+        highest_count = 0
+        high_count = 0
+        medium_count = 0
+        low_count = 0
         for i in data['issues']:
-            overallCount += 1
+            overall_count += 1
             if 'priority' in i['fields']:
                 if i['fields']['priority'] != None:
                     if i['fields']['priority']['name'] == "P2 - High":
-                        highCount += 1
+                        high_count += 1
                     elif i['fields']['priority']['name'] == "P1 - Highest":
-                        highestCount += 1
+                        highest_count += 1
                     elif i['fields']['priority']['name'] == "P3 - Medium":
-                        mediumCount += 1
+                        medium_count += 1
                     elif i['fields']['priority']['name'] == "P4 - Lowest":
-                        lowCount += 1
+                        low_count += 1
 
-        tuple1 = (overallCount, highestCount, highCount, mediumCount, lowCount)
+        tuple1 = (overall_count, highest_count, high_count, medium_count, low_count)
         return tuple1
 
     async def calculate_tech_debt(self):
@@ -298,8 +298,8 @@ class kpi_month:
         #print("Testability = " )
         #print("Automation Tickets = " + str(self.Test_Automation))
         print("Total Bug Count = " + str(self.TotalBugCount))
-        print(f"Created Support Tickets = total={self.CreatedSupportTicketsDuringSprints[0]}   ->  {self.CreatedSupportTicketsDuringSprints[1]}:{self.CreatedSupportTicketsDuringSprints[2]}:{self.CreatedSupportTicketsDuringSprints[3]}:{self.CreatedSupportTicketsDuringSprints[4]}")
-        print(f"Completed Support Tickets = total={self.CompletedSupportTicketsDuringSprints[0]}   ->  {self.CompletedSupportTicketsDuringSprints[1]}:{self.CompletedSupportTicketsDuringSprints[2]}:{self.CompletedSupportTicketsDuringSprints[3]}:{self.CompletedSupportTicketsDuringSprints[4]}") 
+        #print(f"Created Support Tickets = total={self.CreatedSupportTicketsDuringSprints[0]}   ->  {self.CreatedSupportTicketsDuringSprints[1]}:{self.CreatedSupportTicketsDuringSprints[2]}:{self.CreatedSupportTicketsDuringSprints[3]}:{self.CreatedSupportTicketsDuringSprints[4]}")
+        #print(f"Completed Support Tickets = total={self.CompletedSupportTicketsDuringSprints[0]}   ->  {self.CompletedSupportTicketsDuringSprints[1]}:{self.CompletedSupportTicketsDuringSprints[2]}:{self.CompletedSupportTicketsDuringSprints[3]}:{self.CompletedSupportTicketsDuringSprints[4]}") 
         print("=========================================")
 
     def calculate_first_time_right(self):
