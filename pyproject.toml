@@ -1,0 +1,12 @@
+[project]
+name = "pyjirakpi"
+version = "0.1.0"
+description = "A Python tool to help calculate KPIs for Frontline Education HCM"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "art>=6.5",
+    "numpy>=2.3.1",
+    "openpyxl>=3.1.5",
+    "python-dotenv>=1.1.1",
+]

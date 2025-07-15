@@ -111,7 +111,6 @@ def parse_jira_api_response(data):
     return items
 
 # Story POints customfield_10021 in FC, not in HCMAT
-
 def sum_points(data):
     count = 0
     empty = 0

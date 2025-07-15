@@ -49,7 +49,7 @@ def project_rollup(project):
 
 async def main():       
     load_dotenv()
-    data = await pull_user_touched_tickets('FC', '557058:c1e2242a-4e62-4054-a2cb-91f416b60317', -1 )
+    data = await pull_user_touched_tickets('HCMAT', '712020:18104bf1-c9b7-492c-90b3-ab2bb0c69091' )
     process(data)
 
 
