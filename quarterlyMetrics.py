@@ -37,7 +37,7 @@ async def get_all_subtasks():
     
     for parent_key in quarterly_work:
         # Get subtasks for each parent
-        jql = f'parent = "{parent_key}"'
+        jql = f'parent = "{parent_key}" and statusCategory != Done'
         try:
             result = await combinational_paging_manager_generic_jql(jql, 100, 0)
             if result and 'issues' in result:
