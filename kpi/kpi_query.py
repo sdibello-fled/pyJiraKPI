@@ -174,11 +174,12 @@ async def pull_user_touched_tickets(project, user_guid, year_offset = 0):
 
     year = str(year_offset)
     jql_unlimited = f'project = {project} and ( worklogAuthor = {user_guid} or commentedBy = {user_guid} or assignee = {user_guid})  and not type = Sub-task order by statusCategoryChangedDate desc'
-    #jql_limited = f'project = {project} and statusCategoryChangedDate > startOfYear({year}) and statusCategoryChangedDate < endOfYear({year}) and ( worklogAuthor = {user_guid} or commentedBy = {user_guid} or assignee = {user_guid})  and not type = Sub-task order by statusCategoryChangedDate desc'
     jql_limited = f'project = {project} and statusCategoryChangedDate > startOfYear({year}) and statusCategoryChangedDate < endOfYear({year}) and ( worklogAuthor = {user_guid} or assignee = {user_guid})  and type = Sub-task order by statusCategoryChangedDate desc'
     if year_offset != 0:
+        print(jql_limited)
         return await combinational_paging_manager_generic_jql(jql_limited)
     else:
+        print(jql_unlimited)
         return await combinational_paging_manager_generic_jql(jql_unlimited)
 
 async def run_specific_url_count(url):

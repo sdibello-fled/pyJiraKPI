@@ -10,41 +10,51 @@ jira_prisev = namedtuple('JiraKey', ['project', 'severity', 'priority'])
 
 # this will list all tickets touched by a user 
 
+def create_chunks(lst, n):
+    for i in range(0, len(lst), n):
+        yield lst[i:i + n]
+
+def split_list(input_list, size):
+    return [input_list[i:i + size] for i in range(0, len(input_list), size)]
+
+def combine_lists(list_of_lists):
+    return [item for sublist in list_of_lists for item in sublist]
+
+def shorten_name(full_name):
+    parts = full_name.split()
+    if len(parts) > 1:
+        return f'{parts[0][0]}{parts[-1]}'
+    else:
+        return full_name
 
 def process(data):
 
-    ticket_list = []
-    #for response in data:
-    for i in data['issues']:
-        ticket = jira_ticket.jira_ticket_store()
-        key = ticket.set_raw (i)
-        #priority = ticket.parse_item_priority()
-        #severity = ticket.parse_item_severity()
-        print(f'{key}')
-        #ticket_list.append(ticket)
+    issues_list = []
+    chunks = []
+    tickets_worked_on = []
+    story_points = 0
+    print(f"count{1}".format(len(data)))
 
-    #FC-14320
-    #tuple1 = (overallCount, bugCount, supportRequestCount)
-    return ticket_list
+    if (len(data) > 0):
+        for issue in data['issues']:
+            key = issue['key']
+            issues_list.append(key)
+    
+        chunks = split_list(issues_list, 100)
+        # get all the work in one statement 
+        for chunk in chunks:
+            ticket_data = get_mutiple_keys(chunk)
+            if (ticket_data['issues'] != []):
+                tickets_worked_on.append(ticket_data['issues'])
 
-def project_rollup(project):
-    dict = {}
-    item_list = {}
-    ticket = project[0]
-
-    for ticket in project:
-        key_tuple = jira_prisev(ticket.project, ticket.severity, ticket.priority) 
-        if tuple(key_tuple) in dict.keys():
-            dict[tuple(key_tuple)] = int(dict[tuple(key_tuple)]) + 1
-            item_list[tuple(key_tuple)] = item_list[tuple(key_tuple)] + "," + str(ticket.id) 
-        else:
-            dict[tuple(key_tuple)] = 1
-            item_list[tuple(key_tuple)] = str(ticket.id) 
-        
-    return dict, item_list
-
-# Jared - 557058:319a2b5d-0cd0-48aa-bd12-14501d0cb896
-# This lists all the tickets touched by a user in a year. 
+        tickets = combine_lists(tickets_worked_on)
+        # get the story points worked on.
+        if len(tickets_worked_on) > 0:
+            story_points, full_count, empty_count = jira_ticket.sum_points(tickets)
+            print ("{0}, {1} - points {2}, full/empty count {3}/{4}".format(user["displayName"], str(len(tickets)), story_points, full_count, empty_count))
+            for t in tickets:
+                if t['fields']['customfield_10021'] != None:
+                    print (f"\t - \t{t['key']} - {story_points}, {t['fields']['summary']}")    
 
 
 async def main():       
