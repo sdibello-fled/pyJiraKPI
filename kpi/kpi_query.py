@@ -283,31 +283,22 @@ async def run_generic_jql(jql, npt=None):
     auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
     url = f'https://frontlinetechnologies.atlassian.net/rest/api/3/search/jql'
 
-    if (npt is None):
-        payload = json.dumps( {
-        "expand": "renderedFields",
-        "fields": [
-            "*all",
-            "-comment",
-            "-attachment"
-        ],
-        "fieldsByKeys": "true",
-        "jql": jql,
-        "maxResults": 100,
-        } )
-    else:
-        payload = json.dumps( {
-        "expand": "renderedFields",
-        "fields": [
-            "*all",
-            "-comment",
-            "-attachment"
-        ],
-        "fieldsByKeys": "true",
-        "jql": jql,
-        "maxResults": 100,
-        "nextPageToken": npt
-        } )
+    payload_data =  {
+    "expand": "renderedFields",
+    "fields": [
+        "*all",
+        "-comment",
+        "-attachment"
+    ],
+    "fieldsByKeys": "true",
+    "jql": jql,
+    "maxResults": 100,
+    } 
+
+    if npt is not None:
+        payload_data["nextPageToken"] = npt
+
+    payload = json.dumps(payload_data)
 
     async with aiohttp.ClientSession(auth=auth) as session:
         raw = await session.post(url, data=payload, headers=_headers) 
