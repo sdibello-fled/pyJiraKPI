@@ -216,7 +216,7 @@ async def run_issue_by_key(key):
 
 async def run_generic_jql_count(jql):
     auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
-    url = f'https://frontlinetechnologies.atlassian.net/rest/api/3/search?jql={jql}'
+    url = f'https://frontlinetechnologies.atlassian.net/rest/api/3/search/jql?{jql}'
     
     async with aiohttp.ClientSession(auth=auth) as session:
         raw = await session.get(url.replace('\\','\\\\'))
@@ -245,24 +245,21 @@ async def paging_manager_generic_jql(jql, maxresults=100, page=0):
 
 ### takes the first request of a paging result, and adds the other "issues" results to that one.
 ### this looks more like a single result with all the issues in it - rather then a list of results that must be paged though
-async def combinational_paging_manager_generic_jql(jql, maxresults=100, page=0):
+async def combinational_paging_manager_generic_jql(jql, npt=0):
     all_issues = []
-    first_response = await run_generic_jql(jql, maxresults, page)
+    first_response = await run_generic_jql(jql, npt)
 
     # did the query run
     if "errorMessages" in first_response:
         if first_response['errorMessages'] != None:
             return None
 
-    totalPossible = first_response["total"]
-    resultCount = first_response["maxResults"]
     all_issues.extend(first_response['issues'])
-    page_num = 0
 
-    for x in range(math.ceil(totalPossible/resultCount)-1):
-        page_num = page_num + 1
-        startat = page_num * 100 + 1
-        additional_response = await run_generic_jql(jql, maxresults, startat)
+    #for x in range(math.ceil(totalPossible/resultCount)-1):
+    if first_response['isLast'] == False:
+        npt = first_response['nextPageToken']
+        additional_response = await run_generic_jql(jql, npt)
         all_issues.extend(additional_response['issues'])
 
     first_response['issues'] = all_issues
@@ -270,12 +267,39 @@ async def combinational_paging_manager_generic_jql(jql, maxresults=100, page=0):
 
 
 
-async def run_generic_jql(jql, maxresults, page):
+async def run_generic_jql(jql, npt=None):
     auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
-    url = f'https://frontlinetechnologies.atlassian.net/rest/api/3/search?maxResults={maxresults}&startAt={page}&jql={jql}'
-    
+    url = f'https://frontlinetechnologies.atlassian.net/rest/api/3/search/jql'
+
+    if (npt is None):
+        payload = json.dumps( {
+        "expand": "renderedFields",
+        "fields": [
+            "*all"
+        ],
+        "fieldsByKeys": "true",
+        "jql": jql,
+        "maxResults": 100,
+        } )
+    else:
+        payload = json.dumps( {
+        "expand": "renderedFields",
+        "fields": [
+            "*all"
+        ],
+        "fieldsByKeys": "true",
+        "jql": jql,
+        "maxResults": 100,
+        "nextPageToken": npt
+        } )
+
+    headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json"
+    }
+
     async with aiohttp.ClientSession(auth=auth) as session:
-        raw = await session.get(url)
+        raw = await session.post(url, data=payload, headers=headers) 
         response = await raw.text()
         response = json.loads(response)
     
