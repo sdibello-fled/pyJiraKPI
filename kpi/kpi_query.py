@@ -287,7 +287,9 @@ async def run_generic_jql(jql, npt=None):
         payload = json.dumps( {
         "expand": "renderedFields",
         "fields": [
-            "*all"
+            "*all",
+            "-comment",
+            "-attachment"
         ],
         "fieldsByKeys": "true",
         "jql": jql,
@@ -297,7 +299,9 @@ async def run_generic_jql(jql, npt=None):
         payload = json.dumps( {
         "expand": "renderedFields",
         "fields": [
-            "*all"
+            "*all",
+            "-comment",
+            "-attachment"
         ],
         "fieldsByKeys": "true",
         "jql": jql,
