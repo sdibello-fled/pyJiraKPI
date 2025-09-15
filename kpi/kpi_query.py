@@ -5,6 +5,11 @@ import os
 from utils.wrappers import simpleDebug
 
 
+_headers = {
+"Accept": "application/json",
+"Content-Type": "application/json"
+}
+
 #get the count of bugs.
 #added "clones" check, as noida was cloning items multiple times to keep things up to date
 @simpleDebug
@@ -214,16 +219,23 @@ async def run_issue_by_key(key):
     
     return response      
 
+
 async def run_generic_jql_count(jql):
     auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
-    url = f'https://frontlinetechnologies.atlassian.net/rest/api/3/search/jql?{jql}'
+    url = f'https://frontlinetechnologies.atlassian.net/rest//rest/api/3/search/approximate-count'
     
+    payload = json.dumps( {
+    "jql": jql,
+    } )
+
     async with aiohttp.ClientSession(auth=auth) as session:
-        raw = await session.get(url.replace('\\','\\\\'))
+        raw = await session.post(url, data=payload, headers=_headers) 
         response = await raw.text()
         response = json.loads(response)
-    
-    return response["total"]        
+
+    total = response['count']    
+
+    return total        
 
 
 async def paging_manager_generic_jql(jql, maxresults=100, page=0):
@@ -293,13 +305,8 @@ async def run_generic_jql(jql, npt=None):
         "nextPageToken": npt
         } )
 
-    headers = {
-    "Accept": "application/json",
-    "Content-Type": "application/json"
-    }
-
     async with aiohttp.ClientSession(auth=auth) as session:
-        raw = await session.post(url, data=payload, headers=headers) 
+        raw = await session.post(url, data=payload, headers=_headers) 
         response = await raw.text()
         response = json.loads(response)
     
