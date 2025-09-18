@@ -2,6 +2,7 @@ import json
 import aiohttp
 import math
 import os
+from datetime import datetime
 from utils.wrappers import simpleDebug
 
 
@@ -14,15 +15,12 @@ _headers = {
 #added "clones" check, as noida was cloning items multiple times to keep things up to date
 @simpleDebug
 async def get_escape_velocity(project, start_date, end_date):
-        ##jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type = "bug" and status != Canceled  and  issueLinkType not in ("Clones")'
         jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type = "bug" and status != Canceled'
         print(jql)
         return await run_generic_jql_count(jql)
 
 async def get_escape_velocity_HCMCS(start_date, end_date):
-        ##jql = f'project=HCM and createdDate >= "{start_date}" and createdDate < "{end_date}" and type = "bug" and status != Canceled  and  issueLinkType not in ("Clones")'
         jql = f'project = HCMCS AND type = "Support Defect" AND "Zendesk Brand[Short text]" ~ "Frontline Absence Management"  and createdDate >= "{start_date}" and createdDate < "{end_date}"'
-        ##jql = f'project="{project}" and createdDate >= "{start_date}" and createdDate < "{end_date}" and type = "bug" and status != Canceled'
         print(jql)
         return await run_generic_jql_count(jql)
 
@@ -53,13 +51,11 @@ async def get_all_stories(project, sprint_id_array):
         ## get a list of all stories - excluding regression bugs with [defect], [qa], [stage] in the summary
         stringlist = map(str, sprint_id_array)
         list_of_ids = ",".join(stringlist)
-        ##jql = f'project = "{project}" AND Sprint in  ({list_of_ids}) and type = "Story"'
         jql = f'project = "{project}" AND Sprint in  ({list_of_ids}) AND  type = "Story" and (summary !~ "\\[Defect\\]" or summary !~ "\\[QA\\]" or summary !~ "\\[Stage\\]")'
         return await run_generic_jql_count(jql)
 
 # gvien a month
 async def get_dtwindow_user_udpated(project, user, start_date, end_date):
-    # issuekey in updatedBy(jgeer, "2023/06/19", "2023/06/30") 
     jql = f'project = {project} AND issuekey in updatedBy({user}, "{start_date}", "{end_date}")'
     try:
         data = await combinational_paging_manager_generic_jql(jql, False)
@@ -71,7 +67,6 @@ async def get_dtwindow_user_udpated(project, user, start_date, end_date):
 
 async def get_monthly_tickets_by_selection(project, user, month_start_offset, month_count):
     if month_count is None:
-        #jql = f'project = {project} AND ( assignee was in ("{user}") OR status changed by "{user}" OR  reporter was in ("{user}"))  AND statusCategory = Done AND ( statusCategoryChangedDate >= startOfMonth({month_start_offset})  )'
         jql = f'project = {project} AND assignee was in ("{user}")  AND statusCategory = Done AND ( statusCategoryChangedDate >= startOfMonth({month_start_offset})  )'
     else:
         month_end = month_start_offset + month_count
@@ -100,7 +95,6 @@ async def get_monthly_tickets_by_worklog(project, user, month_start_offset, mont
     if month_count is None:
         jql = f'project = "{project}" and worklogAuthor = {user} AND worklogDate >= startOfMonth({month_start_offset}) and type not in (Sub-Task)'
     else:
-        year_end = month_start_offset + month_count
         jql = f'project = "{project}" and worklogAuthor = {user} AND worklogDate >= startOfMonth({month_start_offset}) AND worklogDate <= endOfMonth({month_count}) and type not in (Sub-Task)'
         
     return await combinational_paging_manager_generic_jql(jql)
@@ -172,20 +166,53 @@ async def get_support_in_year_range(project, year_offset, year_gap = 1):
     return await combinational_paging_manager_generic_jql(jql)
 
 ## year offset is relative to the current year.  Should be negative.
-async def pull_user_touched_tickets(project, user_guid, year_offset = 0):
+async def pull_yearly_user_touched_tickets(project, user_guid, year_offset = 0):
     if year_offset > 0:
         print("A positive year offset doesn't make sense, unless you have a time machine.")
         year_offset = year_offset * -1
 
     year = str(year_offset)
-    jql_unlimited = f'project = {project} and ( worklogAuthor = {user_guid} or commentedBy = {user_guid} or assignee = {user_guid})  and not type = Sub-task order by statusCategoryChangedDate desc'
-    jql_limited = f'project = {project} and statusCategoryChangedDate > startOfYear({year}) and statusCategoryChangedDate < endOfYear({year}) and ( worklogAuthor = {user_guid} or assignee = {user_guid})  and type = Sub-task order by statusCategoryChangedDate desc'
-    if year_offset != 0:
-        print(jql_limited)
-        return await combinational_paging_manager_generic_jql(jql_limited)
+    jql = f'project = {project} and statusCategoryChangedDate > startOfYear({year}) and statusCategoryChangedDate < endOfYear({year}) and ( worklogAuthor = {user_guid} or assignee = {user_guid})  and type not in (Sub-task) order by statusCategoryChangedDate desc'
+    return await combinational_paging_manager_generic_jql(jql)
+    
+## year offset is relative to the current year.  Should be negative.
+async def pull_monthly_user_touched_tickets(project, user_guid, month):
+    # Convert a calendar month number (1-12) to a JQL month offset
+    # relative to the current month. If an offset (e.g., -1) is passed,
+    # use it directly.
+    try:
+        target = int(month)
+    except (TypeError, ValueError):
+        target = month
+
+    current_month = datetime.now().month
+
+    # If caller passed a non-positive small integer, treat it as an offset already
+    if isinstance(target, int) and target <= 0 and target >= -120:
+        month_offset = target
     else:
-        print(jql_unlimited)
-        return await combinational_paging_manager_generic_jql(jql_unlimited)
+        # Treat as calendar month-of-year (1..12) and compute offset
+        if isinstance(target, int) and 1 <= target <= 12:
+            month_offset = target - current_month
+            if month_offset > 0:
+                month_offset -= 12  # roll into previous year for future months
+        else:
+            # Fallback: best effort cast to int and use as offset
+            month_offset = int(target)
+
+    start_offset = month_offset
+    next_offset = month_offset + 1
+
+    jql = (
+        f'project in ({project}, HCMCS) '
+        f'and statusCategoryChangedDate >= startOfMonth({start_offset}) '
+        f'and statusCategoryChangedDate < startOfMonth({next_offset}) '
+        f'and ( worklogAuthor = "{user_guid}" or assignee was "{user_guid}") '
+        f'and issuetype not in ("Sub-task") '
+        f'order by statusCategoryChangedDate desc'
+    )
+
+    return await combinational_paging_manager_generic_jql(jql)
 
 async def run_specific_url_count(url):
     auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
@@ -219,7 +246,6 @@ async def run_issue_by_key(key):
     
     return response      
 
-
 async def run_generic_jql_count(jql):
     auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
     url = f'https://frontlinetechnologies.atlassian.net/rest//rest/api/3/search/approximate-count'
@@ -238,51 +264,33 @@ async def run_generic_jql_count(jql):
     return total        
 
 
-async def paging_manager_generic_jql(jql, maxresults=100, page=0):
-    all_results = []
-    first_response = await run_generic_jql(jql, maxresults, page)
-    totalPossible = first_response["total"]
-    resultCount = first_response["maxResults"]
-    resultPage = first_response["startAt"]
-    all_results.append(first_response)
-    page_num = 0
-
-    for x in range(math.ceil(totalPossible/resultCount)-1):
-        page_num = page_num + 1
-        startat = page_num * 100 + 1
-        additional_response = await run_generic_jql(jql, maxresults, startat)
-        all_results.append(additional_response)
-
-    return all_results
-
 ### takes the first request of a paging result, and adds the other "issues" results to that one.
 ### this looks more like a single result with all the issues in it - rather then a list of results that must be paged though
-async def combinational_paging_manager_generic_jql(jql, npt=0):
+async def combinational_paging_manager_generic_jql(jql, npt=None):
     all_issues = []
-    first_response = await run_generic_jql(jql, npt)
+    current_response = await run_generic_jql(jql, npt)
 
     # did the query run
-    if "errorMessages" in first_response:
-        if first_response['errorMessages'] != None:
+    if "errorMessages" in current_response:
+        if current_response['errorMessages'] != None:
+            print ("Error in JQL query {0} - {1}".format(jql, current_response['errorMessages']))
             return None
 
-    all_issues.extend(first_response['issues'])
+    all_issues.extend(current_response['issues'])
 
-    #for x in range(math.ceil(totalPossible/resultCount)-1):
-    if first_response['isLast'] == False:
-        npt = first_response['nextPageToken']
-        additional_response = await run_generic_jql(jql, npt)
-        all_issues.extend(additional_response['issues'])
+    if current_response['isLast'] == False:
+        npt = current_response['nextPageToken']
+        current_response = await run_generic_jql(jql, npt)
+        all_issues.extend(current_response['issues'])
 
-    first_response['issues'] = all_issues
-    return first_response    
-
-
+    current_response['issues'] = all_issues
+    return current_response    
 
 async def run_generic_jql(jql, npt=None):
     auth = aiohttp.BasicAuth(login = os.environ.get('JIRA_USER'), password = os.environ.get('JIRA_API_KEY'))
     url = f'https://frontlinetechnologies.atlassian.net/rest/api/3/search/jql'
 
+    # changing the maxResults doesn't actually seem to do anything.
     payload_data =  {
     "expand": "renderedFields",
     "fields": [

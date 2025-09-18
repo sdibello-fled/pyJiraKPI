@@ -78,7 +78,7 @@ async def get_all_tickets_in_sprints(project, sprint_id_array):
         stringlist = map(str, sprint_id_array)
         listi = ",".join(stringlist)
         jql = f'project = "{project}" AND Sprint in ({listi}) and issuetype = bug'
-        return await paging_manager_generic_jql(jql, 100, 0)
+        return await combinational_paging_manager_generic_jql(jql, 100, 0)
 
 # moving away from sprints - as support is done out of sprints at times.
 # not used
@@ -87,7 +87,7 @@ async def get_requests_tickets_not_done_in_sprints(project, sprint_id_array):
         stringlist = map(str, sprint_id_array)
         listi = ",".join(stringlist)
         jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Request", "Bug") and statusCategory != Done'
-        return await paging_manager_generic_jql(jql, 100, 0)
+        return await combinational_paging_manager_generic_jql(jql, 100, 0)
 
 # added a function that returns all of the items, then just counts the priority as a group because paging manager was added
 # not used
@@ -102,19 +102,18 @@ async def get_priority_tickets_in_sprints(project, sprint_id_array, priority):
 async def get_priority_tickets_not_done(project):
         ## get a list of all sprints
         jql = f'project = "{project}" and issuetype in ("Support Request", "Bug") and statusCategory not in ("To Do", Done)'
-        return await combinational_paging_manager_generic_jql(jql, 100, 0)
-
+        return await combinational_paging_manager_generic_jql(jql)
 
 async def get_request_and_bug_tickets_done_in_sprints(project, sprint_id_array):
         ### HCMAT moved away from this due to use of kanban
         stringlist = map(str, sprint_id_array)
         listi = ",".join(stringlist)
         jql = f'project = "{project}" AND Sprint in ({listi}) and type in ("Support Request", "Bug") and statusCategory = "Done"'
-        return await paging_manager_generic_jql(jql, 100, 0)
+        return await combinational_paging_manager_generic_jql(jql)
 
 async def get_request_and_bug_tickets_done_in_days(project, daysBack):
         jql = f'project = {project} and statusCategory = Done and type in ("Support Request", Bug ) and statusCategoryChangedDate > "-{daysBack}d"'
-        return await combinational_paging_manager_generic_jql(jql, 100, 0)
+        return await combinational_paging_manager_generic_jql(jql)
 
 # just gets the count of bugs and support requests in the set of data passed
 def count_all_bugs_and_requests(data):

@@ -6,8 +6,6 @@ from kpi import kpi_query
 from jira_api import jira_user
 import csv
 
-show_tickets = True
-
 def create_chunks(lst, n):
     for i in range(0, len(lst), n):
         yield lst[i:i + n]
@@ -39,7 +37,7 @@ hcmat_user =  [
         # need to add more users here
     ]
 
-async def main():
+async def main(show_tickets=False):
         load_dotenv()
         ## this works but not always set up right.
         users = await jira_user.list_of_user_by_role("HCMAT", 11504)
@@ -55,8 +53,8 @@ async def main():
             full_count = 0
             empty_count = 0
 
-            #if user["actorUser"]["accountId"] not in hcmat_user:
-            #    continue
+            if user["actorUser"]["accountId"] not in hcmat_user:
+                continue
 
             # ("YYYY/MM/DD")
             shorten_n = shorten_name(user["displayName"],)
@@ -90,6 +88,6 @@ async def main():
 
 if __name__ == '__main__':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-        asyncio.run(main())
+        asyncio.run(main(False))
 
 

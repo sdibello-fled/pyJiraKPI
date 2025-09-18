@@ -8,6 +8,13 @@ from collections import namedtuple
 
 jira_prisev = namedtuple('JiraKey', ['project', 'severity', 'priority'])
 
+
+hcmat_user = [
+    ("557058:ad419beb-61cf-4589-a3b5-b2ebe3372753", "Greg Addams"),
+    ("712020:18104bf1-c9b7-492c-90b3-ab2bb0c69091", "Kevin Coyle"),
+    ("712020:1a50b056-6078-41eb-9e06-873395803717", "Dillon Smith"),
+]
+
 # this will list all tickets touched by a user 
 def create_chunks(lst, n):
     for i in range(0, len(lst), n):
@@ -26,14 +33,12 @@ def shorten_name(full_name):
     else:
         return full_name
 
-async def process(data):
+async def process(user_guid, user_name, month):
         issues = []
         tickets_worked_on = []
 
-
-        load_dotenv()
         ## this works but not always set up right.
-        data = await pull_user_touched_tickets('HCMAT', '712020:18104bf1-c9b7-492c-90b3-ab2bb0c69091' )
+        data = await pull_monthly_user_touched_tickets('HCMAT', user_guid, month)
 
         # pull the list with logged work        
         if data == None:
@@ -53,14 +58,24 @@ async def process(data):
             # get the story points worked on.
             if len(tickets_worked_on) > 0:
                 story_points, full_count, empty_count = jira_ticket.sum_points(tickets)
-                print ("{0}, {1} - points {2}, full/empty count {3}/{4}".format(user["displayName"], str(len(tickets)), story_points, full_count, empty_count))
+                print (
+                    "{0}, {1} - points {2}, pointed/unpointed count {3}/{4}".format(
+                        user_name,
+                        str(len(tickets)),
+                        story_points,
+                        full_count,
+                        empty_count,
+                    )
+                )
                 for t in tickets:
                     if t['fields']['customfield_10021'] != None:
                         print (f"\t - \t{t['key']} - {t['fields']['summary']}")    
 
-async def main():       
+async def main():
     load_dotenv()
-    await process()
+    month = 7
+    for user_guid, user_name in hcmat_user:
+        await process(user_guid, user_name, month)
 
 
 if __name__ == '__main__':
