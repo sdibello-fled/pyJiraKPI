@@ -56,10 +56,13 @@ async def get_all_stories(project, sprint_id_array):
 
 # gvien a month
 async def get_dtwindow_user_udpated(project, user, start_date, end_date):
-    jql = f'project = {project} AND issuekey in updatedBy({user}, "{start_date}", "{end_date}")'
+    jql = (
+    f'project in ({project}, HCMCS) '
+    f'AND issuekey in updatedBy({user}, "{start_date}", "{end_date}")'
+    )
     try:
         data = await combinational_paging_manager_generic_jql(jql, False)
-    except:
+    except (TypeError, ValueError, KeyError):
         print ("failed {0}".format(user))
         data = None
 
@@ -176,41 +179,32 @@ async def pull_yearly_user_touched_tickets(project, user_guid, year_offset = 0):
     return await combinational_paging_manager_generic_jql(jql)
     
 ## year offset is relative to the current year.  Should be negative.
-async def pull_monthly_user_touched_tickets(project, user_guid, month):
+async def pull_monthly_user_touched_tickets(project, user_guid, start_date, end_date):
     # Convert a calendar month number (1-12) to a JQL month offset
     # relative to the current month. If an offset (e.g., -1) is passed,
     # use it directly.
-    try:
-        target = int(month)
-    except (TypeError, ValueError):
-        target = month
-
-    current_month = datetime.now().month
-
-    # If caller passed a non-positive small integer, treat it as an offset already
-    if isinstance(target, int) and target <= 0 and target >= -120:
-        month_offset = target
-    else:
-        # Treat as calendar month-of-year (1..12) and compute offset
-        if isinstance(target, int) and 1 <= target <= 12:
-            month_offset = target - current_month
-            if month_offset > 0:
-                month_offset -= 12  # roll into previous year for future months
-        else:
-            # Fallback: best effort cast to int and use as offset
-            month_offset = int(target)
-
-    start_offset = month_offset
-    next_offset = month_offset + 1
 
     jql = (
-        f'project in ({project}, HCMCS) '
-        f'and statusCategoryChangedDate >= startOfMonth({start_offset}) '
-        f'and statusCategoryChangedDate < startOfMonth({next_offset}) '
-        f'and ( worklogAuthor = "{user_guid}" or assignee was "{user_guid}") '
-        f'and issuetype not in ("Sub-task") '
-        f'order by statusCategoryChangedDate desc'
+        f'project in ({project}, HCMCS)'
+        f'AND ( worklogAuthor = "{user_guid}" AND worklogDate >= "{start_date}" AND worklogDate < "{end_date}"  '
+        f'     OR status CHANGED BY "{user_guid}" AFTER "{start_date}" BEFORE "{end_date}" '
+        f'     ) ORDER BY updated DESC'        
     )
+
+    ## jql = (
+    ##     f'project in ({project}, HCMCS)'
+    ##     f'AND (('
+    ##     f'    worklogAuthor = "{user_guid}"'
+    ##     f'    AND worklogDate >= startOfMonth({start_offset})'
+    ##     f'    AND worklogDate <  startOfMonth({next_offset}) )'
+    ##     f'  OR'
+    ##     f'  assignee WAS "{user_guid}" DURING (startOfMonth({start_offset}), startOfMonth({next_offset}))'
+    ##     f'  OR'
+    ##     f'  status CHANGED BY "{user_guid}" AFTER  startOfMonth({start_offset}) BEFORE startOfMonth({next_offset}) )'
+    ##     f'AND issuetype NOT IN ("Sub-task")'
+    ##     f'ORDER BY updated DESC'
+    ##  )
+    print(jql)
 
     return await combinational_paging_manager_generic_jql(jql)
 
@@ -291,6 +285,8 @@ async def run_generic_jql(jql, npt=None):
     url = f'https://frontlinetechnologies.atlassian.net/rest/api/3/search/jql'
 
     # changing the maxResults doesn't actually seem to do anything.
+    # -comment     don't get the comments
+    # -attachment  don't get the attachments.
     payload_data =  {
     "expand": "renderedFields",
     "fields": [

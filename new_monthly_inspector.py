@@ -33,12 +33,12 @@ def shorten_name(full_name):
     else:
         return full_name
 
-async def process(user_guid, user_name, month):
+async def process(user_guid, user_name, start_date, end_date):
         issues = []
         tickets_worked_on = []
 
         ## this works but not always set up right.
-        data = await pull_monthly_user_touched_tickets('HCMAT', user_guid, month)
+        data = await pull_monthly_user_touched_tickets('HCMAT', user_guid, start_date, end_date)
 
         # pull the list with logged work        
         if data == None:
@@ -73,9 +73,8 @@ async def process(user_guid, user_name, month):
 
 async def main():
     load_dotenv()
-    month = 7
     for user_guid, user_name in hcmat_user:
-        await process(user_guid, user_name, month)
+        await process(user_guid, user_name, '2025-07-01', '2025-09-15')
 
 
 if __name__ == '__main__':
