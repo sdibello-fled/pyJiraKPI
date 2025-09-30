@@ -184,26 +184,26 @@ async def pull_monthly_user_touched_tickets(project, user_guid, start_date, end_
     # relative to the current month. If an offset (e.g., -1) is passed,
     # use it directly.
 
-    jql = (
-        f'project in ({project}, HCMCS)'
-        f'AND ( worklogAuthor = "{user_guid}" AND worklogDate >= "{start_date}" AND worklogDate < "{end_date}"  '
-        f'     OR status CHANGED BY "{user_guid}" AFTER "{start_date}" BEFORE "{end_date}" '
-        f'     ) ORDER BY updated DESC'        
-    )
+    ##jql = (
+    ##    f'project in ({project}, HCMCS)'
+    ##    f'AND ( worklogAuthor = "{user_guid}" AND worklogDate >= "{start_date}" AND worklogDate < "{end_date}"  '
+    ##    f'     OR status CHANGED BY "{user_guid}" AFTER "{start_date}" BEFORE "{end_date}" '
+    ##    f'     ) ORDER BY updated DESC'        
+    ##)
 
-    ## jql = (
-    ##     f'project in ({project}, HCMCS)'
-    ##     f'AND (('
-    ##     f'    worklogAuthor = "{user_guid}"'
-    ##     f'    AND worklogDate >= startOfMonth({start_offset})'
-    ##     f'    AND worklogDate <  startOfMonth({next_offset}) )'
-    ##     f'  OR'
-    ##     f'  assignee WAS "{user_guid}" DURING (startOfMonth({start_offset}), startOfMonth({next_offset}))'
-    ##     f'  OR'
-    ##     f'  status CHANGED BY "{user_guid}" AFTER  startOfMonth({start_offset}) BEFORE startOfMonth({next_offset}) )'
-    ##     f'AND issuetype NOT IN ("Sub-task")'
-    ##     f'ORDER BY updated DESC'
-    ##  )
+    jql = (
+        f'project in ({project}, HCMCS) '
+        f'AND (('
+        f'    worklogAuthor = "{user_guid}" '
+        f'    AND worklogDate >= {start_date} '
+        f'    AND worklogDate <  {end_date} ) '
+        f'  OR '
+        f'  assignee WAS "{user_guid}" DURING ({start_date}, {end_date}) '
+        f'  OR '
+        f'  status CHANGED BY "{user_guid}" AFTER  {start_date} BEFORE {end_date} ) '
+        #f' AND issuetype NOT IN ("Sub-task")'
+        f' ORDER BY updated DESC '
+     )
     print(jql)
 
     return await combinational_paging_manager_generic_jql(jql)

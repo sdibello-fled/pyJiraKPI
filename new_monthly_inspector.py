@@ -68,13 +68,13 @@ async def process(user_guid, user_name, start_date, end_date):
                     )
                 )
                 for t in tickets:
-                    if t['fields']['customfield_10021'] != None:
-                        print (f"\t - \t{t['key']} - {t['fields']['summary']}")    
+                    #if t['fields']['customfield_10021'] != None:
+                    print (f"\t - \t{t['key']} - {t['fields']['summary']}")    
 
 async def main():
     load_dotenv()
     for user_guid, user_name in hcmat_user:
-        await process(user_guid, user_name, '2025-07-01', '2025-09-15')
+        await process(user_guid, user_name, '2025-09-01', '2025-09-30')
 
 
 if __name__ == '__main__':
