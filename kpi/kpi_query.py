@@ -197,10 +197,9 @@ async def pull_monthly_user_touched_tickets(project, user_guid, start_date, end_
         f'    worklogAuthor = "{user_guid}" '
         f'    AND worklogDate >= {start_date} '
         f'    AND worklogDate <  {end_date} ) '
-        f'  OR '
-        f'  assignee WAS "{user_guid}" DURING ({start_date}, {end_date}) '
-        f'  OR '
-        f'  status CHANGED BY "{user_guid}" AFTER  {start_date} BEFORE {end_date} ) '
+        f'  OR  ( assignee WAS "{user_guid}" DURING ({start_date}, {end_date}) '
+        f' AND ( statusCategory != Done AND statusCategoryChangedDate < startOfYear() ) )  '
+        f'  OR  status CHANGED BY "{user_guid}" AFTER  {start_date} BEFORE {end_date} ) '
         #f' AND issuetype NOT IN ("Sub-task")'
         f' ORDER BY updated DESC '
      )
