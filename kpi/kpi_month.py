@@ -197,7 +197,7 @@ class kpi_month:
         self.TotalBugCount = await kpi_query.get_total_bug_count(self.project)
         self.Total_Count_Stories_Worked_On = await kpi_query.get_escape_velocity_comparitor(self.project, self.start_date, self.end_date)    
         ##self.Test_Automation_Tickets = await kpi_query.get_automation_tickets(self.project, self.start_date, self.end_date)   
-        self.Escape_Velocity_Rate = self.Escape_Velocity / self.Total_Count_Stories_Worked_On
+        self.Escape_Velocity_Rate = (self.Escape_Velocity + self.Escape_Velocity_HCMCS) / self.Total_Count_Stories_Worked_On
 
     def copy_group_data(self, other):
         self.Escape_Velocity = other.Escape_Velocity

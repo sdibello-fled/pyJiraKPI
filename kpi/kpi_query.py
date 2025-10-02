@@ -32,7 +32,7 @@ async def get_automation_tickets(project, start_date, end_date):
 
 #get the count of all items touched.
 async def get_escape_velocity_comparitor(project, start_date, end_date):
-        jql = f'project="{project}" and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" and statusCategory in ("In Progress", "Done") and type Not in (Sub-task, Test, Epic)'
+        jql = f'project in ("{project}", HCMCS) and statusCategoryChangedDate >= "{start_date}" and statusCategoryChangedDate < "{end_date}" and statusCategory in ("In Progress", "Done") and type Not in (Sub-task, Test, Epic)'
         return await run_generic_jql_count(jql)
 
 async def get_gherkin_format(project, sprint_id_array):
